@@ -1,0 +1,23 @@
+defaults: &defaults
+  app_name: "dearbnb"
+  domain: "http://dearbnb.dev"    
+  facebook_app_id: 
+  facebook_secret: 
+  facebook_perms: ''
+  admin_emails: 
+    - ""
+  google_analytics_key: ""
+  default_logo_url: "/logo.png"
+  email: ""
+  aws: ""
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
+
