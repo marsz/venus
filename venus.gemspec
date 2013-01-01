@@ -7,10 +7,10 @@ Gem::Specification.new do |gem|
   gem.name          = "venus"
   gem.version       = Venus::VERSION
   gem.authors       = ["marsz"]
-  gem.email         = ["marsz@5fpro.com"]
-  gem.description   = %q{  }
-  gem.summary       = %q{  }
-  gem.homepage      = ""
+  gem.email         = "marsz@5fpro.com"
+  gem.description   = %q{ Many rubygems generators & auto configuration. }
+  gem.summary       = %q{ Many rubygems generators & auto configuration. }
+  gem.homepage      = "https://github.com/marsz/venus"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
