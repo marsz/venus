@@ -4,6 +4,46 @@ module Venus
 
       private
 
+      def ask?(message, default_ans = true)
+        postfix = " [" + (!!default_ans == default_ans ? (default_ans ? 'Y/n' : 'y/N') : default_ans.to_s) + "]"
+        ans = ask("#{message}#{postfix}")
+        return (ans.present? ? ans : default_ans)
+      end
+
+      def read_destanation_file(filepath)
+        File.open(File.join(destination_root, filepath)).read
+      end
+
+      def file_has_content?(to_file, line)
+        read_destanation_file(to_file).index(line)
+      end
+
+      def has_gem?(gemname)
+        file_has_content?('Gemfile', /gem[ ]+['"]#{gemname}['"]/m)
+      end
+
+      def has_file?(file)
+        File.exists?(File.join(destination_root, file))
+      end
+
+      def load_template(template_file)
+        template(template_file, 'tpl', :verbose => false)
+        content = read_destanation_file('tpl')
+        remove_file('tpl', :verbose => false)
+        content
+      end
+
+      def add_gem(gemname, options = {})
+        if options.is_a?(Hash)
+          options = (options.size > 0 ? options.to_s[1..-2] : "")
+        elsif options.is_a?(String)
+          options = "'#{options}'"
+        end
+        options = ", #{options}" if options.size > 0
+        append_file("Gemfile", "\ngem '#{gemname}'#{options}\n") unless has_gem?(gemname)
+      end
+
+
       def insert_template(to_file, template_file, options = {})
         insert_content = load_template(template_file)
         if options[:force] == true || !file_has_content?(to_file, insert_content)
@@ -31,53 +71,12 @@ module Venus
         end
       end
 
-      def file_has_content?(to_file, line)
-        read_destanation_file(to_file).index(line)
-      end
-
-      def add_gem(gemname, options = {})
-        gemfile_content = read_destanation_file("Gemfile")
-        if options.is_a?(Hash)
-          options = (options.size > 0 ? options.to_s[1..-2] : "")
-        elsif options.is_a?(String)
-          options = "'#{options}'"
-        end
-        options = ", #{options}" if options.size > 0
-        append_file("Gemfile", "\ngem '#{gemname}'#{options}\n") unless /\ngem[ ]+['"]#{gemname}['"]/m =~ gemfile_content
-      end
-
-      def has_file?(file)
-        File.exists?(File.join(destination_root, file))
-      end
-
       def replace_in_file(relative_path, find, replace)
         contents = read_destanation_file(relative_path)
         unless contents.gsub!(find, replace)
-
-                include Rails::Generators::ResourceHelpers
-
-      include Rails::Generators::Migration
-      def self.next_migration_number(path)
-        Time.now.utc.strftime("%Y%m%d%H%M%S")
-      end
-raise "#{find.inspect} not found in #{relative_path}"
+          raise "#{find.inspect} not found in #{relative_path}"
         end
         File.open(path, "w") { |file| file.write(contents) }
-      end
-
-      def has_gem?(gemname)
-        file_has_content?('Gemfile', /gem[ ]+['"]#{gemname}['"]/m)
-      end
-
-      def read_destanation_file(filepath)
-        File.open(File.join(destination_root, filepath)).read
-      end
-
-      def load_template(template_file)
-        template(template_file, 'tpl', :verbose => false)
-        content = read_destanation_file('tpl')
-        remove_file('tpl', :verbose => false)
-        content
       end
 
     end
