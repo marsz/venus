@@ -10,7 +10,7 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus'
+  gem 'venus', '~> 0.2.0'
   ...
 end
 ```
@@ -24,6 +24,12 @@ Project basic rubygems
 rails generate venus:init
 ```
 
+Setting Mysql connection
+
+```
+rails generate venus:mysql
+```
+
 Pagination gem "kaminari"
 
 ```
@@ -33,7 +39,7 @@ rails generate venus:paginate
 Settings gem "settingslogic"
 
 ```
-rails generate venus:settinglogic
+rails generate venus:settingslogic
 ```
 
 gem 'devise', default generate model `User`
@@ -45,7 +51,7 @@ rails generate venus:devise
 Facebook login (for model `User`)
 
 ```
-rails generate venus:omniauth_fb
+rails generate venus:fbauth
 ```
 
 Rspec testing framework
@@ -57,13 +63,18 @@ rails generate venus:rspec
 TODO
 ====
 
-* MySql / MongoDB / Redis auto setup.
-* Bootstrap.
+* Capistrano with multi-stages extendsion.
+* MongoDB / Redis configuration.
+* Twitter Bootstrap layout.
 * Carrierwave with rmagick & fog.
 * Aws SES for sending email.
 * RailsAdmin or ActiveAdmin.
 * Sidekiq for background job.
-* Testing different rails version.
+
+Thanks
+======
+
+Idea is from xdite/bootstrappers (https://github.com/xdite/bootstrappers).
 
 Contribution
 ============

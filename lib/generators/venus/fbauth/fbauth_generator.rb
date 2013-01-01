@@ -1,24 +1,21 @@
 module Venus
   module Generators
-    class OmniauthFbGenerator < Base
-      desc "Setup omniauth-fb"
+    class FbauthGenerator < Base
+      desc "Setup gem 'omniauth-fb'"
 
       def asks
-        generate 'venus:settinglogic' unless has_gem?('settingslogic')
+        say 'checking dependent gems "settinglogic"...'
+        generate 'venus:settingslogic' unless has_gem?('settingslogic')
+        say 'checking dependent gems "devise"...'
         generate 'venus:devise' unless has_gem?('devise')
-        @fb_app_id = ask("Facebook App ID? [267188576687915]")
-        @fb_app_id = '267188576687915' unless @fb_app_id.present?
-        @fb_secret = ask("Facebook App Secret? [84f72292e1f6b299f4a668f12ed1a7f2]")
-        @fb_secret = '84f72292e1f6b299f4a668f12ed1a7f2' unless @fb_secret.present?
-        @settinglogic_class = ask("Your settinglogic class name? [Setting]")
-        @settinglogic_class = 'Setting' unless @settinglogic_class.present?
-        @settinglogic_yml = ask("Your settinglogic yaml file? [setting.yml]")
-        @settinglogic_yml = 'setting.yml' unless @settinglogic_yml.present?
+        @fb_app_id = ask?("Facebook App ID?", '267188576687915')
+        @fb_secret = ask?("Facebook App Secret?", '84f72292e1f6b299f4a668f12ed1a7f2')
+        @settinglogic_class = ask?("Your settinglogic class name?", 'Setting')
+        @settinglogic_yml = ask?("Your settinglogic yaml file in config/ ?", 'setting.yml')
       end
 
-
       def name
-        "OmniauthFB"
+        "Omniauth FB"
       end
 
       def gemfile
@@ -50,9 +47,7 @@ module Venus
       end
 
       def msg
-        if ask("Run 'bundle exec rake db:migrate'? [Y/n]").downcase != 'n'
-          run('bundle exec rake db:migrate')
-        end
+        run('bundle exec rake db:migrate') if ask?("Run 'bundle exec rake db:migrate'?", true)
       end
 
     end

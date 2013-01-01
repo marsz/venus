@@ -1,0 +1,16 @@
+development: &default
+  adapter: mysql2
+  encoding: utf8
+  database: <%= @db %>_development
+  host: localhost
+  username: '<%= @user %>'
+  password: '<%= @pass %>'
+
+test: &TEST
+  <<: *default
+  database: <%= @db %>_test
+
+production:
+  <<: *default
+  database: <%= @db %>_production
+
