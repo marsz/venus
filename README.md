@@ -63,8 +63,9 @@ rails generate venus:rspec
 TODO
 ====
 
-* MongoDB / Redis auto setup.
-* Twitter Bootstrap Layout.
+* Capistrano with multi-stages extendsion.
+* MongoDB / Redis configuration.
+* Twitter Bootstrap layout.
 * Carrierwave with rmagick & fog.
 * Aws SES for sending email.
 * RailsAdmin or ActiveAdmin.
