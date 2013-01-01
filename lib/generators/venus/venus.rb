@@ -16,7 +16,7 @@ module Venus
       private
 
       def insert_template(to_file, template_file, options = {})
-        insert_content = File.open(find_in_source_paths(template_file)).read
+        insert_content = load_template(template_file)
         if options[:force] == true || !file_has_content?(to_file, insert_content)
           options.delete(:force)
           inject_into_file(to_file,insert_content,options)
@@ -35,7 +35,7 @@ module Venus
       end
 
       def concat_template(to_file, template_file, options = {})
-        insert_content = File.open(find_in_source_paths(template_file)).read
+        insert_content = load_template(template_file)
         if options[:force] == true || !file_has_content?(to_file, insert_content)
           options.delete(:force)
           append_file(to_file, insert_content)
@@ -43,11 +43,11 @@ module Venus
       end
 
       def file_has_content?(to_file, line)
-        File.open(File.join(destination_root,to_file)).read.index(line)
+        read_destanation_file(to_file).index(line)
       end
 
       def add_gem(gemname, options = {})
-        gemfile_content = File.open(File.join(destination_root, "Gemfile")).read
+        gemfile_content = read_destanation_file("Gemfile")
         if options.is_a?(Hash)
           options = (options.size > 0 ? options.to_s[1..-2] : "")
         elsif options.is_a?(String)
@@ -62,8 +62,7 @@ module Venus
       end
 
       def replace_in_file(relative_path, find, replace)
-        path = File.join(destination_root, relative_path)
-        contents = IO.read(path)
+        contents = read_destanation_file(relative_path)
         unless contents.gsub!(find, replace)
           raise "#{find.inspect} not found in #{relative_path}"
         end
@@ -72,6 +71,16 @@ module Venus
 
       def has_gem?(gemname)
         file_has_content?('Gemfile', /gem[ ]+['"]#{gemname}['"]/m)
+      end
+
+      def read_destanation_file(filepath)
+        File.open(File.join(destination_root, filepath)).read
+      end
+      def load_template(template_file)
+        template(template_file, 'tpl', :verbose => false)
+        content = read_destanation_file('tpl')
+        remove_file('tpl', :verbose => false)
+        content
       end
     end
   end
