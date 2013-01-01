@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Venus::VERSION
   gem.authors       = ["marsz"]
   gem.email         = "marsz@5fpro.com"
-  gem.description   = %q{ Many rubygems generators & auto configuration. }
-  gem.summary       = %q{ Many rubygems generators & auto configuration. }
+  gem.description   = %q{ Use rails generator to install and setup rubygems such as rspec, devise, omniauth-facebook...etc. Also can use in exists projects. }
+  gem.summary       = %q{ Use rails generator to install and setup rubygems such as rspec, devise, omniauth-facebook...etc. Also can use in exists projects. }
   gem.homepage      = "https://github.com/marsz/venus"
 
   gem.files         = `git ls-files`.split($/)
@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_dependency 'railties'
-  gem.add_dependency 'activesupport'
+  gem.add_dependency 'railties', '>=3.1.3'
+  gem.add_dependency 'activesupport', '>=3.1.3'
   gem.add_dependency 'bundler', '>= 1.1'
 end
