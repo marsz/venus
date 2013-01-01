@@ -24,6 +24,12 @@ Project basic rubygems
 rails generate venus:init
 ```
 
+Setting Mysql connection
+
+```
+rails generate venus:mysql
+```
+
 Pagination gem "kaminari"
 
 ```
@@ -57,13 +63,17 @@ rails generate venus:rspec
 TODO
 ====
 
-* MySql / MongoDB / Redis auto setup.
-* Bootstrap.
+* MongoDB / Redis auto setup.
+* Twitter Bootstrap Layout.
 * Carrierwave with rmagick & fog.
 * Aws SES for sending email.
 * RailsAdmin or ActiveAdmin.
 * Sidekiq for background job.
-* Testing different rails version.
+
+Thanks
+======
+
+Idea is from xdite/bootstrappers (https://github.com/xdite/bootstrappers).
 
 Contribution
 ============

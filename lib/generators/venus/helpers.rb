@@ -79,6 +79,17 @@ module Venus
         File.open(destanation_file, "w") { |file| file.write(contents) }
       end
 
+      def add_gitignore(line)
+        if has_file?(".gitignore") && !file_has_content?(".gitignore", line)
+          insert_line_into_file ".gitignore", line 
+        end
+      end
+
+      # copy from Rails::Generators::AppGenerator
+      def app_name
+        File.basename(destination_root)
+      end
+
     end
   end
 end

@@ -20,7 +20,7 @@ module Venus
       def config
         template "setting.yml", "config/#{@filename}"
         template "setting.yml", "config/#{@filename}.example"
-        insert_line_into_file ".gitignore", "/config/#{@filename}" if has_file?(".gitignore")
+        add_gitignore "/config/#{@filename}"
       end
 
       def class_file
