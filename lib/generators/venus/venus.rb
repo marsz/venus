@@ -48,12 +48,30 @@ module Venus
 
       def add_gem(gemname, options = {})
         gemfile_content = File.open(File.join(destination_root, "Gemfile")).read
-        options = (options.size > 0 ? (", "+options.to_s[1..-2]) : "")
-        append_file("Gemfile", "\ngem '#{gemname}#{options}'\n") unless /\ngem[ ]+['"]#{gemname}['"]/m =~ gemfile_content
+        if options.is_a?(Hash)
+          options = (options.size > 0 ? options.to_s[1..-2] : "")
+        elsif options.is_a?(String)
+          options = "'#{options}'"
+        end
+        options = ", #{options}" if options.size > 0
+        append_file("Gemfile", "\ngem '#{gemname}'#{options}\n") unless /\ngem[ ]+['"]#{gemname}['"]/m =~ gemfile_content
       end
 
       def has_file?(file)
         File.exists?(File.join(destination_root, file))
+      end
+
+      def replace_in_file(relative_path, find, replace)
+        path = File.join(destination_root, relative_path)
+        contents = IO.read(path)
+        unless contents.gsub!(find, replace)
+          raise "#{find.inspect} not found in #{relative_path}"
+        end
+        File.open(path, "w") { |file| file.write(contents) }
+      end
+
+      def has_gem?(gemname)
+        file_has_content?('Gemfile', /gem[ ]+['"]#{gemname}['"]/m)
       end
     end
   end
