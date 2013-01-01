@@ -1,17 +1,6 @@
-require 'rails/generators'
 module Venus
   module Generators
-    class Base < ::Rails::Generators::Base
-      include Rails::Generators::ResourceHelpers
-      include Rails::Generators::Migration
-      def self.next_migration_number(path)
-        Time.now.utc.strftime("%Y%m%d%H%M%S")
-      end
-      # include Venus::Generators::Helpers
-
-      def self.source_root
-        File.expand_path(File.join(File.dirname(__FILE__), generator_name, 'templates'))
-      end
+    module Helpers
 
       private
 
@@ -64,7 +53,14 @@ module Venus
       def replace_in_file(relative_path, find, replace)
         contents = read_destanation_file(relative_path)
         unless contents.gsub!(find, replace)
-          raise "#{find.inspect} not found in #{relative_path}"
+
+                include Rails::Generators::ResourceHelpers
+
+      include Rails::Generators::Migration
+      def self.next_migration_number(path)
+        Time.now.utc.strftime("%Y%m%d%H%M%S")
+      end
+raise "#{find.inspect} not found in #{relative_path}"
         end
         File.open(path, "w") { |file| file.write(contents) }
       end
@@ -76,12 +72,14 @@ module Venus
       def read_destanation_file(filepath)
         File.open(File.join(destination_root, filepath)).read
       end
+
       def load_template(template_file)
         template(template_file, 'tpl', :verbose => false)
         content = read_destanation_file('tpl')
         remove_file('tpl', :verbose => false)
         content
       end
+
     end
   end
 end
