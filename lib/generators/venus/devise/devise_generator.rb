@@ -8,7 +8,7 @@ module Venus
       end
 
       def asks
-        @views = ask("Generate views? [y/N]").downcase
+        @views = ask?("Generate views?", false)
         # if @views == 'y' && has_gem?('haml')
         #   @haml = ask("Use haml? [Y/n]").downcase
         # end
@@ -25,7 +25,7 @@ module Venus
       end
 
       def views
-        if @views == 'y'
+        if @views
           generate 'devise:views -e erb'
           # if @haml != 'n'
           #   run 'gem install haml hpricot ruby_parser'

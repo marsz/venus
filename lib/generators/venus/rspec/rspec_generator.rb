@@ -32,8 +32,10 @@ module Venus
           "spec_helper.rb",
           :before => "\nend\n"
         )
-        line = '  config.include Devise::TestHelpers, :type => :controller'
-        inset_line_into_file(line, to_file, :before => "\nend\n") if has_gem?('devise')
+        if has_gem?('devise')
+          line = '  config.include Devise::TestHelpers, :type => :controller'
+          insert_line_into_file(to_file, line, :before => "\nend\n")
+        end
       end
 
     end

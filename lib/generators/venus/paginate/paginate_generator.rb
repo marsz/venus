@@ -1,16 +1,16 @@
 module Venus
   module Generators
     class PaginateGenerator < Base
-      desc "Paginate"
+      desc "Pagination gem - 'kaminari'"
 
       def name
         "Paginate"
       end
 
       def asks
-        @kaminari_views = ask("generate kaminari views? [y/N]").downcase
-        if has_gem?('haml') && @kaminari_views == 'y'
-          @kaminari_haml = ask("Haml kaminari views? [Y/n]").downcase
+        @kaminari_views = ask?("generate kaminari views?", false)
+        if has_gem?('haml') && @kaminari_views
+          @kaminari_haml = ask?("Haml kaminari views?", true)
         end
       end
 
@@ -23,7 +23,7 @@ module Venus
       end
 
       def kaminari_views
-        if @kaminari_views == 'y'
+        if @kaminari_views
           haml = @kaminari_haml != 'n' ? ' -e haml' : ''
           generate 'kaminari:views default' + haml
         end
