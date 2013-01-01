@@ -71,12 +71,12 @@ module Venus
         end
       end
 
-      def replace_in_file(relative_path, find, replace)
-        contents = read_destanation_file(relative_path)
+      def replace_in_file(destanation_file, find, replace)
+        contents = read_destanation_file(destanation_file)
         unless contents.gsub!(find, replace)
-          raise "#{find.inspect} not found in #{relative_path}"
+          raise "#{find.inspect} not found in #{destanation_file}"
         end
-        File.open(path, "w") { |file| file.write(contents) }
+        File.open(destanation_file, "w") { |file| file.write(contents) }
       end
 
     end

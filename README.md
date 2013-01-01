@@ -45,7 +45,7 @@ rails generate venus:devise
 Facebook login (for model `User`)
 
 ```
-rails generate venus:omniauth_fb
+rails generate venus:fbauth
 ```
 
 Rspec testing framework
