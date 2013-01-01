@@ -1,6 +1,6 @@
 defaults: &defaults
-  app_name: "dearbnb"
-  domain: "http://dearbnb.dev"    
+  app_name: ""
+  host: "localhost"
   facebook_app_id: 
   facebook_secret: 
   facebook_perms: ''
