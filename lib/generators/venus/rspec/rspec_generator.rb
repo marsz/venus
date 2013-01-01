@@ -26,11 +26,14 @@ module Venus
       end
 
       def spec_helper
+        to_file = "spec/spec_helper.rb"
         insert_template(
-          "spec/spec_helper.rb",
+          to_file,
           "spec_helper.rb",
           :before => "\nend\n"
         )
+        line = '  config.include Devise::TestHelpers, :type => :controller'
+        inset_line_into_file(line, to_file, :before => "\nend\n") if has_gem?('devise')
       end
 
     end
