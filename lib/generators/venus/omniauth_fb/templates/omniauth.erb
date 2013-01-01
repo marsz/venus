@@ -1,0 +1,3 @@
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :facebook, <%= @settinglogic_class %>.facebook_app_id, <%= @settinglogic_class %>.facebook_secret, :scope => <%= @settinglogic_class %>.facebook_perms
+end
