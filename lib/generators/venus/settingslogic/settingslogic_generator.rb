@@ -1,13 +1,11 @@
 module Venus
   module Generators
-    class SettinglogicGenerator < Base
+    class SettingslogicGenerator < Base
       desc "Install gem settinglogic"
 
       def asks
-        @filename = ask("Your yaml file name in config/ ? [setting.yml]")
-        @filename = "setting.yml" unless @filename.present?
-        @setting_class = ask("Your setting class name ? [Setting]")
-        @setting_class = "Setting" unless @setting_class.present?
+        @filename = ask?("Your yaml file name in config/ ?", 'setting.yml')
+        @setting_class = ask?("Your setting class name ?", 'Setting')
       end
 
       def name

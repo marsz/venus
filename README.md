@@ -33,7 +33,7 @@ rails generate venus:paginate
 Settings gem "settingslogic"
 
 ```
-rails generate venus:settinglogic
+rails generate venus:settingslogic
 ```
 
 gem 'devise', default generate model `User`
