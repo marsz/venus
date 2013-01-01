@@ -9,10 +9,11 @@ module Venus
 
       def asks
         @gems = {}
-        [:kaminari, :simple_form, :nested_form, :haml, :whenever].each do |gemname|
+        [:simple_form, :nested_form, :haml, :whenever].each do |gemname|
           @gems[gemname] = ask("install gem '#{gemname}'? [Y/n]").downcase
         end
         @gem_development = ask("install group gems for development? [Y/n]").downcase
+        @paginate = ask('install paginate gem "kaminari"? [Y/n]')
       end
 
       def gems
@@ -31,6 +32,12 @@ module Venus
 
       def run_bunle
         run 'bundle install'
+      end
+
+      def paginate
+        if @paginate != 'n'
+          generate 'venus:paginate'
+        end
       end
 
     end
