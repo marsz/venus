@@ -7,7 +7,7 @@ module Venus
       def ask?(message, default_ans = true)
         postfix = " [" + (!!default_ans == default_ans ? (default_ans ? 'Y/n' : 'y/N') : default_ans.to_s) + "]"
         ans = ask("#{message}#{postfix}")
-        return (ans.present? ? ans : default_ans)
+        return (ans.present? ? (['n','N'].include?(ans) ? false : ans) : default_ans)
       end
 
       def read_destanation_file(filepath)

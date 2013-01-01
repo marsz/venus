@@ -1,7 +1,7 @@
 module Venus
   module Generators
     class InitGenerator < Base
-      desc "Init Setup"
+      desc "Setup essential gems"
 
       def name
         "initalize"
@@ -10,14 +10,14 @@ module Venus
       def asks
         @gems = {}
         [:simple_form, :nested_form, :haml, :whenever].each do |gemname|
-          @gems[gemname] = ask("install gem '#{gemname}'? [Y/n]").downcase
+          @gems[gemname] = ask?("install gem '#{gemname}'?", true)
         end
-        @gem_development = ask("install group gems for development? [Y/n]").downcase
-        @paginate = ask('install paginate gem "kaminari"? [Y/n]')
+        @gem_development = ask?("install group gems for development?", true)
+        @paginate = ask?('install paginate gem "kaminari"?', true) unless has_gem?('kaminari')
       end
 
       def gems
-        if @gem_development != 'n'
+        if @gem_development
           @is_append = !file_has_content?('Gemfile','group :development do')
           if @is_append
             concat_template('Gemfile', 'gem_developments.erb')
@@ -26,7 +26,7 @@ module Venus
           end
         end
         @gems.each do |gemname, ans|
-          add_gem(gemname.to_s) if ans != 'n' && !has_gem?(gemname)
+          add_gem(gemname.to_s) if ans
         end
       end
 
