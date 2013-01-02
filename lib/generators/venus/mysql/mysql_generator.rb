@@ -16,6 +16,7 @@ module Venus
 
       def gemfile
         add_gem('mysql2')
+        run 'bundle install'
       end
 
       def gitignore
@@ -26,7 +27,6 @@ module Venus
         template 'database.yml.erb', 'config/database.yml', :force => true
         @pass = ''
         template 'database.yml.erb', 'config/database.yml.example', :force => true
-        run 'bundle install'
       end
 
       def create

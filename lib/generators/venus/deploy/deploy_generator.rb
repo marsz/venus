@@ -26,9 +26,6 @@ module Venus
           insert_template('Gemfile', 'gemfile.erb', :after => 'group :development do')
         end
         run 'bundle install'
-      end
-
-      def capify
         run 'bundle exec capify .'
       end
 
