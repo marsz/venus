@@ -13,7 +13,7 @@ module Venus
 
       def set_gemfile
         concat_template("Gemfile", "gemfile.rb")
-        run "bundle install"
+        bundle_install
         generate "rspec:install"
       end
 

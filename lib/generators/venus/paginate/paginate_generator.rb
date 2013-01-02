@@ -16,7 +16,7 @@ module Venus
 
       def gems
         add_gem('kaminari')
-        run 'bundle install'
+        bundle_install
       end
 
       def kaminari_views

@@ -50,7 +50,7 @@ module Venus
         @gems.each do |gemname, ans|
           add_gem(gemname.to_s) if ans
         end
-        run 'bundle install'
+        bundle_install
       end
 
     end
