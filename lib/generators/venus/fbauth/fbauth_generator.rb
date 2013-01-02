@@ -21,6 +21,7 @@ module Venus
       def gemfile
         add_gem('omniauth')
         add_gem('omniauth-facebook')
+        bundle_install
       end
 
       def controller
@@ -47,7 +48,7 @@ module Venus
       end
 
       def msg
-        run('bundle exec rake db:migrate') if ask?("Run 'bundle exec rake db:migrate'?", true)
+        bundle_exec('rake db:migrate') if ask?("Run 'bundle exec rake db:migrate'?", true)
       end
 
     end

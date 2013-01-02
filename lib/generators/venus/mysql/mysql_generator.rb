@@ -30,8 +30,8 @@ module Venus
       end
 
       def create
-        run('bundle exec rake db:drop') if @recreate
-        run('bundle exec rake db:create')
+        bundle_exec('rake db:drop') if @recreate
+        bundle_exec('rake db:create')
       end
 
     end
