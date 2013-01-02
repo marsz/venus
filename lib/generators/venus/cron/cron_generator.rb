@@ -14,7 +14,7 @@ module Venus
       def gemfile
         add_gem('whenever')
         bundle_install
-        run 'bundle exec wheneverize .'
+        bundle_exec('wheneverize .')
       end
 
       def capistrano

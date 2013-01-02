@@ -26,7 +26,7 @@ module Venus
           insert_template('Gemfile', 'gemfile.erb', :after => 'group :development do')
         end
         bundle_install
-        run 'bundle exec capify .'
+        bundle_exec('capify .')
       end
 
       def capfile
@@ -48,8 +48,8 @@ module Venus
 
       def deploy_setup
         if ask?('setup servers deployment?', true)
-          run 'bundle exec cap production deploy:setup'
-          run 'bundle exec cap staging deploy:setup' if @staging
+          bundle_exec('cap production deploy:setup')
+          bundle_exec('cap staging deploy:setup') if @staging
         end
       end
 

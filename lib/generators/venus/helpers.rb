@@ -96,6 +96,12 @@ module Venus
         end
       end
 
+      def bundle_exec(exec)
+        Bundler.with_clean_env do
+          run "bundle exec #{exec}"
+        end
+      end
+
     end
   end
 end
