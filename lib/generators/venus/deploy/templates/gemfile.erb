@@ -1,0 +1,9 @@
+
+<%- if @is_append %>group :development do<%- end -%>
+  gem 'capistrano'
+  gem 'capistrano-ext'
+  gem 'capistrano_colors'
+<%- if @use_rvm %>  gem 'rvm-capistrano'
+<%- end -%>
+  gem 'cape'
+<%- if @is_append %>end<%- end -%>

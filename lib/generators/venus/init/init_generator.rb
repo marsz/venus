@@ -9,11 +9,12 @@ module Venus
 
       def asks
         @gems = {}
-        [:simple_form, :nested_form, :haml, :whenever].each do |gemname|
+        @paginate = ask?('install paginate gem "kaminari"?', true) unless has_gem?('kaminari')
+        @whenever = ask?('install scheduling gem "whenever"?', true) unless has_gem?('whenever')
+        [:simple_form, :nested_form, :haml].each do |gemname|
           @gems[gemname] = ask?("install gem '#{gemname}'?", true)
         end
         @gem_development = ask?("install group gems for development?", true)
-        @paginate = ask?('install paginate gem "kaminari"?', true) unless has_gem?('kaminari')
       end
 
       def remove_usless_file
@@ -21,6 +22,18 @@ module Venus
         remove_file 'app/assets/images/rails.png'
       end
 
+      def paginate
+        if @paginate
+          generate 'venus:paginate'
+        end
+      end
+
+      def cron
+        if @whenever
+          generate 'venus:cron'
+        end
+      end
+      
       def enable_email_delivery_error
         file = 'config/environments/development.rb'
         find = 'raise_delivery_errors = false'
@@ -44,12 +57,6 @@ module Venus
 
       def run_bunle
         run 'bundle install'
-      end
-
-      def paginate
-        if @paginate
-          generate 'venus:paginate'
-        end
       end
 
     end

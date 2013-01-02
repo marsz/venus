@@ -18,47 +18,54 @@ end
 Usage
 =====
 
-Project basic rubygems
+* Setup gem 'capistrano' for deloyment.
 
-```
-rails generate venus:init
-```
+  ```
+  rails generate venus:deploy
+  ```
 
-Setting Mysql connection
 
-```
-rails generate venus:mysql
-```
+* Essentail gems (simple_form, kminari...etc) and setup (removing public/index.html ...etc).
 
-Pagination gem "kaminari"
+  ```
+  rails generate venus:init
+  ```
 
-```
-rails generate venus:paginate
-```
+* Setup Mysql connection
 
-Settings gem "settingslogic"
+  ```
+  rails generate venus:mysql
+  ```
 
-```
-rails generate venus:settingslogic
-```
+* Pagination gem "kaminari"
 
-gem 'devise', default generate model `User`
+  ```
+  rails generate venus:paginate
+  ```
 
-```
-rails generate venus:devise
-```
+* Setup gem "settingslogic"
 
-Facebook login (for model `User`)
+  ```
+  rails generate venus:settingslogic
+  ```
 
-```
-rails generate venus:fbauth
-```
+* Setup gem 'devise', default generate model `User`
 
-Rspec testing framework
+  ```
+  rails generate venus:devise
+  ```
 
-```
-rails generate venus:rspec
-```
+* Setup Omniauth for Facebook login (model `User`).
+
+  ```
+  rails generate venus:fbauth
+  ```
+
+* Setup Rspec testing framework
+
+  ```
+  rails generate venus:rspec
+  ```
 
 TODO
 ====
