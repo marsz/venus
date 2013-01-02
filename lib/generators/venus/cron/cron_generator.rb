@@ -12,13 +12,9 @@ module Venus
       end
 
       def gemfile
-        return unless has_gem?('whenever')
         add_gem('whenever')
         run 'bundle install'
-      end
-
-      def wheneverize
-        run 'wheneverize .'
+        run 'bundle exec wheneverize .'
       end
 
       def capistrano
