@@ -14,7 +14,7 @@ module Venus
 
       def gemfile
         add_gem('settingslogic')
-        run "bundle install"
+        bundle_install
       end
 
       def config

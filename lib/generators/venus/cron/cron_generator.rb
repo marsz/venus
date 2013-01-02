@@ -13,7 +13,7 @@ module Venus
 
       def gemfile
         add_gem('whenever')
-        run 'bundle install'
+        bundle_install
         run 'bundle exec wheneverize .'
       end
 

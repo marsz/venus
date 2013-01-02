@@ -16,7 +16,7 @@ module Venus
 
       def gemfile
         add_gem('devise', "~> 2.1.2")
-        run 'bundle install'
+        bundle_install
       end
 
       def generates

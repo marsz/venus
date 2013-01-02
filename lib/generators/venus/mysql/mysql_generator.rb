@@ -16,7 +16,7 @@ module Venus
 
       def gemfile
         add_gem('mysql2')
-        run 'bundle install'
+        bundle_install
       end
 
       def gitignore

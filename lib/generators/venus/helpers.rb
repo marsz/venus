@@ -90,6 +90,12 @@ module Venus
         File.basename(destination_root)
       end
 
+      def bundle_install
+        Bundler.with_clean_env do
+          run "bundle install"
+        end
+      end
+
     end
   end
 end
