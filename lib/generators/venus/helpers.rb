@@ -19,7 +19,7 @@ module Venus
       end
 
       def has_gem?(gemname)
-        file_has_content?('Gemfile', /gem[ ]+['"]#{gemname}['"]/m)
+        file_has_content?('Gemfile.lock', / #{gemname} \(/m)
       end
 
       def has_file?(file)
