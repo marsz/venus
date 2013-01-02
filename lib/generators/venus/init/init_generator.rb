@@ -46,6 +46,10 @@ module Venus
         run 'bundle install'
       end
 
+      def run_magic_encoding
+        run 'magic_encoding'
+      end
+
       def paginate
         if @paginate
           generate 'venus:paginate'
