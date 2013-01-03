@@ -21,7 +21,7 @@ module Venus
 
       def kaminari_views
         if @kaminari_views
-          haml = @kaminari_haml != 'n' ? ' -e haml' : ''
+          haml = @kaminari_haml ? ' -e haml' : ''
           generate 'kaminari:views default' + haml
         end
       end

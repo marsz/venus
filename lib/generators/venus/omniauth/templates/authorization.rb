@@ -1,0 +1,2 @@
+
+  belongs_to :user

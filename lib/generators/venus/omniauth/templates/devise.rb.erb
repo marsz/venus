@@ -1,0 +1,8 @@
+
+
+  # ==> OmniAuth
+  # Add a new OmniAuth provider. Check the wiki for more information on setting
+  # up on your models and hooks.
+<%- @providers.each do |name, | -%>
+  config.omniauth :<%=name%>, <%=@settinglogic_class%>.<%=name%>_token, <%=@settinglogic_class%>.<%=name%>_secret
+<%- end -%>

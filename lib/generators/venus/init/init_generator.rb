@@ -53,6 +53,10 @@ module Venus
         bundle_install
       end
 
+      def run_magic_encoding
+        run 'magic_encoding'
+      end
+
     end
   end
 end
