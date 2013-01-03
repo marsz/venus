@@ -19,7 +19,7 @@ module Venus
       end
 
       def has_gem?(gemname)
-        file_has_content?('Gemfile', /gem[ ]+['"]#{gemname}['"]/m)
+        file_has_content?('Gemfile.lock', / #{gemname} \(/m)
       end
 
       def has_file?(file)
@@ -88,6 +88,18 @@ module Venus
       # copy from Rails::Generators::AppGenerator
       def app_name
         File.basename(destination_root)
+      end
+
+      def bundle_install
+        Bundler.with_clean_env do
+          run "bundle install"
+        end
+      end
+
+      def bundle_exec(exec)
+        Bundler.with_clean_env do
+          run "bundle exec #{exec}"
+        end
       end
 
     end

@@ -16,6 +16,7 @@ module Venus
 
       def gemfile
         add_gem('mysql2')
+        bundle_install
       end
 
       def gitignore
@@ -26,12 +27,11 @@ module Venus
         template 'database.yml.erb', 'config/database.yml', :force => true
         @pass = ''
         template 'database.yml.erb', 'config/database.yml.example', :force => true
-        run 'bundle install'
       end
 
       def create
-        run('bundle exec rake db:drop') if @recreate
-        run('bundle exec rake db:create')
+        bundle_exec('rake db:drop') if @recreate
+        bundle_exec('rake db:create')
       end
 
     end
