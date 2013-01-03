@@ -21,7 +21,7 @@ module Venus
 
       def kaminari_views
         if @kaminari_views
-          haml = lambda {|x| (x.nil? or x == false) ? '' : ' -e haml'}.call(@kaminari_haml)
+          haml = @kaminari_haml ? ' -e haml' : ''
           generate 'kaminari:views default' + haml
         end
       end

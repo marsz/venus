@@ -60,7 +60,7 @@ module Venus
       end
 
       def msg
-        run('bundle exec rake db:migrate') if ask?("Run 'bundle exec rake db:migrate'?", true)
+        bundle_exe('rake db:migrate') if ask?("Run 'bundle exec rake db:migrate'?", true)
       end
     end
   end
