@@ -19,8 +19,8 @@ module Venus
         @providers = {}
         [:facebook, :github, :twitter].each do |provider|
           if ask?("Use '#{provider}'?", true)
-            token = ask?("#{provider.capitalize} App ID?", '012345678987654')
-            secret = ask?("#{provider.capitalize} App Secret?", '1a2b3c4d5e6f7g8h9i12345678987654')
+            token = ask?("#{provider.capitalize} App ID?", '267188576687915')
+            secret = ask?("#{provider.capitalize} App Secret?", '84f72292e1f6b299f4a668f12ed1a7f2')
             @providers[provider] = {:token => token, :secret => secret}
           end
         end
