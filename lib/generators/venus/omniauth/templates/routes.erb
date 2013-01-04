@@ -1,0 +1,7 @@
+
+  match '/users/auth/:provider/callback', :to => "users/omniauth_callbacks#callback"
+  match '/users/auth/failure' => 'sessions#failure', :as => :auth_failure
+
+  Setting.providers.each do |provider|
+    match "/users/auth/#{provider}", :as => "user_auth_#{provider}"
+  end

@@ -18,6 +18,12 @@ end
 Usage
 =====
 
+* Setup Omniauth for multiple omniauth (Facebook, Twitter, Github) in model `User`.
+
+  ```
+  rails generate venus:omniauth
+  ```
+
 * Setup gem 'capistrano' for deloyment.
 
   ```
@@ -53,12 +59,6 @@ Usage
 
   ```
   rails generate venus:devise
-  ```
-
-* Setup Omniauth for Facebook login (model `User`).
-
-  ```
-  rails generate venus:fbauth
   ```
 
 * Setup Rspec testing framework
