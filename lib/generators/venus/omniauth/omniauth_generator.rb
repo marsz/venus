@@ -31,36 +31,32 @@ module Venus
         @providers.each do |provider, |
           add_gem("omniauth-#{provider}")
         end
+        bundle_install
       end
 
       def controller
         template 'omniauth_callbacks_controller.rb', 'app/controllers/users/omniauth_callbacks_controller.rb', :force => true
       end
 
-      def routes
-        file = 'config/routes.rb'
-        find = 'devise_for :users'
-        replace = 'devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }'
-        replace_in_file(file, find, replace) if file_has_content?(file, find)
-      end
-
-      def model
-        generate "model authorization provider:string uid:string user_id:integer token:string secret:string"
-        template 'omniauth_callback.rb.erb', 'app/models/user/omniauth_callback.rb', :force => true
-        insert_template("app/models/user.rb", "user.erb", :before => "\nend\n")
-        insert_template("app/models/authorization.rb", "authorization.rb", :after => "Base\n")
-        replace_in_file("app/models/user.rb", "  devise ", "  devise :omniauthable, ")
-      end
-
-      def config
+      def configs
+        insert_template('config/routes.rb', 'routes.erb', :after => "routes.draw do\n")
+        template 'omniauth.rb', 'config/initializers/omniauth.rb'
         ["config/#{@settinglogic_yml}", "config/#{@settinglogic_yml}.example"].each do |to_file|
           insert_template(to_file, "setting.yml.erb", :after => "&defaults\n")
         end
-        insert_template("config/initializers/devise.rb", "devise.rb.erb", :before => "\nend")
+      end
+
+      def model
+        generate "model authorization provider:string uid:string auth_type:string auth_id:integer auth_data:text"
+        insert_template 'app/models/authorization.rb', 'authorization.rb', :after => "ActiveRecord::Base\n"
+        template 'omniauthable.rb', 'app/lib/omniauthable.rb'
+        insert_template("app/models/user.rb", "user.erb", :before => "\nend\n")
+        sleep(1)
+        migration_template "migrations.rb", "db/migrate/add_index_for_authorizations_and_add_column_for_users"
       end
 
       def msg
-        bundle_exe('rake db:migrate') if ask?("Run 'bundle exec rake db:migrate'?", true)
+        bundle_exec('rake db:migrate') if ask?("Run 'bundle exec rake db:migrate'?", true)
       end
     end
   end

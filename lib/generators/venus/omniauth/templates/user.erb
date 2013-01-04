@@ -1,12 +1,3 @@
 
-  has_many :authorizations, :dependent => :destroy
-
-  def bind_service(response)
-    provider = response["provider"]
-    uid = response["uid"]
-    authorizations.find_or_create_by_provider_and_uid!(provider, uid)
-  end
-
-  def can_bind_to
-    <%= @settinglogic_class %>.providers - (self.authorizations.map {|auth| auth.provider})
-  end
+  attr_accessible :name
+  include Omniauthable

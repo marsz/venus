@@ -1,6 +1,5 @@
+  providers: <%= (@providers.map {|p| p[0].to_s}).to_s %>
 <%- @providers.each do |name, info| -%>
   <%=name%>_token: "<%=info[:token] %>"
   <%=name%>_secret: "<%=info[:secret] %>"
 <%- end -%>
-  providers: <%= (@providers.map {|p| p[0].to_s}).to_s %>
-
