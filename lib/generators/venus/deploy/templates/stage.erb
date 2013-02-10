@@ -1,7 +1,7 @@
-set :rails_env, "<%= @stage[:env] %>"
+set :branch, '<%= @stage[:branch] %>'
 set :user, '<%= @stage[:user] %>'
 set :domain, '<%= @stage[:server] %>'
-set :branch, '<%= @stage[:branch] %>'
+set :rails_env, "<%= @stage[:env] %>"
 
 server "#{domain}", :web, :app, :db, :primary => true
 set :deploy_to, "/home/#{user}/#{domain}"
