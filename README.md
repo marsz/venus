@@ -10,7 +10,7 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.5.1'
+  gem 'venus', '~> 0.5.2'
   ...
 end
 ```
@@ -22,6 +22,12 @@ Usage
   
   ```
   rails generate venus:jqueryui
+  ```
+
+* Setup chosen for jQuery (see demo: http://harvesthq.github.com/chosen/)
+  
+  ```
+  rails generate venus:chosen
   ```
 
 * Setup AWS api keys for official aws-sdk (including SES).
