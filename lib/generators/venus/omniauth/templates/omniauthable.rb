@@ -36,24 +36,21 @@ module Omniauthable
 
   end
 
-  module InstanceMethods
-
-    def bind_service(authhash)
-      authorization = Authorization.find_by_provider_and_uid(authhash['provider'], authhash['uid'])
-      unless authorization
-        authorization = authorizations.create! :uid => authhash['uid'], :provider => authhash['provider'], :auth_data => authhash
-      end
-      authorization
+  def bind_service(authhash)
+    authorization = Authorization.find_by_provider_and_uid(authhash['provider'], authhash['uid'])
+    unless authorization
+      authorization = authorizations.create! :uid => authhash['uid'], :provider => authhash['provider'], :auth_data => authhash
     end
-
-    def can_bind_to
-      Setting.providers - (authorizations.map {|auth| auth.provider})
-    end
-
-    def password_required?
-      false
-    end
-
+    authorization
   end
+
+  def can_bind_to
+    Setting.providers - (authorizations.map {|auth| auth.provider})
+  end
+
+  def password_required?
+    false
+  end
+
 
 end
