@@ -10,7 +10,7 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.2.0'
+  gem 'venus', '~> 0.4.2'
   ...
 end
 ```
