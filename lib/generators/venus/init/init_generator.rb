@@ -10,27 +10,24 @@ module Venus
       def asks
         @gems = {}
         @paginate = ask?('install paginate gem "kaminari"?', true) unless has_gem?('kaminari')
+        generate 'venus:paginate' if @paginate
+
         @whenever = ask?('install scheduling gem "whenever"?', true) unless has_gem?('whenever')
-        [:simple_form, :nested_form, :haml].each do |gemname|
+        generate 'venus:cron' if @whenever
+
+        [:haml].each do |gemname|
           @gems[gemname] = ask?("install gem '#{gemname}'?", true)
+        end
+
+        @simple_form = ask?('install gem "simple_form"?', true) unless has_gem?('simple_form')
+        if @simple_form
+          generate "venus:simple_form"
         end
       end
 
       def remove_usless_file
         remove_file 'public/index.html'
         remove_file 'app/assets/images/rails.png'
-      end
-
-      def paginate
-        if @paginate
-          generate 'venus:paginate'
-        end
-      end
-
-      def cron
-        if @whenever
-          generate 'venus:cron'
-        end
       end
       
       def enable_email_delivery_error
@@ -54,7 +51,7 @@ module Venus
       end
 
       def run_magic_encoding
-        run 'magic_encoding'
+        run 'bundle exec magic_encoding'
       end
 
     end

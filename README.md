@@ -10,13 +10,19 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.4.2'
+  gem 'venus', '~> 0.5.0'
   ...
 end
 ```
 
 Usage
 =====
+
+* Setup AWS api keys for official aws-sdk (including SES).
+
+  ```
+  rails generate venus:aws
+  ```
 
 * Setup Omniauth for multiple omniauth (Facebook, Twitter, Github) in model `User`.
 
@@ -30,6 +36,11 @@ Usage
   rails generate venus:deploy
   ```
 
+* Setup gem 'simple_form' and its related gems (including 'nested_form')
+
+  ```
+  rails generate venus:simple_form
+  ```
 
 * Essentail gems (simple_form, kminari...etc) and setup (removing public/index.html ...etc).
 
@@ -70,11 +81,10 @@ Usage
 TODO
 ====
 
-* Capistrano with multi-stages extendsion.
+* jQuery UI (with datepicker)
 * MongoDB / Redis configuration.
 * Twitter Bootstrap layout.
 * Carrierwave with rmagick & fog.
-* Aws SES for sending email.
 * RailsAdmin or ActiveAdmin.
 * Sidekiq for background job.
 
