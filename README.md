@@ -10,13 +10,19 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.5.0'
+  gem 'venus', '~> 0.5.1'
   ...
 end
 ```
 
 Usage
 =====
+
+* Setup jQuery UI (including datepicker and more jQuery-UI plugins)
+  
+  ```
+  rails generate venus:jqueryui
+  ```
 
 * Setup AWS api keys for official aws-sdk (including SES).
 
@@ -81,7 +87,6 @@ Usage
 TODO
 ====
 
-* jQuery UI (with datepicker)
 * MongoDB / Redis configuration.
 * Twitter Bootstrap layout.
 * Carrierwave with rmagick & fog.

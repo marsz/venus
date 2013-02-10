@@ -24,7 +24,7 @@ module Venus
 
       def nested_form
         if @nested_form
-          if @js_callback_target
+          if @js_callback_target.present?
             to_file = "app/assets/javascripts/#{@js_callback_target}"
             line = "//= require jquery_nested_form"
             insert_line_into_file(to_file, line, :after => "//= require jquery_ujs")
