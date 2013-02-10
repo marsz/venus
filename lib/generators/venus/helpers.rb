@@ -102,6 +102,41 @@ module Venus
         end
       end
 
+      def js_assets_require(js_file, required_file)
+        to_file = "app/assets/javascripts/#{js_file}"
+        line = "//= require #{required_file}"
+        if file_has_content?(to_file, "//= require_self")
+          opts = { :before => "//= require_self" }
+        else
+          after = "//= require jquery_ujs"
+          after = "// GO AFTER THE REQUIRES BELOW." unless file_has_content?(to_file, after)
+          opts = { :after => after }
+        end
+        insert_line_into_file(to_file, line, opts)
+      end
+
+      def css_assets_require(css_file, required_file)
+        to_file = "app/assets/stylesheets/#{css_file}"
+        line = " *= require #{required_file}"
+        if file_has_content?(to_file, " *= require_self")
+          opts = { :before => " *= require_self" }
+        else
+          after = " * compiled file, but it's generally better to create a new file per style scope."
+          after = "/*" unless file_has_content?(to_file, after)
+          opts = { :after => after}
+        end
+        insert_line_into_file(to_file, line, opts)
+      end
+
+      def insert_js_template(js_file, template_file, options = {})
+        line = "//= require_self"
+        to_file = "app/assets/javascripts/#{js_file}"
+        after = "//= require jquery_ujs"
+        after = "//= require_tree .\n" if file_has_content?(to_file, "//= require_tree .\n")
+        opts = { :after => after }.merge(options)
+        insert_line_into_file(to_file, line, opts)
+        concat_template(to_file, template_file, options)
+      end
     end
   end
 end

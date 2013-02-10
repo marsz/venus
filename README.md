@@ -10,13 +10,31 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.2.0'
+  gem 'venus', '~> 0.5.2'
   ...
 end
 ```
 
 Usage
 =====
+
+* Setup jQuery UI (including datepicker and more jQuery-UI plugins)
+  
+  ```
+  rails generate venus:jqueryui
+  ```
+
+* Setup chosen for jQuery (see demo: http://harvesthq.github.com/chosen/)
+  
+  ```
+  rails generate venus:chosen
+  ```
+
+* Setup AWS api keys for official aws-sdk (including SES).
+
+  ```
+  rails generate venus:aws
+  ```
 
 * Setup Omniauth for multiple omniauth (Facebook, Twitter, Github) in model `User`.
 
@@ -30,6 +48,11 @@ Usage
   rails generate venus:deploy
   ```
 
+* Setup gem 'simple_form' and its related gems (including 'nested_form')
+
+  ```
+  rails generate venus:simple_form
+  ```
 
 * Essentail gems (simple_form, kminari...etc) and setup (removing public/index.html ...etc).
 
@@ -70,11 +93,9 @@ Usage
 TODO
 ====
 
-* Capistrano with multi-stages extendsion.
 * MongoDB / Redis configuration.
 * Twitter Bootstrap layout.
 * Carrierwave with rmagick & fog.
-* Aws SES for sending email.
 * RailsAdmin or ActiveAdmin.
 * Sidekiq for background job.
 

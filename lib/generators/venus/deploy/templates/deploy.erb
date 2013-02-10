@@ -16,6 +16,7 @@ set :default_stage, "<% if @staging %>staging<%else%>production<%end%>"
 
 require 'bundler/capistrano'
 <% if @whenever %>
+set :whenever_command, "bundle exec whenever"
 require 'whenever/capistrano'<% end %>
 
 set :application, "<%= @app_name %>"
