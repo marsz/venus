@@ -102,7 +102,7 @@ module Venus
         end
       end
 
-      def js_assets_require(js_file, required_file)
+      def js_assets_require(js_file, required_file, options = {})
         to_file = "app/assets/javascripts/#{js_file}"
         line = "//= require #{required_file}"
         if file_has_content?(to_file, "//= require_self")
@@ -112,10 +112,10 @@ module Venus
           after = "// GO AFTER THE REQUIRES BELOW." unless file_has_content?(to_file, after)
           opts = { :after => after }
         end
-        insert_line_into_file(to_file, line, opts)
+        insert_line_into_file(to_file, line, opts.merge(options))
       end
 
-      def css_assets_require(css_file, required_file)
+      def css_assets_require(css_file, required_file, options = {})
         to_file = "app/assets/stylesheets/#{css_file}"
         line = " *= require #{required_file}"
         if file_has_content?(to_file, " *= require_self")
@@ -125,7 +125,7 @@ module Venus
           after = "/*" unless file_has_content?(to_file, after)
           opts = { :after => after}
         end
-        insert_line_into_file(to_file, line, opts)
+        insert_line_into_file(to_file, line, opts.merge(options))
       end
 
       def insert_js_template(js_file, template_file, options = {})
