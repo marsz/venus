@@ -10,13 +10,19 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.5.2'
+  gem 'venus', '~> 0.6.0'
   ...
 end
 ```
 
 Usage
 =====
+
+* Setup twitter bootstrap theme and Unicorn Admin for optional
+  
+  ```
+  rails generate venus:bootstrap
+  ```
 
 * Setup jQuery UI (including datepicker and more jQuery-UI plugins)
   
@@ -94,7 +100,6 @@ TODO
 ====
 
 * MongoDB / Redis configuration.
-* Twitter Bootstrap layout.
 * Carrierwave with rmagick & fog.
 * RailsAdmin or ActiveAdmin.
 * Sidekiq for background job.
