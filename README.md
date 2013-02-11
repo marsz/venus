@@ -10,10 +10,22 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.6.2'
+  gem 'venus', '~> 0.5.2'
   ...
 end
 ```
+
+* Edge version
+
+```ruby
+group :development do
+  ...
+  gem 'venus', :git => 'git@github.com:marsz/venus.git'
+  ...
+end
+```
+
+`bundle update venus`
 
 Usage
 =====
