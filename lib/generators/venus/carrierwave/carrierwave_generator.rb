@@ -53,6 +53,10 @@ module Venus
         template "uploader.erb", "app/uploaders/#{@sample_uploader}_uploader.rb"
       end
 
+      def seemore
+        puts "see more configuration in https://github.com/jnicklas/carrierwave"
+      end
+
     end
   end
 end

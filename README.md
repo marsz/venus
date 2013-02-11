@@ -10,7 +10,7 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.6.0'
+  gem 'venus', '~> 0.6.1'
   ...
 end
 ```
@@ -22,6 +22,12 @@ Usage
   
   ```
   rails generate venus:bootstrap
+  ```
+
+* Setup carrierwave with carrierwave-meta, rmagick, fog (for AWS S3) and give a sample uploader.
+  
+  ```
+  rails generate venus:carrierwave
   ```
 
 * Setup jQuery UI (including datepicker and more jQuery-UI plugins)
@@ -100,7 +106,6 @@ TODO
 ====
 
 * MongoDB / Redis configuration.
-* Carrierwave with rmagick & fog.
 * RailsAdmin or ActiveAdmin.
 * Sidekiq for background job.
 
