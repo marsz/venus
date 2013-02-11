@@ -1,0 +1,28 @@
+<% if @fog %>
+CarrierWave.configure do |config|
+  config.fog_credentials = {
+    :provider               => 'AWS',
+    :aws_access_key_id      => <%=@settinglogic_class%>.aws_access_key_id,
+    :aws_secret_access_key  => <%=@settinglogic_class%>.aws_secret_access_key,
+    :region                 => <%=@settinglogic_class%>.aws_region_carrierwave
+  }
+  config.fog_directory  = <%=@settinglogic_class%>.aws_bucket_carrierwave
+  config.asset_host     = <%=@settinglogic_class%>.aws_host_carrierwave
+  config.fog_public     = true
+end
+<% end %>
+
+<% if @carrierwave_meta && @fog %>
+# Fix carrierwave-meta + fog
+module CarrierWave
+  module Storage
+    class Fog
+      class File
+        def original_filename
+          ::File.basename(path)
+        end
+      end
+    end
+  end
+end
+<% end %>

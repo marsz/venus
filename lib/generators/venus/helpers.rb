@@ -137,6 +137,20 @@ module Venus
         insert_line_into_file(to_file, line, opts)
         concat_template(to_file, template_file, options)
       end
+
+      def insert_into_setting_yml(to_file, key, value, opts = {})
+        unless file_has_content?(to_file, "  #{key}:")
+          value = '' if opts[:hide_in_example] && to_file.index('.example')
+          value = ask?("value of #{key} in #{to_file}#{opts[:hint] ? " (#{opts[:hint]})" : ""}", '') if value == :ask
+          if file_has_content?(to_file, "defaults: &defaults\n")
+            insert_line_into_file(to_file, "  #{key}: '#{value}'", :after => "defaults: &defaults")
+          else
+            insert_line_into_file(to_file, "  #{key}: '#{value}'", :after => "development:")
+            insert_line_into_file(to_file, "  #{key}: '#{value}'", :after => "test:")
+          end
+          return value
+        end
+      end
     end
   end
 end
