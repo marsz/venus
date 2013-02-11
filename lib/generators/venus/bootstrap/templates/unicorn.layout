@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unicorn Admin</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <%= stylesheet_link_tag    "@target_css" %>
+  <%= javascript_include_tag "@target_js" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div id="header">
+    <h1><%= link_to "Unicorn Admin", "/" %></h1>   
+  </div>
+
+  <div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav btn-group">
+      <li class="btn btn-inverse">
+        <%= link_to("#") do %>
+          <i class="icon icon-user"></i>
+          <span class="text">Setting</span>
+        <% end %>
+      </li>
+      <li class="btn btn-inverse">
+        <%= link_to("#", :method => :delete) do %>
+          <i class="icon icon-share-alt"></i>
+          <span class="text">Logout</span>
+        <% end %>
+      </li>
+      <li class="btn btn-inverse">
+        <%= link_to "Login", "#" %>
+      </li>
+    </ul>
+  </div>
+
+  <div id="sidebar">
+    <%= link_to "#", :class => 'visible-phone' do %>
+      <i class="icon icon-user"></i>
+      <span>Sidebar Menu</span>
+    <% end %>
+    <ul>
+      <li>
+        <%= link_to "#" do %>
+          <i class="icon icon-star"></i>
+          <span>Sidebar Menu Link #1</span>
+        <% end %>
+      </li>
+      <li class="active">
+        <%= link_to "#" do %>
+          <i class="icon icon-user"></i>
+          <span>Sidebar Menu Link #2</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "#" do %>
+          <i class="icon icon-tag"></i>
+          <span>Sidebar Menu Link #3</span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+
+  <div id="content">
+    <div id="content-header">
+      <h1>Page Title</h1>
+      <div class="btn-group">
+        <a href="#" class="btn btn-primary">Buttons#1</a>
+        <a href="#" class="btn btn-primary">Buttons#2</a>
+      </div>
+    </div>
+    <div id="breadcrumb">
+      <a href="#">Home</a>
+      <a href="#">Page</a>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <%- flash.each do |k, message| %>
+          <div class="alert fade in alert-<%=k%>">
+            <a href="#" class="close" data-dismiss="alert">x</a>
+            <%= message %>
+          </div>
+        <% end %>
+        <%= yield %>
+      </div>
+      <div class="row-fluid">
+        <div id="footer" class="span12">
+          Footer
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

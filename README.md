@@ -15,76 +15,106 @@ group :development do
 end
 ```
 
+* Edge version
+
+```ruby
+group :development do
+  ...
+  gem 'venus', :git => 'git@github.com:marsz/venus.git'
+  ...
+end
+```
+
+`bundle update venus`
+
 Usage
 =====
 
-* Setup jQuery UI (including datepicker and more jQuery-UI plugins)
+* `Twitter Bootstrap` theme and `Unicorn Admin` optional.
+  
+  ```
+  rails generate venus:bootstrap
+  ```
+
+* `Carrierwave` installation and carrierwave-meta, rmagick, fog (for AWS S3) optional and give a sample uploader.
+  
+  ```
+  rails generate venus:carrierwave
+  ```
+
+* `jQuery UI` (including `datepicker` and more jQuery-UI plugins)
   
   ```
   rails generate venus:jqueryui
   ```
 
-* Setup chosen for jQuery (see demo: http://harvesthq.github.com/chosen/)
+* `Chosen` for jQuery (see demo: http://harvesthq.github.com/chosen/)
   
   ```
   rails generate venus:chosen
   ```
 
-* Setup AWS api keys for official aws-sdk (including SES).
+* `Amazon Web Service` api keys for official aws-sdk (including SES).
 
   ```
   rails generate venus:aws
   ```
 
-* Setup Omniauth for multiple omniauth (Facebook, Twitter, Github) in model `User`.
+* `Redis` client and related gems (redis-objects) for optional.
+
+  ```
+  rails generate venus:redis
+  ```
+
+* `Omniauth` for multiple omniauth (Facebook, Twitter, Github) in model `User`.
 
   ```
   rails generate venus:omniauth
   ```
 
-* Setup gem 'capistrano' for deloyment.
+* `Capistrano` for deloyment.
 
   ```
   rails generate venus:deploy
   ```
 
-* Setup gem 'simple_form' and its related gems (including 'nested_form')
+* `simple_form` and its related gems (including `nested_form`)
 
   ```
   rails generate venus:simple_form
   ```
 
-* Essentail gems (simple_form, kminari...etc) and setup (removing public/index.html ...etc).
+* Essentail gems (kminari...etc) and setup (removing public/index.html ...etc).
 
   ```
   rails generate venus:init
   ```
 
-* Setup Mysql connection
+* `MySql` database connection
 
   ```
   rails generate venus:mysql
   ```
 
-* Pagination gem "kaminari"
+* `kaminari` for pagination
 
   ```
   rails generate venus:paginate
   ```
 
-* Setup gem "settingslogic"
+* `settingslogic` for all YAML configurations.
 
   ```
   rails generate venus:settingslogic
   ```
 
-* Setup gem 'devise', default generate model `User`
+* `devise` for user login, default generate model `User`
 
   ```
   rails generate venus:devise
   ```
 
-* Setup Rspec testing framework
+* `RSpec` testing framework
 
   ```
   rails generate venus:rspec
@@ -93,11 +123,10 @@ Usage
 TODO
 ====
 
-* MongoDB / Redis configuration.
-* Twitter Bootstrap layout.
-* Carrierwave with rmagick & fog.
+* MongoDB configuration.
 * RailsAdmin or ActiveAdmin.
 * Sidekiq for background job.
+* Amazon Elastic Cache & cells.
 
 Thanks
 ======
