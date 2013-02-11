@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bootstrap</title>
+  <%= stylesheet_link_tag    "@target_css" %>
+  <%= javascript_include_tag "@target_js" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div class="navbar navbar-fixed-top ">
+    <div class="navbar-inner top ">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <%= link_to("Bootstrap", "/", :class => "brand" )%>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li><%= link_to("Menu#1", "#") %></li>
+            <li><%= link_to("Menu#2", "#") %></li>
+            <li><%= link_to("Menu#3", "#") %></li>
+          </ul>
+          <ul class="nav pills pull-right">
+            <li><%= link_to("Menu#4", "#") %></li>
+            <li><%= link_to("Menu#5", "#") %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <%- flash.each do |k, message| %>
+      <div class="alert fade in alert-<%=k%>">
+        <a href="#" class="close" data-dismiss="alert">x</a>
+        <%= message %>
+      </div>
+    <% end %>
+
+    <div class="content">
+      <div class="row">
+        <%= yield %>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p class="copyright">Copyright @2013 Bootstrap All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
