@@ -20,7 +20,7 @@ end
 ```ruby
 group :development do
   ...
-  gem 'venus', :git => 'git@github.com:marsz/venus.git'
+  gem 'venus', :git => 'git://github.com:marsz/venus.git'
   ...
 end
 ```
