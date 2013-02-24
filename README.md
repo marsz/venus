@@ -10,7 +10,7 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.5.2'
+  gem 'venus', '~> 0.6.2'
   ...
 end
 ```
@@ -123,9 +123,11 @@ Usage
 TODO
 ====
 
+* Sidekiq for background job.
+* Unicorn setup for capistrano.
+* Model versioning related gems setup.
 * MongoDB configuration.
 * RailsAdmin or ActiveAdmin.
-* Sidekiq for background job.
 * Amazon Elastic Cache & cells.
 
 Thanks
