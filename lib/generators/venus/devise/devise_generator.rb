@@ -15,8 +15,11 @@ module Venus
       end
 
       def gemfile
-        add_gem('devise', "~> 2.1.2")
-        bundle_install
+        unless has_gem?('devise')
+          @version = ask?('devise version?', '2.2.3')
+          add_gem('devise', "~> #{@version}")
+          bundle_install
+        end
       end
 
       def generates
