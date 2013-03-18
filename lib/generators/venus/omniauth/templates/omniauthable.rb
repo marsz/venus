@@ -10,28 +10,28 @@ module Omniauthable
     def find_or_create_by_omniauth(authhash)
       authorization = Authorization.find_by_provider_and_uid(authhash['provider'], authhash['uid'])
       return authorization.auth if authorization
-      user = send "initialize_from_omniauth_#{authhash['provider']}", authhash
-      if User.find_by_email(user.email)
-        user = _
+      instance = send "initialize_from_omniauth_#{authhash['provider']}", authhash
+      if self.find_by_email(instance.email)
+        instance = _
       else
-        user.save
-        user.bind_service(authhash)
+        instance.save
+        instance.bind_service(authhash)
       end
-      user
+      instance
     end
 
     private
 
     def initialize_from_omniauth_facebook(authhash)
-      User.new(:email => authhash['info']['email'], :name => authhash['info']['name'])
+      self.new(:email => authhash['info']['email'], :name => authhash['info']['name'])
     end
 
     def initialize_from_omniauth_twitter(authhash)
-      User.new(:email => authhash['info']['email'], :name => authhash['info']['name'])
+      self.new(:email => authhash['info']['email'], :name => authhash['info']['name'])
     end
 
     def initialize_from_omniauth_github(authhash)
-      User.new(:email => authhash['info']['email'], :name => authhash['info']['name'])
+      self.new(:email => authhash['info']['email'], :name => authhash['info']['name'])
     end
 
   end

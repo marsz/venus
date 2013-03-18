@@ -4,4 +4,4 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   end
 end
 
-OmniAuth.config.path_prefix = '/users/auth'
+OmniAuth.config.path_prefix = '/<%= @devise_table %>/auth'
