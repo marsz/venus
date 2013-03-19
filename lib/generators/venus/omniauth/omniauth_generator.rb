@@ -10,8 +10,6 @@ module Venus
       def asks
         say 'checking dependent gems "settinglogic"...'
         generate 'venus:settingslogic' unless has_gem?('settingslogic')
-        say 'checking dependent gems "devise"...'
-        generate 'venus:devise' unless has_gem?('devise')
 
         @settinglogic_class = ask?("Your settinglogic class name?", 'Setting')
         @settinglogic_yml = ask?("Your settinglogic yaml file in config/ ?", 'setting.yml')
@@ -26,6 +24,9 @@ module Venus
             @providers[provider] = {:token => token, :secret => secret}
           end
         end
+
+        say 'checking dependent gems "devise" with yout model scope "' + @devise_scope.to_s + '"...'
+        generate 'venus:devise' unless has_gem?('devise') && has_file?("app/models/#{@devise_scope}.rb")
       end
 
       def gemfile
