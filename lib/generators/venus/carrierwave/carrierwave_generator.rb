@@ -8,13 +8,13 @@ module Venus
       end
 
       def asks
+        @rails_version = ask?("your rails version?", '3.2')
+        @rails_version = @rails_version.index("3.2") == 0 ? '3.2' : '3.1'
         @imagemagick = ask?("Use imagemagick to resize picture?", true)
         @carrierwave_meta = ask?("Install gem 'carrierwave-meta'", true)
         @sample_uploader = ask?("Generate sample uploader?", 'venus')
         @fog = ask?("Use fog to upload file to AWS S3", true)
         if @fog
-          @rails_version = ask?("your rails version?", '3.2')
-          @rails_version = @rails_version.index("3.2") == 0 ? '3.2' : '3.1'
           say 'checking dependent gems "settinglogic"...'
           generate 'venus:settingslogic' unless has_gem?('settingslogic')
           @settinglogic_class = ask?("Your settinglogic class name?", 'Setting')

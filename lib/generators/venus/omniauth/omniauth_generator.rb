@@ -10,12 +10,12 @@ module Venus
       def asks
         say 'checking dependent gems "settinglogic"...'
         generate 'venus:settingslogic' unless has_gem?('settingslogic')
-        say 'checking dependent gems "devise"...'
-        generate 'venus:devise' unless has_gem?('devise')
 
         @settinglogic_class = ask?("Your settinglogic class name?", 'Setting')
         @settinglogic_yml = ask?("Your settinglogic yaml file in config/ ?", 'setting.yml')
-
+        @devise_model = ask?("Devise model name?", 'User')
+        @devise_scope = @devise_model.underscore
+        @devise_table = @devise_model.tableize
         @providers = {}
         [:facebook, :github, :twitter].each do |provider|
           if ask?("Use '#{provider}'?", true)
@@ -24,6 +24,9 @@ module Venus
             @providers[provider] = {:token => token, :secret => secret}
           end
         end
+
+        say 'checking dependent gems "devise" with yout model scope "' + @devise_scope.to_s + '"...'
+        generate 'venus:devise' unless has_gem?('devise') && has_file?("app/models/#{@devise_scope}.rb")
       end
 
       def gemfile
@@ -35,12 +38,12 @@ module Venus
       end
 
       def controller
-        template 'omniauth_callbacks_controller.rb', 'app/controllers/users/omniauth_callbacks_controller.rb', :force => true
+        template 'omniauth_callbacks_controller.rb.erb', "app/controllers/#{@devise_table}/omniauth_callbacks_controller.rb", :force => true
       end
 
       def configs
         insert_template('config/routes.rb', 'routes.erb', :after => "routes.draw do\n")
-        template 'omniauth.rb', 'config/initializers/omniauth.rb'
+        template 'omniauth.rb.erb', 'config/initializers/omniauth.rb'
         ["config/#{@settinglogic_yml}", "config/#{@settinglogic_yml}.example"].each do |to_file|
           insert_template(to_file, "setting.yml.erb", :after => "&defaults\n")
         end
@@ -50,9 +53,9 @@ module Venus
         generate "model authorization provider:string uid:string auth_type:string auth_id:integer auth_data:text"
         insert_template 'app/models/authorization.rb', 'authorization.rb', :after => "ActiveRecord::Base\n"
         template 'omniauthable.rb', 'app/lib/omniauthable.rb'
-        insert_template("app/models/user.rb", "user.erb", :before => "\nend\n")
+        insert_template("app/models/#{@devise_scope}.rb", "user.erb", :before => "\nend\n")
         sleep(1)
-        migration_template "migrations.rb", "db/migrate/add_index_for_authorizations_and_add_column_for_users"
+        migration_template "migrations.rb.erb", "db/migrate/add_index_for_authorizations_and_add_column_for_#{@devise_table}"
       end
 
       def msg
