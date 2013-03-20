@@ -1,6 +1,6 @@
 
   match '/<%= @devise_table %>/auth/:provider/callback', :to => "<%= @devise_table %>/omniauth_callbacks#callback"
-  match '/<%= @devise_table %>/auth/failure' => 'sessions#failure', :as => :auth_failure
+  match '/<%= @devise_table %>/auth/failure' => "<%= @devise_table %>/omniauth_callbacks#failure", :as => :auth_failure
 
   Setting.providers.each do |provider|
     match "/<%= @devise_table %>/auth/#{provider}", :as => "<%= @devise_scope %>_auth_#{provider}"

@@ -12,4 +12,9 @@ class <%= @devise_model.pluralize %>::OmniauthCallbacksController < ApplicationC
     end
   end
 
+  def failure
+    flash[:error] = params[:message]
+    redirect_to root_path
+  end
+
 end
