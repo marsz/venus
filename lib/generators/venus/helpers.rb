@@ -142,7 +142,7 @@ module Venus
         unless file_has_content?(to_file, "  #{key}:")
           value = '' if opts[:hide_in_example] && to_file.index('.example')
           value = ask?("value of #{key} in #{to_file}#{opts[:hint] ? " (#{opts[:hint]})" : ""}", '') if value == :ask
-          inserted_value = "\"#{value}\"" if value
+          inserted_value = (value.index("\n") ? value : "\"#{value}\"") if value
           if file_has_content?(to_file, "defaults: &defaults\n")
             insert_line_into_file(to_file, "  #{key}: #{inserted_value}", :after => "defaults: &defaults")
           else

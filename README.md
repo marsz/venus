@@ -10,7 +10,7 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.7.0'
+  gem 'venus', '~> 0.7.1'
   ...
 end
 ```
@@ -29,6 +29,12 @@ end
 
 Usage
 =====
+
+* `sidekiq` for background job
+
+  ```
+  rails generate venus:sidekiq
+  ```
 
 * `paper_trail` for model versioning
 
@@ -129,7 +135,6 @@ Usage
 TODO
 ====
 
-* Sidekiq for background job.
 * Unicorn setup for capistrano.
 * MongoDB configuration.
 * RailsAdmin or ActiveAdmin.
