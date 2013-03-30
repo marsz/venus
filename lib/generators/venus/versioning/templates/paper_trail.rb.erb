@@ -1,0 +1,20 @@
+class Version < ActiveRecord::Base
+  # add custom meta columns:
+  #   1. Add your metadata columns to the versions table.
+  #   2. Declare your metadata columns using attr_accessible
+  #      attr_accessible :author_id, :word_count, :answer
+end
+
+# custome whodunit value:
+# insert following code to application_controller.rb
+#
+#  def user_for_paper_trail
+#    logged_in? ? current_member : 'Public user'  # or whatever
+#  end
+
+
+<% if @differ %>
+require 'differ/string'
+# example for diff output as html
+# ("Bob" - "Boo").format_as(:html)
+<% end %>
