@@ -10,7 +10,7 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.6.2'
+  gem 'venus', '~> 0.7.0'
   ...
 end
 ```
@@ -29,6 +29,12 @@ end
 
 Usage
 =====
+
+* `paper_trail` for model versioning
+
+  ```
+  rails generate venus:versioning
+  ```
 
 * `Twitter Bootstrap` theme and `Unicorn Admin` optional.
   
@@ -125,15 +131,9 @@ TODO
 
 * Sidekiq for background job.
 * Unicorn setup for capistrano.
-* Model versioning related gems setup.
 * MongoDB configuration.
 * RailsAdmin or ActiveAdmin.
 * Amazon Elastic Cache & cells.
-
-Thanks
-======
-
-Idea is from xdite/bootstrappers (https://github.com/xdite/bootstrappers).
 
 Contribution
 ============
