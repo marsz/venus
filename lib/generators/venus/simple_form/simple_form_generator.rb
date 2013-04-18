@@ -39,7 +39,7 @@ module Venus
 
       def simple_form_generate_theme
         if @simple_form_config
-          generate 'simple_form:install --bootstrap'
+          generate 'simple_form:install'
           # TODO best template views
         end
       end
