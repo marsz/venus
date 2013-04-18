@@ -50,6 +50,11 @@ module Venus
         bundle_install
       end
 
+      def gitignore
+        add_gitignore ".DS_Store"
+        add_gitignore "/public/assets"
+      end
+
     end
   end
 end
