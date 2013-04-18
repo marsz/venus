@@ -16,7 +16,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <%= link_to("Bootstrap", "/", :class => "brand" )%>
+        <%= link_to("Bootstrap", root_path, :class => "brand" )%>
         <div class="nav-collapse">
           <ul class="nav">
             <li><%= link_to("Menu#1", "#") %></li>
