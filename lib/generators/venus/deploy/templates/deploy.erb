@@ -6,8 +6,8 @@ rescue LoadError
 end
 
 <% if @use_rvm %> 
-require "rvm/capistrano"
 set :rvm_type, :system
+require "rvm/capistrano"
 <% end %>
 
 require 'capistrano/ext/multistage'
