@@ -11,12 +11,12 @@ module Omniauthable
       authorization = Authorization.find_by_provider_and_uid(authhash['provider'], authhash['uid'])
       return authorization.auth if authorization
       instance = send "initialize_from_omniauth_#{authhash['provider']}", authhash
-      if self.find_by_email(instance.email)
-        instance = _
+      if u = self.find_by_email(instance.email)
+        instance = u
       else
         instance.save
-        instance.bind_service(authhash)
       end
+      instance.bind_service(authhash)
       instance
     end
 
@@ -45,8 +45,13 @@ module Omniauthable
   end
 
   def can_bind_to
-    Setting.providers - (authorizations.map {|auth| auth.provider})
+    Setting.providers - has_binds
   end
+
+  def has_binds
+    authorizations.map(&:provider)
+  end
+
 
   def password_required?
     false
