@@ -17,7 +17,7 @@ module Venus
         @devise_scope = @devise_model.underscore
         @devise_table = @devise_model.tableize
         @providers = {}
-        [:facebook, :github, :twitter].each do |provider|
+        [:facebook, :github, :twitter, :google_oauth2].each do |provider|
           if ask?("Use '#{provider}'?", true)
             token = ask?("#{provider.capitalize} App ID?", '267188576687915')
             secret = ask?("#{provider.capitalize} App Secret?", '84f72292e1f6b299f4a668f12ed1a7f2')
@@ -32,6 +32,7 @@ module Venus
       def gemfile
         add_gem('omniauth')
         @providers.each do |provider, |
+          provider = "google-oauth2" if provider.to_s.index("google")
           add_gem("omniauth-#{provider}")
         end
         bundle_install
@@ -52,7 +53,7 @@ module Venus
       def model
         generate "model authorization provider:string uid:string auth_type:string auth_id:integer auth_data:text"
         insert_template 'app/models/authorization.rb', 'authorization.rb', :after => "ActiveRecord::Base\n"
-        template 'omniauthable.rb', 'app/lib/omniauthable.rb'
+        template 'omniauthable.rb.erb', 'app/lib/omniauthable.rb'
         insert_template("app/models/#{@devise_scope}.rb", "user.erb", :before => "\nend\n")
         sleep(1)
         migration_template "migrations.rb.erb", "db/migrate/add_index_for_authorizations_and_add_column_for_#{@devise_table}"

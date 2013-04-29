@@ -22,17 +22,29 @@ module Omniauthable
 
     private
 
+<% if @providers[:facebook] %>
     def initialize_from_omniauth_facebook(authhash)
       self.new(:email => authhash['info']['email'], :name => authhash['info']['name'])
     end
+<% end %>
 
+<% if @providers[:twitter] %>
     def initialize_from_omniauth_twitter(authhash)
       self.new(:email => authhash['info']['email'], :name => authhash['info']['name'])
     end
+<% end %>
 
+<% if @providers[:github] %>
     def initialize_from_omniauth_github(authhash)
       self.new(:email => authhash['info']['email'], :name => authhash['info']['name'])
     end
+<% end %>
+
+<% if @providers[:google_oauth2] %>
+    def initialize_from_omniauth_google_oauth2(authhash)
+      self.new(:email => authhash['extra']['raw_info']['email'], :name => authhash['extra']['raw_info']['name'])
+    end
+<% end %>
 
   end
 
