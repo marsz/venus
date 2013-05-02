@@ -14,7 +14,7 @@
   config.wrappers :admin, :tag => :div, :class => 'control-group' do |b|
     config.form_class = "form-horizontal"
     b.use :placeholder
-    b.use :label, :class => 'control-label', :tag => false
+    b.use :label, :wrap_with => { :class => 'control-label', :tag => false }
     b.wrapper :tag => :div, :class => 'controls' do |ba|
       ba.use :input
       ba.use :hint, :wrap_with => { :tag => :span, :class => 'help-block' }
