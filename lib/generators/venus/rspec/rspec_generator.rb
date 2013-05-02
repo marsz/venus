@@ -21,7 +21,7 @@ module Venus
         insert_template(
           "config/application.rb",
           "config_application.rb",
-          :before => "  end\n"
+          :before => "\n  end\n"
         )
       end
 

@@ -50,8 +50,9 @@ module Venus
         bundle_install
       end
 
-      def run_magic_encoding
-        run 'bundle exec magic_encoding'
+      def gitignore
+        add_gitignore ".DS_Store"
+        add_gitignore "/public/assets"
       end
 
     end

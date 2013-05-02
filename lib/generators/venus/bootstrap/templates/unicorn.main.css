@@ -9,7 +9,7 @@
 /* Main */
 body {
   overflow-x: hidden;
-    margin-top: -9px;
+  margin-top: -9px;
 }
 a:hover {
   text-decoration: none;
@@ -17,10 +17,10 @@ a:hover {
 
 /* Header */
 #header {
-    height: 77px;
-    position: relative;
-    width: 100%;
-    /*z-index: -9;*/
+  height: 77px;
+  position: relative;
+  width: 100%;
+  /*z-index: -9;*/
 }
 
 #header h1 {
@@ -74,24 +74,24 @@ a:hover {
 }
 /* Top user navigation */
 #user-nav {
-    position: absolute;
-    right: 30px;
-    top: 5px;
-    z-index: 20;
-    margin: 0;
+  position: absolute;
+  right: 30px;
+  top: 5px;
+  z-index: 20;
+  margin: 0;
 }
 #user-nav > ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 #user-nav > ul > li {
-    float: left;
-    list-style-type: none;
-    margin: 0;
-    position: relative;
-    padding: 0;
+  float: left;
+  list-style-type: none;
+  margin: 0;
+  position: relative;
+  padding: 0;
 }
 
 #user-nav > ul > li > a {
@@ -132,11 +132,11 @@ a:hover {
 
 /* Sidebar Navigation */
 #sidebar {
-    display: block;
-    float: left;
-    position: relative;
-    width: 220px;
-    z-index: 16;
+  display: block;
+  float: left;
+  position: relative;
+  width: 220px;
+  z-index: 16;
 }
 
 #sidebar > ul {
@@ -202,15 +202,15 @@ a:hover {
 
 /* Content */
 #content {
-    background: none repeat scroll 0 0 #eeeeee;
-    margin-left: 220px;
-    margin-right: 0;
-    padding-bottom: 25px;
-    position: relative;
-    min-height: 500px;
-    width: auto;
+  background: none repeat scroll 0 0 #eeeeee;
+  margin-left: 220px;
+  margin-right: 0;
+  padding-bottom: 25px;
+  position: relative;
+  min-height: 500px;
+  width: auto;
 
-    border-top-left-radius: 8px;
+  border-top-left-radius: 8px;
 }
 
 #content-header {
@@ -220,22 +220,22 @@ a:hover {
   background-image: -ms-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);
   background-image: -o-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);
   background-image: linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);
-    border-top-left-radius: 8px;
-    height: 80px;
-    position: abslute;
-    width: 100%;
-    margin-top: -38px;
-    z-index: 20;
+  border-top-left-radius: 8px;
+  height: 80px;
+  position: abslute;
+  width: 100%;
+  margin-top: -38px;
+  z-index: 20;
 }
 
 #content-header h1 {
-    color: #555555;
-    font-size: 28px;
-    font-weight: normal;
-    float: left;
-    text-shadow: 0 1px 0 #ffffff;
-    margin-left: 20px;
-    position: absolute;
+  color: #555555;
+  font-size: 28px;
+  font-weight: normal;
+  float: left;
+  text-shadow: 0 1px 0 #ffffff;
+  margin-left: 20px;
+  position: absolute;
 }
 
 #content-header .btn-group {
@@ -336,29 +336,29 @@ a:hover {
 }
 /* Stat boxes and quick actions */
 .stat-boxes, .quick-actions, .quick-actions-horizontal, .stats-plain {
-    display: inline-block;
-    list-style: none outside none;
-    margin: 20px 0 10px;
-    text-align: center;
+  display: inline-block;
+  list-style: none outside none;
+  margin: 20px 0 10px;
+  text-align: center;
 }
 .stats-plain {
   width: 100%;
 }
 .stat-boxes li, .quick-actions li, .quick-actions-horizontal li {
-    background-color: #F6F6F6;
+  background-color: #F6F6F6;
   background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#F9F9F9), to(#EDEDED));
   background-image: -webkit-linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
-    background-image: -moz-linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
-    background-image: -ms-linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
-    background-image: -o-linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
-    background-image: linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
-    border: 1px solid #d5d5d5;
-    border-radius: 4px 4px 4px 4px;
-    box-shadow: 0 1px 0 0 #FFFFFF inset, 0 1px 0 rgba(255,255,255,0.4);
-    display: inline-block;
-    line-height: 18px;
-    margin: 0 10px 10px;
-    padding: 0 10px;
+  background-image: -moz-linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
+  background-image: -ms-linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
+  background-image: -o-linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
+  background-image: linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
+  border: 1px solid #d5d5d5;
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 0 1px 0 0 #FFFFFF inset, 0 1px 0 rgba(255,255,255,0.4);
+  display: inline-block;
+  line-height: 18px;
+  margin: 0 10px 10px;
+  padding: 0 10px;
 }
 .quick-actions li {
   min-width: 120px;
@@ -540,44 +540,44 @@ a:hover {
 }
 
 .stat-boxes li:hover, .quick-actions li:hover, .quick-actions-horizontal li:hover  {
-    background-color: #fcfcfc;
+  background-color: #fcfcfc;
   background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#FCFCFC), to(#F1F1F1));
   background-image: -webkit-linear-gradient(top, #FCFCFC 0%, #F1F1F1 100%);
-    background-image: -moz-linear-gradient(top, #FCFCFC 0%, #F1F1F1 100%);
-    background-image: -ms-linear-gradient(top, #FCFCFC 0%, #F1F1F1 100%);
-    background-image: -o-linear-gradient(top, #FCFCFC 0%, #F1F1F1 100%);
-    background-image: linear-gradient(top, #FCFCFC 0%, #F1F1F1 100%);
+  background-image: -moz-linear-gradient(top, #FCFCFC 0%, #F1F1F1 100%);
+  background-image: -ms-linear-gradient(top, #FCFCFC 0%, #F1F1F1 100%);
+  background-image: -o-linear-gradient(top, #FCFCFC 0%, #F1F1F1 100%);
+  background-image: linear-gradient(top, #FCFCFC 0%, #F1F1F1 100%);
 }
 .quick-actions li:active, .quick-actions-horizontal li:active  {
   background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#EEEEEE), to(#F4F4F4));
   background-image: -webkit-linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
-    background-image: -moz-linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
-    background-image: -ms-linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
-    background-image: -o-linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
-    background-image: linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
-    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2) inset, 0 1px 0 rgba(255,255,255,0.4);
+  background-image: -moz-linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
+  background-image: -ms-linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
+  background-image: -o-linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
+  background-image: linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2) inset, 0 1px 0 rgba(255,255,255,0.4);
 }
 
 
 .stat-boxes .left, .stat-boxes .right {
   text-shadow: 0 1px 0 #ffffff;
-    float: left;
+  float: left;
 }
 .stat-boxes .left {
-    border-right: 1px solid #DCDCDC;
-    box-shadow: 1px 0 0 0 #FFFFFF;
-    margin-right: 12px;
-    padding: 10px 14px 6px 4px;
-    font-size: 10px;
-    font-weight: bold;
+  border-right: 1px solid #DCDCDC;
+  box-shadow: 1px 0 0 0 #FFFFFF;
+  margin-right: 12px;
+  padding: 10px 14px 6px 4px;
+  font-size: 10px;
+  font-weight: bold;
 }
 
 .stat-boxes .right {
-    font-size: 12px;
-    padding: 9px 10px 7px 0;
-    text-align: center;
-    width: 70px;
-    color: #666666;
+  font-size: 12px;
+  padding: 9px 10px 7px 0;
+  text-align: center;
+  width: 70px;
+  color: #666666;
 }
 .stat-boxes .left span, .stat-boxes .right strong {
   display: block;
@@ -620,17 +620,17 @@ a:hover {
 
 /* Widgets */
 .widget-box {
-    background: none repeat scroll 0 0 #F9F9F9;
-    border-top: 1px solid #CDCDCD;
-    border-left: 1px solid #CDCDCD;
-    border-right: 1px solid #CDCDCD;
-    clear: both;
-    margin-top: 16px;
-    margin-bottom: 16px;
-    position: relative;
+  background: none repeat scroll 0 0 #F9F9F9;
+  border-top: 1px solid #CDCDCD;
+  border-left: 1px solid #CDCDCD;
+  border-right: 1px solid #CDCDCD;
+  clear: both;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  position: relative;
 }
 .widget-box.widget-calendar, .widget-box.widget-chat {
-    overflow:hidden !important;
+  overflow:hidden !important;
 }
 .accordion .widget-box {
   margin-top: -2px;
@@ -648,42 +648,42 @@ a:hover {
   background-color: #efefef;
   background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#fdfdfd), to(#eaeaea));
   background-image: -webkit-linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
-    background-image: -moz-linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
-    background-image: -ms-linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
-    background-image: -o-linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
-    background-image: -linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#eaeaea',GradientType=0 ); /* IE6-9 */
-    border-bottom: 1px solid #CDCDCD;
-    height: 36px;
+  background-image: -moz-linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
+  background-image: -ms-linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
+  background-image: -o-linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
+  background-image: -linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#eaeaea',GradientType=0 ); /* IE6-9 */
+  border-bottom: 1px solid #CDCDCD;
+  height: 36px;
 }
 .widget-title .nav-tabs {
-    border-bottom: 0 none;
+  border-bottom: 0 none;
 }
 .widget-title .nav-tabs li a {
-    border-bottom: medium none !important;
-    border-left: 1px solid #DDDDDD;
-    border-radius: 0 0 0 0;
-    border-right: 1px solid #DDDDDD;
-    border-top: medium none;
-    color: #999999;
-    margin: 0;
-    outline: medium none;
-    padding: 9px 10px 8px;
-    font-weight: bold;
-    text-shadow: 0 1px 0 #FFFFFF;
+  border-bottom: medium none !important;
+  border-left: 1px solid #DDDDDD;
+  border-radius: 0 0 0 0;
+  border-right: 1px solid #DDDDDD;
+  border-top: medium none;
+  color: #999999;
+  margin: 0;
+  outline: medium none;
+  padding: 9px 10px 8px;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #FFFFFF;
 }
 .widget-title .nav-tabs li:first-child a{
-    border-left: medium none !important;
+  border-left: medium none !important;
 }
 .widget-title .nav-tabs li a:hover {
-    background-color: transparent !important;
-    border-color: #D6D6D6;
-    border-width: 0 1px;
-    color: #666666;
+  background-color: transparent !important;
+  border-color: #D6D6D6;
+  border-width: 0 1px;
+  color: #666666;
 }
 .widget-title .nav-tabs li.active a {
-    background-color: #F9F9F9 !important;
-    color: #444444;
+  background-color: #F9F9F9 !important;
+  color: #444444;
 }
 .widget-title span.icon {
   border-right: 1px solid #cdcdcd;
@@ -692,14 +692,14 @@ a:hover {
   opacity: .7;
 }
 .widget-title h5 {
-    color: #666666;
+  color: #666666;
   text-shadow: 0 1px 0 #ffffff;
-    float: left;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 12px;
-    line-height: 12px;
-    margin: 0;
+  float: left;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px;
+  line-height: 12px;
+  margin: 0;
 }
 .widget-title .buttons {
   float: right;
@@ -717,22 +717,22 @@ a:hover {
 
 .widget-content {
   padding: 12px 15px;
-    border-bottom: 1px solid #cdcdcd;
+  border-bottom: 1px solid #cdcdcd;
 }
 .widget-box.widget-plain .widget-content {
   padding: 12px 0 0;
 }
 .widget-box.collapsible .collapse.in .widget-content {
-    border-bottom: 1px solid #CDCDCD;
+  border-bottom: 1px solid #CDCDCD;
 }
 .recent-posts, .recent-comments, .recent-users {
   margin: 0;
   padding: 0;
 }
 .recent-posts li, .recent-comments li, .article-post li, .recent-users li {
-    border-bottom: 1px dotted #AEBDC8;
-    list-style: none outside none;
-    padding: 10px;
+  border-bottom: 1px dotted #AEBDC8;
+  list-style: none outside none;
+  padding: 10px;
 }
 .recent-posts li.viewall, .recent-comments li.viewall, .recent-users li.viewall {
   padding: 0;
@@ -748,22 +748,22 @@ a:hover {
 }
 
 .recent-posts li:last-child, .recent-comments li:last-child, .recent-users li:last-child {
-    border-bottom: none !important;
+  border-bottom: none !important;
 }
 
 .user-thumb {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #B6BCBF;
-    float: left;
-    height: 40px;
-    margin-right: 10px;
-    margin-top: 5px;
-    padding: 2px;
-    width: 40px;
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #B6BCBF;
+  float: left;
+  height: 40px;
+  margin-right: 10px;
+  margin-top: 5px;
+  padding: 2px;
+  width: 40px;
 }
 .user-info {
-    color: #666666;
-    font-size: 11px;
+  color: #666666;
+  font-size: 11px;
 }
 
 .site-stats {
@@ -772,15 +772,15 @@ a:hover {
   list-style: none;
 }
 .site-stats li {
-    background-color: #F5F5F5;
-    border: 1px solid #DDDDDD;
-    cursor: pointer;
-    margin: 0 0 10px;
-    padding: 13px 20px 10px;
-    position: relative;
+  background-color: #F5F5F5;
+  border: 1px solid #DDDDDD;
+  cursor: pointer;
+  margin: 0 0 10px;
+  padding: 13px 20px 10px;
+  position: relative;
 }
 .site-stats li:hover {
-    background-color: #EDEDED;
+  background-color: #EDEDED;
 }
 .site-stats li.divider {
   padding: 0;
@@ -807,27 +807,27 @@ a:hover {
   padding: 20px;
 }
 .invoice-action {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 .invoice-head {
-    clear: both;
-    margin-bottom: 40px;
-    overflow: hidden;
-    width: auto;
+  clear: both;
+  margin-bottom: 40px;
+  overflow: hidden;
+  width: auto;
 }
 .invoice-meta {
-    font-size: 18px;
-    margin-bottom: 40px;
+  font-size: 18px;
+  margin-bottom: 40px;
 }
 .invoice-date {
-    float: right;
-    font-size: 80%;
+  float: right;
+  font-size: 80%;
 }
 .invoice-content h5 {
-    color: #333333;
-    font-size: 16px;
-    font-weight: normal;
-    margin-bottom: 10px;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  margin-bottom: 10px;
 }
 .invoice-content ul {
   list-style: none;
@@ -835,18 +835,18 @@ a:hover {
   padding: 0;
 }
 .invoice-to {
-    float: left;
-    width: 370px;
+  float: left;
+  width: 370px;
 }
 .invoice-from {
-    float: right;
-    width: 300px;
+  float: right;
+  width: 300px;
 }
 .invoice-to li, .invoice-from li {
-    clear: left;
+  clear: left;
 }
 .invoice-to li span, .invoice-from li span {
-    display: block;
+  display: block;
 }
 .invoice-content th.total-label {
   text-align: right;
@@ -855,14 +855,14 @@ a:hover {
   text-align: left;
 }
 .amount-word {
-    color: #666666;
-    margin-bottom: 40px;
-    margin-top: 40px;
+  color: #666666;
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
 .amount-word span {
-    color: #5476A6;
-    font-weight: bold;
-    padding-left: 20px;
+  color: #5476A6;
+  font-weight: bold;
+  padding-left: 20px;
 }
 .panel-left {
   margin-right: 250px;
@@ -886,7 +886,7 @@ a:hover {
   color: #777777;
   text-shadow: 0 1px 0 #ffffff;
   padding: 6px 10px 5px;
-    margin: 0;
+  margin: 0;
 }
 .panel-right .panel-content {
   padding: 10px;
@@ -896,11 +896,11 @@ a:hover {
   padding: 15px;
 }
 .chat-messages {
-    background: none repeat scroll 0 0 #FDFDFD;
-    border: 1px solid #DDDDDD;
-    height: 425px;
-    overflow: auto;
-    position: relative;
+  background: none repeat scroll 0 0 #FDFDFD;
+  border: 1px solid #DDDDDD;
+  height: 425px;
+  overflow: auto;
+  position: relative;
 }
 .chat-message {
   padding: 7px 15px;
@@ -911,44 +911,44 @@ a:hover {
   width: 100%;
 }
 .chat-message .input-box {
-    display: block;
-    margin-right: 90px;
+  display: block;
+  margin-right: 90px;
 }
 .chat-message button {
   float: right;
 }
 #chat-messages-inner p {
-    padding: 10px;
-    margin: 10px 0;
+  padding: 10px;
+  margin: 10px 0;
 }
 #chat-messages-inner p img {
-    display: inline-block;
-    float: left;
-    vertical-align: middle;
-    width: 28px;
-    height: 28px;
-    margin-top: 6px;
+  display: inline-block;
+  float: left;
+  vertical-align: middle;
+  width: 28px;
+  height: 28px;
+  margin-top: 6px;
 }
 #chat-messages-inner .msg-block, #chat-messages-inner p.offline span {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #cccccc;
-    box-shadow: 1px 1px 0 1px rgba(0, 0, 0, 0.05);
-    display: block;
-    margin-left: 40px;
-    padding: 10px;
-    position: relative;
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #cccccc;
+  box-shadow: 1px 1px 0 1px rgba(0, 0, 0, 0.05);
+  display: block;
+  margin-left: 40px;
+  padding: 10px;
+  position: relative;
 }
 #chat-messages-inner p.offline span {
-    background: none repeat scroll  0 0 #FFF5F5;
+  background: none repeat scroll  0 0 #FFF5F5;
 }
 #chat-messages-inner .time {
-    color: #999999;
-    font-size: 11px;
-    font-style: italic;
+  color: #999999;
+  font-size: 11px;
+  font-style: italic;
 }
 #chat-messages-inner .msg {
-    display: block;
-    margin-top: 10px;
+  display: block;
+  margin-top: 10px;
 }
 #chat-messages-inner .msg-block:before {
   border-right: 7px solid rgba(0,0,0,0.1);
@@ -974,26 +974,26 @@ a:hover {
   padding: 0 0 30px;
 }
 .chat-users .contact-list {
-    line-height: 21px;
-    list-style: none outside none;
-    margin: 0;
-    padding: 0;
-    font-size: 10px;
+  line-height: 21px;
+  list-style: none outside none;
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
 }
 .chat-users .contact-list li {
-    border-color: #dddddd;
-    border-style: none none solid;
-    border-width: 0 0 1px;
-    padding: 1px;
-    position: relative;
+  border-color: #dddddd;
+  border-style: none none solid;
+  border-width: 0 0 1px;
+  padding: 1px;
+  position: relative;
 }
 .chat-users .contact-list li:hover {
   background-color: #efefef;
 }
 .chat-users .contact-list li a {
-    color: #666666;
-    display: block;
-    padding: 8px 5px;
+  color: #666666;
+  display: block;
+  padding: 8px 5px;
 }
 .chat-users .contact-list li.online a {
   font-weight: bold;
@@ -1005,69 +1005,69 @@ a:hover {
   background-color: #EDE0E0;
 }
 .chat-users .contact-list li a img {
-    display: inline-block;
-    margin-right: 10px;
-    vertical-align: middle;
-    width: 28px;
-    height: 28px;
-    border-radius: 3px;
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: middle;
+  width: 28px;
+  height: 28px;
+  border-radius: 3px;
 }
 .chat-users .contact-list li .msg-count {
   padding: 3px 5px;
-    position: absolute;
-    right: 10px;
-    top: 12px;
+  position: absolute;
+  right: 10px;
+  top: 12px;
 }
 .taskDesc i {
-    margin: 1px 5px 0;
+  margin: 1px 5px 0;
 }
 .taskStatus, .taskOptions {
-    text-align: center !important;
+  text-align: center !important;
 }
 .taskStatus .in-progress {
-    color: #64909E;
+  color: #64909E;
 }
 .taskStatus .pending {
-    color: #AC6363;
+  color: #AC6363;
 }
 .taskStatus .done {
-    color: #75B468;
+  color: #75B468;
 }
 .activity-list {
-    list-style: none outside none;
-    margin: 0;
+  list-style: none outside none;
+  margin: 0;
 }
 .activity-list li {
-    border-bottom: 1px solid #EEEEEE;
-    display: block;
+  border-bottom: 1px solid #EEEEEE;
+  display: block;
 }
 .activity-list li:last-child {
-    border-bottom: medium none;
+  border-bottom: medium none;
 }
 .activity-list li a {
-    color: #888888;
-    display: block;
-    padding: 7px 10px;
+  color: #888888;
+  display: block;
+  padding: 7px 10px;
 }
 .activity-list li a:hover {
-    background-color: #FBFBFB;
+  background-color: #FBFBFB;
 }
 .activity-list li a span {
-    color: #AAAAAA;
-    font-size: 11px;
-    font-style: italic;
+  color: #AAAAAA;
+  font-size: 11px;
+  font-style: italic;
 }
 .activity-list li a i {
-    margin-right: 10px;
-    opacity: 0.6;
-    vertical-align: middle;
+  margin-right: 10px;
+  opacity: 0.6;
+  vertical-align: middle;
 }
 .new-update {
-    border-top: 1px solid #DDDDDD;
-    padding: 10px 12px;
+  border-top: 1px solid #DDDDDD;
+  padding: 10px 12px;
 }
 .new-update:first-child {
-    border-top: medium none;
+  border-top: medium none;
 }
 .new-update span {
   display:block;
@@ -1078,22 +1078,22 @@ a:hover {
   margin-right: 13px;
 }
 .new-update .update-date {
-    color: #BBBBBB;
-    float: right;
-    margin: 4px -2px 0 0;
-    text-align: center;
-    width: 30px;
+  color: #BBBBBB;
+  float: right;
+  margin: 4px -2px 0 0;
+  text-align: center;
+  width: 30px;
 }
 .new-update .update-date .update-day {
-    display: block;
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: -4px;
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: -4px;
 }
 .update-done, .update-alert, .update-notice {
-    display: block;
-    float: left;
-    max-width: 76%;
+  display: block;
+  float: left;
+  max-width: 76%;
 }
 
 /* Tables */
@@ -1104,100 +1104,100 @@ span.icon .checker {
 }
 
 .dataTables_length {
-    color: #878787;
-    margin: 7px 5px 0;
-    position: absolute;
-    right: 2px;
-    top: -2px;
+  color: #878787;
+  margin: 7px 5px 0;
+  position: absolute;
+  right: 2px;
+  top: -2px;
 }
 .dataTables_length div {
   vertical-align: middle;
 }
 
 .dataTables_paginate {
-    line-height: 16px;
-    text-align: right;
-    margin-top: 5px;
-    margin-right: 10px;
+  line-height: 16px;
+  text-align: right;
+  margin-top: 5px;
+  margin-right: 10px;
 }
 .dataTables_paginate .ui-button,  .pagination.alternate li a {
-    font-size: 12px;
-    padding: 4px 10px !important;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #dddddd #dddddd #cccccc; /* for IE < 9 */
-    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-    display: inline-block;
-    line-height: 16px;
-    background-color: #f5f5f5;
-    background-image: -moz-linear-gradient(center top , #FFFFFF, #E6E6E6);
-    background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
-    background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
-    background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
-    background-image: linear-gradient(top, #ffffff, #e6e6e6);
-    color: #333333;
-    text-shadow: 0 1px 0 #ffffff;
+  font-size: 12px;
+  padding: 4px 10px !important;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #dddddd #dddddd #cccccc; /* for IE < 9 */
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  display: inline-block;
+  line-height: 16px;
+  background-color: #f5f5f5;
+  background-image: -moz-linear-gradient(center top , #FFFFFF, #E6E6E6);
+  background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: linear-gradient(top, #ffffff, #e6e6e6);
+  color: #333333;
+  text-shadow: 0 1px 0 #ffffff;
 }
 .dataTables_paginate .ui-button:hover, .pagination.alternate li a:hover{
-    background-color: #e8e8e8;
-    background-image: -moz-linear-gradient(center top , #f0f0f0, #dadada);
-    background-image: -ms-linear-gradient(top, #f0f0f0, #dadada);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f0f0f0), to(#dadada));
-    background-image: -webkit-linear-gradient(top, #f0f0f0, #dadada);
-    background-image: -o-linear-gradient(top, #f0f0f0, #dadada);
-    background-image: linear-gradient(top, #f0f0f0, #dadada);
-    color: #222222;
-    text-shadow: 0 1px 0 #ffffff;
-    cursor: pointer;
+  background-color: #e8e8e8;
+  background-image: -moz-linear-gradient(center top , #f0f0f0, #dadada);
+  background-image: -ms-linear-gradient(top, #f0f0f0, #dadada);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f0f0f0), to(#dadada));
+  background-image: -webkit-linear-gradient(top, #f0f0f0, #dadada);
+  background-image: -o-linear-gradient(top, #f0f0f0, #dadada);
+  background-image: linear-gradient(top, #f0f0f0, #dadada);
+  color: #222222;
+  text-shadow: 0 1px 0 #ffffff;
+  cursor: pointer;
 }
 
 .dataTables_paginate .first{
-    border-radius: 4px 0 0 4px;    
+  border-radius: 4px 0 0 4px;    
 }
 .dataTables_paginate .last {
-    border-radius: 0 4px 4px 0;    
+  border-radius: 0 4px 4px 0;    
 }
 .dataTables_paginate .ui-state-disabled, .fc-state-disabled, .pagination.alternate li.disabled a {
-    color: #AAAAAA !important;
+  color: #AAAAAA !important;
 }
 .dataTables_paginate .ui-state-disabled:hover, .fc-state-disabled:hover, .pagination.alternate li.disabled a:hover {
-    background-color: #f5f5f5;
-    background-image: -moz-linear-gradient(center top , #FFFFFF, #E6E6E6);
-    background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
-    background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
-    background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
-    background-image: linear-gradient(top, #ffffff, #e6e6e6);
-    cursor: default !important;
+  background-color: #f5f5f5;
+  background-image: -moz-linear-gradient(center top , #FFFFFF, #E6E6E6);
+  background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: linear-gradient(top, #ffffff, #e6e6e6);
+  cursor: default !important;
 }
 .dataTables_paginate span .ui-state-disabled, .pagination.alternate li.active a {
-    background-color: #414141 !important;
-    background-image: -moz-linear-gradient(center top , #555555, #222222) !important;
-    background-image: -ms-linear-gradient(top, #555555, #222222) !important;
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#555555), to(#222222)) !important;
-    background-image: -webkit-linear-gradient(top, #555555, #222222) !important;
-    background-image: -o-linear-gradient(top, #555555, #222222) !important;
-    background-image: linear-gradient(top, #555555, #222222) !important;
-    color: #ffffff !important;
-    cursor: default !important;
+  background-color: #414141 !important;
+  background-image: -moz-linear-gradient(center top , #555555, #222222) !important;
+  background-image: -ms-linear-gradient(top, #555555, #222222) !important;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#555555), to(#222222)) !important;
+  background-image: -webkit-linear-gradient(top, #555555, #222222) !important;
+  background-image: -o-linear-gradient(top, #555555, #222222) !important;
+  background-image: linear-gradient(top, #555555, #222222) !important;
+  color: #ffffff !important;
+  cursor: default !important;
 }
 div.dataTables_wrapper .ui-widget-header {
-    border-right: medium none;
-    border-top: 1px solid #D5D5D5;
-    font-weight: normal;
-    margin-top: -1px;
+  border-right: medium none;
+  border-top: 1px solid #D5D5D5;
+  font-weight: normal;
+  margin-top: -1px;
 }
 .dataTables_wrapper .ui-toolbar {
-    padding: 5px;
+  padding: 5px;
 }
 .dataTables_filter {
-    color: #878787;
-    font-size: 11px;
-    left: 0;
-    margin: 4px 8px 2px 10px;
-    position: absolute;
-    text-align: left;
+  color: #878787;
+  font-size: 11px;
+  left: 0;
+  margin: 4px 8px 2px 10px;
+  position: absolute;
+  text-align: left;
 }
 .dataTables_filter input {
   margin-bottom: 0;
@@ -1239,8 +1239,8 @@ div.dataTables_wrapper .ui-widget-header {
   margin-left: -2.12766% !important;
 }
 .thumbnails [class*="span"] {
-    margin-left: 2.12766% !important;
-    position: relative;
+  margin-left: 2.12766% !important;
+  position: relative;
 }
 .thumbnails .actions {
   width: 32px;
@@ -1260,9 +1260,9 @@ div.dataTables_wrapper .ui-widget-header {
   opacity: 1;
 }
 .line {
-    background: url("img/line.png") repeat-x scroll 0 0 transparent;
-    display: block;
-    height: 8px;
+  background: url("img/line.png") repeat-x scroll 0 0 transparent;
+  display: block;
+  height: 8px;
 }
 .modal {
   z-index: 99999 !important;
@@ -1410,16 +1410,16 @@ form {
     white-space: nowrap;
     overflow: hidden;
   }
-    .form-horizontal .control-label {
-        padding-left: 30px;
-    }
-    .form-horizontal .controls {
-        margin-left: 0;
-        padding: 10px 30px;
-    }
-    .form-actions {
-        text-align: center;
-    }
+  .form-horizontal .control-label {
+      padding-left: 30px;
+  }
+  .form-horizontal .controls {
+      margin-left: 0;
+      padding: 10px 30px;
+  }
+  .form-actions {
+      text-align: center;
+  }
 }
 
 @media (min-width: 481px) and (max-width: 767px) {

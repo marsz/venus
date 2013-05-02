@@ -11,28 +11,40 @@ module Omniauthable
       authorization = Authorization.find_by_provider_and_uid(authhash['provider'], authhash['uid'])
       return authorization.auth if authorization
       instance = send "initialize_from_omniauth_#{authhash['provider']}", authhash
-      if self.find_by_email(instance.email)
-        instance = _
+      if u = self.find_by_email(instance.email)
+        instance = u
       else
         instance.save
-        instance.bind_service(authhash)
       end
+      instance.bind_service(authhash)
       instance
     end
 
     private
 
+<% if @providers[:facebook] %>
     def initialize_from_omniauth_facebook(authhash)
       self.new(:email => authhash['info']['email'], :name => authhash['info']['name'])
     end
+<% end %>
 
+<% if @providers[:twitter] %>
     def initialize_from_omniauth_twitter(authhash)
       self.new(:email => authhash['info']['email'], :name => authhash['info']['name'])
     end
+<% end %>
 
+<% if @providers[:github] %>
     def initialize_from_omniauth_github(authhash)
       self.new(:email => authhash['info']['email'], :name => authhash['info']['name'])
     end
+<% end %>
+
+<% if @providers[:google_oauth2] %>
+    def initialize_from_omniauth_google_oauth2(authhash)
+      self.new(:email => authhash['extra']['raw_info']['email'], :name => authhash['extra']['raw_info']['name'])
+    end
+<% end %>
 
   end
 
@@ -45,8 +57,13 @@ module Omniauthable
   end
 
   def can_bind_to
-    Setting.providers - (authorizations.map {|auth| auth.provider})
+    Setting.providers - has_binds
   end
+
+  def has_binds
+    authorizations.map(&:provider)
+  end
+
 
   def password_required?
     false

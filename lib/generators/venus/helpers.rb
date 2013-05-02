@@ -139,7 +139,7 @@ module Venus
       end
 
       def insert_into_setting_yml(to_file, key, value, opts = {})
-        unless file_has_content?(to_file, "  #{key}:")
+        unless file_has_content?(to_file, "\n  #{key}:")
           value = '' if opts[:hide_in_example] && to_file.index('.example')
           value = ask?("value of #{key} in #{to_file}#{opts[:hint] ? " (#{opts[:hint]})" : ""}", '') if value == :ask
           inserted_value = (value.index("\n") ? value : "\"#{value}\"") if value
