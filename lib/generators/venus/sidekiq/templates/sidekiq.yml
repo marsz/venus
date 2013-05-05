@@ -1,6 +1,8 @@
 ---
 :verbose: false
 :concurrency: 1
+:queues:
+  - [default, 1]
 staging:
   :concurrency: 1
 production:
