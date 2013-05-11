@@ -68,6 +68,11 @@ module Venus
         end
       end
 
+      def remove_line_from_file(to_file, line_pattern)
+        line_pattern = /[\n]*.*?#{line_pattern}.*?[\n]*/ if line_pattern.is_a?(String)
+        gsub_file(to_file, line_pattern, "\n")
+      end
+
       def insert_line_into_file(to_file, line, options = {})
         if options[:force] == true || !file_has_content?(to_file, line)
           options.delete(:force)

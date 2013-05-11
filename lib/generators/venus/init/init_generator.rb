@@ -33,6 +33,8 @@ module Venus
         ["execjs", "therubyracer", "turbo-sprockets-rails3"].each do |gem_name|
           @assets_gems[gem_name] = ask?("gem '#{gem_name}' for assets", true)
         end
+
+        @remove_require_tree = ask?("remove 'require_tree .' in application.css/js", true)
       end
 
       def remove_usless_file
@@ -81,6 +83,13 @@ module Venus
       def gitignore
         add_gitignore ".DS_Store"
         add_gitignore "/public/assets"
+      end
+
+      def remove_require_tree
+        if @remove_require_tree
+          remove_line_from_file("app/assets/javascripts/application.js", "require_tree .")
+          remove_line_from_file("app/assets/stylesheets/application.css", "require_tree .")
+        end
       end
 
     end
