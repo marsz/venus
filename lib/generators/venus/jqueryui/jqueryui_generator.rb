@@ -14,6 +14,7 @@ module Venus
         if @datepicker
           puts "datepicker lang list: https://github.com/joliss/jquery-ui-rails/tree/master/vendor/assets/javascripts"
           @datepicker_lang = ask?('datepicker language?', '')
+          @datetimepicler = ask?('setup timepicker ?', true)
         end
       end
 
@@ -28,6 +29,18 @@ module Venus
           insert_js_template(@target_js, "datepicker.js")
           js_assets_require(@target_js, "jquery.ui.datepicker")
           js_assets_require(@target_js, "jquery.ui.datepicker-#{@datepicker_lang}") if @datepicker_lang.present?
+        end
+      end
+
+      def timepicker
+        if @datetimepicler
+          copy_file("jquery.timepicker.js", "app/assets/javascripts/jquery.timepicker.js")
+          copy_file("jquery.timepicker.css", "app/assets/stylesheets/jquery.timepicker.css")
+          css_assets_require(@target_css, "jquery.ui.slider")
+          css_assets_require(@target_css, "jquery.timepicker")
+          js_assets_require(@target_js, "jquery.ui.slider")
+          js_assets_require(@target_js, "jquery.timepicker")
+          insert_js_template(@target_js, "timepicker.js")
         end
       end
 
