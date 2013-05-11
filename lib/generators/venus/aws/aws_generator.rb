@@ -8,14 +8,10 @@ module Venus
       end
 
       def asks
-        say 'checking dependent gems "settinglogic"...'
-        generate 'venus:settingslogic' unless has_gem?('settingslogic')
+        settingslogic_dependent
 
-        @settinglogic_class = ask?("Your settinglogic class name?", 'Setting')
-        @settinglogic_yml = ask?("Your settinglogic yaml file in config/ ?", 'setting.yml')
-
-        @aws_access_key = ask?("Your AWS access key id?", '')
-        @aws_access_secret = ask?("Your AWS secret access key?", '')
+        @aws_access_key = ask?("Your AWS access key id?", '') unless key_in_settingslogic?("aws_access_key_id")
+        @aws_access_secret = ask?("Your AWS secret access key?", '') unless key_in_settingslogic?("aws_secret_access_key")
 
         @setup_email = ask?("Setup SES for mailer?", true)
       end
@@ -27,8 +23,10 @@ module Venus
 
       def configs
         template 'aws.rb.erb', 'config/initializers/aws.rb'
-        ["config/#{@settinglogic_yml}", "config/#{@settinglogic_yml}.example"].each do |to_file|
-          insert_template(to_file, "setting.yml.erb", :after => "&defaults\n")
+        if @aws_access_key
+          ["config/#{@settinglogic_yml}", "config/#{@settinglogic_yml}.example"].each do |to_file|
+            insert_template(to_file, "setting.yml.erb", :after => "&defaults\n")
+          end
         end
       end
 

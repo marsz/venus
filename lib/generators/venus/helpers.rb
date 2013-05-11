@@ -10,6 +10,17 @@ module Venus
         return (ans.present? ? (['n','N'].include?(ans) ? false : ans) : default_ans)
       end
 
+      def settingslogic_dependent
+        say 'checking dependent gems "settinglogic"...'
+        generate 'venus:settingslogic' unless has_gem?('settingslogic')
+        @settinglogic_class = ask?("Your settinglogic class name?", 'Setting')
+        @settinglogic_yml = ask?("Your settinglogic yaml file in config/ ?", 'setting.yml')
+      end
+
+      def key_in_settingslogic?(key)
+        file_has_content?("config/#{@settinglogic_yml}", "  #{key}:")
+      end
+
       def read_destanation_file(filepath)
         File.open(File.join(destination_root, filepath)).read
       end
@@ -171,6 +182,22 @@ module Venus
             insert_line_into_file(to_file, "  #{key}: #{inserted_value}", :after => "test:")
           end
           return value
+        end
+      end
+
+      def insert_settingslogics(key, value, opts = {})
+        ["config/#{@settinglogic_yml}", "config/#{@settinglogic_yml}.example"].each_with_index do |to_file, i|
+          is_example = (i == 0 ? false : true)
+          value = '' if opts[:secret] && is_example
+          inserted_value = (value.index("\n") ? value : "\"#{value}\"")
+          line = "  #{key}: #{inserted_value}"
+          if file_has_content?(to_file, "defaults: &defaults\n")
+            insert_line_into_file(to_file, line, :after => "defaults: &defaults")
+          else
+            insert_line_into_file(to_file, line, :after => "development:")
+            insert_line_into_file(to_file, line, :after => "test:")
+          end
+          gsub_file(to_file, "#{line}\n\n", "#{line}\n")
         end
       end
     end

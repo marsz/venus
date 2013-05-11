@@ -10,7 +10,7 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.7.1'
+  gem 'venus', '~> 0.7.11'
   ...
 end
 ```
@@ -29,6 +29,13 @@ end
 
 Usage
 =====
+
+* `asset_sync` for upload assets files to AWS S3 after precompile
+
+  ```
+  rails generate venus:asset_sync
+  ```
+
 
 * `sidekiq` for background job
 
