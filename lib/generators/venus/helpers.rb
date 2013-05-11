@@ -33,16 +33,32 @@ module Venus
         content
       end
 
-      def add_gem(gemname, options = {})
+      def gem_to_s(gemname, options = {})
         if options.is_a?(Hash)
-          options = (options.size > 0 ? options.to_s[1..-2] : "")
+          options = (options.size > 0 ? options.to_s[1..-2].gsub("=>", " => ") : "")
         elsif options.is_a?(String)
           options = "'#{options}'"
         end
         options = ", #{options}" if options.size > 0
-        append_file("Gemfile", "\ngem '#{gemname}'#{options}\n") unless has_gem?(gemname)
+        return "gem '#{gemname}'#{options}"
       end
 
+      def add_gem(gemname, options = {})
+        append_file("Gemfile", "\n#{gem_to_s(gemname, options)}") unless has_gem?(gemname)
+      end
+
+      def append_gem_into_group(groups, gemname, options = {})
+        return if has_gem?(gemname)
+        gemstr = "  "+gem_to_s(gemname, options)
+        groups = [groups] unless groups.is_a?(Array)
+        group_str = "group :#{groups.map(&:to_sym).join(", :")} do"
+        if file_has_content?('Gemfile', group_str)
+          insert_line_into_file("Gemfile", gemstr, :after => group_str)
+        else
+          append_file("Gemfile", "\n#{group_str}\nend\n")
+          append_gem_into_group(groups, gemname, options)
+        end
+      end
 
       def insert_template(to_file, template_file, options = {})
         insert_content = load_template(template_file)

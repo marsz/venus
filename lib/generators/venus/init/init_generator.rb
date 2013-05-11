@@ -23,6 +23,16 @@ module Venus
         if @simple_form
           generate "venus:simple_form"
         end
+
+        @remove_gems = []
+        ["coffee-rails", "sass-rails"].each do |gem_name|
+          @remove_gems << gem_name unless ask?("use gem '#{gem_name}'", true)
+        end
+
+        @assets_gems = {}
+        ["execjs", "therubyracer", "turbo-sprockets-rails3"].each do |gem_name|
+          @assets_gems[gem_name] = ask?("gem '#{gem_name}' for assets", true)
+        end
       end
 
       def remove_usless_file
@@ -35,6 +45,24 @@ module Venus
         find = 'raise_delivery_errors = false'
         replace = 'raise_delivery_errors = true'
         replace_in_file(file, find, replace) if file_has_content?(file, find)
+      end
+
+      def remove_gems
+        if @remove_gems.size > 0
+          @remove_gems.each do |gem_name|
+            gsub_file("Gemfile", /\n.*?gem.+?#{gem_name}.+?\n/, "\n")
+          end
+          bundle_install
+        end
+      end
+
+      def assets_gems
+        if @assets_gems.select{|gem_name,y|y}.size > 0
+          @assets_gems.each do |gem_name,y|
+            opts = (gem_name == "therubyracer") ? { :platforms => :ruby } : {}
+            append_gem_into_group(:assets, gem_name, opts) if y
+          end
+        end
       end
 
       def gems
