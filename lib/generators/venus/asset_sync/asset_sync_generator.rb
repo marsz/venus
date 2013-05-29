@@ -19,7 +19,7 @@ module Venus
       end
 
       def set_gemfile
-        append_gem_into_group(:assets, "asset_sync", "~> 0.5.4")
+        add_gem("asset_sync", "~> 0.5.4")
         bundle_install
       end
 
