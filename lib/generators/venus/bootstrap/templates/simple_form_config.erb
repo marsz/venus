@@ -1,6 +1,8 @@
 
+  config.label_class = "control-label"
+  config.form_class = "form-horizontal"
+
   config.wrappers :bootstrap, :tag => 'div', :class => 'control-group', :error_class => 'error' do |b|
-    config.form_class = "form-horizontal"
     b.use :placeholder
     b.use :label, :wrap_with => { :class => 'control-label' }
     b.wrapper :tag => 'div', :class => 'controls' do |ba|
@@ -12,7 +14,6 @@
 
 <% if @unicorn %>
   config.wrappers :admin, :tag => :div, :class => 'control-group' do |b|
-    config.form_class = "form-horizontal"
     b.use :placeholder
     b.use :label, :wrap_with => { :class => 'control-label', :tag => false }
     b.wrapper :tag => :div, :class => 'controls' do |ba|
