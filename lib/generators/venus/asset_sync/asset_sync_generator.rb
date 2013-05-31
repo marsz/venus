@@ -16,6 +16,7 @@ module Venus
         @settings[:aws_assets_bucket] = ask?("AWS S3 bucket for assets sync", app_name) unless key_in_settingslogic?("aws_assets_bucket")
         @settings[:aws_assets_host] = ask?("AWS S3 host for assets sync", "#{app_name}.s3-website-us-east-1.amazonaws.com") unless key_in_settingslogic?("aws_assets_host")
         @settings[:aws_assets_path_prefix] = ask?("AWS S3 assets path prefix", "") unless key_in_settingslogic?("aws_assets_path_prefix")
+        @has_ckeditor_rails = ask?("has ckeditor-rails?", false)
       end
 
       def set_gemfile
@@ -32,7 +33,11 @@ module Venus
 
       def production_rb
         to_file = "config/environments/production.rb"
-        line = "  config.action_controller.asset_host = #{@settinglogic_class}.aws_assets_host"
+        if(@has_ckeditor_rails) 
+          line = "  config.relative_url_root = \"http://\#{#{@settinglogic_class}.aws_assets_host}\""
+        else 
+          line = "  config.action_controller.asset_host = #{@settinglogic_class}.aws_assets_host"
+        end
         unless file_has_content?(to_file, line)
           comment_lines(to_file, /config\.action_controller\.asset_host/)
           insert_line_into_file(to_file, line, :before => /\nend[\n]*$/)
