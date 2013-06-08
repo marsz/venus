@@ -24,7 +24,7 @@ module Venus
       end
 
       def gemfile
-        add_gem('sidekiq', '~> 2.8.0')
+        add_gem('sidekiq', '~> 2.12.1')
         add_gem('slim')
         add_gem('sinatra', '>= 1.3.0')
         add_gem('devise-async', "~> 0.7.0") if @devise_async
