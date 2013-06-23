@@ -15,10 +15,6 @@ module Venus
         @whenever = ask?('install scheduling gem "whenever"?', true) unless has_gem?('whenever')
         generate 'venus:cron' if @whenever
 
-        [:haml].each do |gemname|
-          @gems[gemname] = ask?("install gem '#{gemname}'?", true)
-        end
-
         @simple_form = ask?('install gem "simple_form"?', true) unless has_gem?('simple_form')
         if @simple_form
           generate "venus:simple_form"
