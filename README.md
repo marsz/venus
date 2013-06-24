@@ -10,7 +10,7 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.7.11'
+  gem 'venus', '~> 0.8.0'
   ...
 end
 ```
@@ -29,6 +29,12 @@ end
 
 Usage
 =====
+
+* `unicorn` for zero downtime deployment
+
+  ```
+  rails generate venus:unicorn
+  ```
 
 * `asset_sync` for upload assets files to AWS S3 after precompile
 
