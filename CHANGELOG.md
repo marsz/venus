@@ -1,6 +1,7 @@
-## 0.8.0
+## 0.8.1
 
 Features:
   
   - Add unicorn generator, `rails generate venus:unicorn`.
-  - Ask generate venus:unicorn after generate venus:deploy.
+  - Ask generate venus:puma after generate venus:deploy.
+  - Add puma server generator, `rails generate venus:puma`.

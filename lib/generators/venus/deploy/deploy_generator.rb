@@ -11,7 +11,7 @@ module Venus
         @use_rvm = ask?('use rvm?', true)
         @use_assets_pipline = ask?('use assets pipline?', true)
         @use_passenger = ask?('use passenger?', true)
-        @use_unicorn = ask?('use unicorn server?', true) unless @use_passenger
+        @use_puma = ask?('use puma server?', true) unless @use_passenger
         @git_uri = ask?('your git repository url?', 'git@github.com:foo/myapp.git')
         @stage = ask_stage_infomation
         if ask?('has staging server?', true)
@@ -54,9 +54,9 @@ module Venus
         end
       end
 
-      def unicorn
-        if @use_unicorn
-          generate "venus:unicorn"
+      def puma
+        if @use_puma
+          generate "venus:puma"
         end
       end
 
