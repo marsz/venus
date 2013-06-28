@@ -1,10 +1,11 @@
-## 0.8.1
+## 0.8.2
 
 Features:
   
   - Add unicorn generator, `rails generate venus:unicorn`.
   - Ask generate venus:puma after generate venus:deploy.
   - Add puma server generator, `rails generate venus:puma`.
+  - Newrelic 3.6.5 generator.
 
 Updates:
 

@@ -10,7 +10,7 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.8.0'
+  gem 'venus', '~> 0.8.2'
   ...
 end
 ```
@@ -29,6 +29,18 @@ end
 
 Usage
 =====
+
+* `newrelic_rpm` gem.
+
+  ```
+  rails generate venus:newrelic
+  ```
+  
+* `puma` server
+
+  ```
+  rails generate venus:puma
+  ```
 
 * `unicorn` for zero downtime deployment
 
