@@ -10,7 +10,7 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.8.4'
+  gem 'venus', '~> 0.8.5'
   ...
 end
 ```
@@ -30,6 +30,12 @@ end
 Usage
 =====
 
+* better_errors generator for rendering errors clearly.
+
+  ```
+  rails generate venus:better_errors
+  ```
+  
 * Hipchat generator for notification while deploy.
 
   ```

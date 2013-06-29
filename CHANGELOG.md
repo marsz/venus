@@ -1,4 +1,4 @@
-## 0.8.4
+## 0.8.5
 
 Features:
   
@@ -8,6 +8,8 @@ Features:
   - Newrelic 3.6.5 generator.
   - Sentry generator for cloud exceptions storage.
   - Hipchat generator for deploy notification.
+  - better_errors generator for rendering errors clearly.
+  - Bind better_errors generator into init generator.
 
 Updates:
 

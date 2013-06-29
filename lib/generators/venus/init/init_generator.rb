@@ -8,17 +8,11 @@ module Venus
       end
 
       def asks
-        @gems = {}
         @paginate = ask?('install paginate gem "kaminari"?', true) unless has_gem?('kaminari')
-        generate 'venus:paginate' if @paginate
 
         @whenever = ask?('install scheduling gem "whenever"?', true) unless has_gem?('whenever')
-        generate 'venus:cron' if @whenever
 
         @simple_form = ask?('install gem "simple_form"?', true) unless has_gem?('simple_form')
-        if @simple_form
-          generate "venus:simple_form"
-        end
 
         @remove_gems = []
         ["coffee-rails", "sass-rails"].each do |gem_name|
@@ -31,6 +25,7 @@ module Venus
         end
 
         @remove_require_tree = ask?("remove 'require_tree .' in application.css/js", true)
+        @better_errors = ask?("install gem 'better_errors'", true)
       end
 
       def remove_usless_file
@@ -63,19 +58,6 @@ module Venus
         end
       end
 
-      def gems
-        @is_append = !file_has_content?('Gemfile','group :development do')
-        if @is_append
-          concat_template('Gemfile', 'gem_developments.erb')
-        else
-          insert_template('Gemfile', 'gem_developments.erb', :after => 'group :development do')
-        end
-        @gems.each do |gemname, ans|
-          add_gem(gemname.to_s) if ans
-        end
-        bundle_install
-      end
-
       def gitignore
         add_gitignore ".DS_Store"
         add_gitignore "/public/assets"
@@ -86,6 +68,13 @@ module Venus
           remove_line_from_file("app/assets/javascripts/application.js", "require_tree .")
           remove_line_from_file("app/assets/stylesheets/application.css", "require_tree .")
         end
+      end
+
+      def asked_gems
+        generate 'venus:paginate' if @paginate
+        generate 'venus:cron' if @whenever
+        generate "venus:simple_form" if @simple_form
+        generate "venus:better_errors" if @better_errors
       end
 
     end
