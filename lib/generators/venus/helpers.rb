@@ -191,7 +191,7 @@ module Venus
           value = '' if opts[:secret] && is_example
           inserted_value = (value.index("\n") ? value : "\"#{value}\"")
           line = "  #{key}: #{inserted_value}"
-          if file_has_content?(to_file, "defaults: &defaults\n")
+          if file_has_content?(to_file, "defaults: &defaults")
             insert_line_into_file(to_file, line, :after => "defaults: &defaults")
           else
             insert_line_into_file(to_file, line, :after => "development:")

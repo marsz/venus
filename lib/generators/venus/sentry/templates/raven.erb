@@ -1,0 +1,7 @@
+if (<%= "#{@settinglogic_class}.sentry_dsn" %> rescue nil).present?
+  require 'raven'
+
+  Raven.configure do |config|
+    config.dsn = <%= "#{@settinglogic_class}.sentry_dsn" %>
+  end
+end

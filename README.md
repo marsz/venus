@@ -10,7 +10,7 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.8.2'
+  gem 'venus', '~> 0.8.3'
   ...
 end
 ```
@@ -30,6 +30,12 @@ end
 Usage
 =====
 
+* getsentry.com installation for cloud exceptions storage.
+
+  ```
+  rails generate venus:sentry
+  ```
+  
 * `newrelic_rpm` gem.
 
   ```
@@ -160,7 +166,6 @@ Usage
 TODO
 ====
 
-* Unicorn setup for capistrano.
 * MongoDB configuration.
 * RailsAdmin or ActiveAdmin.
 * Amazon Elastic Cache & cells.
