@@ -8,6 +8,7 @@ module Venus
       end
 
       def asks
+        @is_repository_private = ask?("Is project private", false)
         @license_key = ask?("Newrelic license key", "")
         @app_name = app_name
       end
@@ -19,9 +20,11 @@ module Venus
 
       def configs
         template("newrelic.yml.erb", "config/newrelic.yml")
-        @license_key = ""
-        template("newrelic.yml.erb", "config/newrelic.yml.example")
-        append_file(".gitignore", "\nconfig/newrelic.yml") unless file_has_content?(".gitignore", "config/newrelic.yml")
+        unless @is_repository_private
+          @license_key = ""
+          template("newrelic.yml.erb", "config/newrelic.yml.example")
+          append_file(".gitignore", "\nconfig/newrelic.yml") unless file_has_content?(".gitignore", "config/newrelic.yml")
+        end
       end
 
     end
