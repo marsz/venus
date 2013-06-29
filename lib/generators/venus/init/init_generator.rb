@@ -9,10 +9,10 @@ module Venus
 
       def asks
         @paginate = ask?('install paginate gem "kaminari"?', true) unless has_gem?('kaminari')
-
         @whenever = ask?('install scheduling gem "whenever"?', true) unless has_gem?('whenever')
-
         @simple_form = ask?('install gem "simple_form"?', true) unless has_gem?('simple_form')
+        @better_errors = ask?("install gem 'better_errors'", true)
+        @rails_panel = ask?("install gem 'rails_panel'", true)
 
         @remove_gems = []
         ["coffee-rails", "sass-rails"].each do |gem_name|
@@ -25,7 +25,6 @@ module Venus
         end
 
         @remove_require_tree = ask?("remove 'require_tree .' in application.css/js", true)
-        @better_errors = ask?("install gem 'better_errors'", true)
       end
 
       def remove_usless_file
@@ -75,6 +74,7 @@ module Venus
         generate 'venus:cron' if @whenever
         generate "venus:simple_form" if @simple_form
         generate "venus:better_errors" if @better_errors
+        generate "venus:rails_panel" if @rails_panel
       end
 
     end

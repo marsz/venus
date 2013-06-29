@@ -1,4 +1,4 @@
-## 0.8.5
+## 0.8.6
 
 Features:
   
@@ -10,6 +10,8 @@ Features:
   - Hipchat generator for deploy notification.
   - better_errors generator for rendering errors clearly.
   - Bind better_errors generator into init generator.
+  - rails_panel generator for debugging request in Chrome.
+  - Bind rails_panel generator into init generator.
 
 Updates:
 

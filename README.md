@@ -10,7 +10,7 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.8.5'
+  gem 'venus', '~> 0.8.6'
   ...
 end
 ```
@@ -30,6 +30,12 @@ end
 Usage
 =====
 
+* rails_panel generator for debugging request in Chrome.
+
+  ```
+  rails generate venus:rails_panel
+  ```
+  
 * better_errors generator for rendering errors clearly.
 
   ```
