@@ -1,4 +1,4 @@
-## 0.8.3
+## 0.8.4
 
 Features:
   
@@ -7,6 +7,7 @@ Features:
   - Add puma server generator, `rails generate venus:puma`.
   - Newrelic 3.6.5 generator.
   - Sentry generator for cloud exceptions storage.
+  - Hipchat generator for deploy notification.
 
 Updates:
 

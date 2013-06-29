@@ -10,7 +10,7 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.8.3'
+  gem 'venus', '~> 0.8.4'
   ...
 end
 ```
@@ -30,6 +30,12 @@ end
 Usage
 =====
 
+* Hipchat generator for notification while deploy.
+
+  ```
+  rails generate venus:hipchat
+  ```
+  
 * getsentry.com installation for cloud exceptions storage.
 
   ```
