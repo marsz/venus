@@ -11,6 +11,7 @@ module Venus
         @use_rvm = ask?('use rvm?', true)
         @use_assets_pipline = ask?('use assets pipline?', true)
         @use_passenger = ask?('use passenger?', true)
+        @use_puma = ask?('use puma server?', true) unless @use_passenger
         @git_uri = ask?('your git repository url?', 'git@github.com:foo/myapp.git')
         @stage = ask_stage_infomation
         if ask?('has staging server?', true)
@@ -50,6 +51,12 @@ module Venus
         if ask?('setup servers deployment?', true)
           bundle_exec('cap production deploy:setup')
           bundle_exec('cap staging deploy:setup') if @staging
+        end
+      end
+
+      def puma
+        if @use_puma
+          generate "venus:puma"
         end
       end
 

@@ -17,11 +17,17 @@ module Venus
         @devise_scope = @devise_model.underscore
         @devise_table = @devise_model.tableize
         @providers = {}
+        @default_tokens = {
+          :facebook => ["267188576687915", "84f72292e1f6b299f4a668f12ed1a7f2", { :scope => "email" }],
+          :github => ["3f9e288d55d83eee797d", "acc2d9185cdb236ffc227d4def846f3ade928710", { :scope => "user" } ],
+          :google_oauth2 => ["435467283040.apps.googleusercontent.com", "mbH4YxQuRRakaKDyyxGkwVTA", { :scope => "userinfo.email,userinfo.profile" } ],
+          :twitter => ["", "", {}]
+        }
         [:facebook, :github, :twitter, :google_oauth2].each do |provider|
           if ask?("Use '#{provider}'?", true)
-            token = ask?("#{provider.capitalize} App ID?", '267188576687915')
-            secret = ask?("#{provider.capitalize} App Secret?", '84f72292e1f6b299f4a668f12ed1a7f2')
-            @providers[provider] = {:token => token, :secret => secret}
+            token = ask?("#{provider.capitalize} App ID?", @default_tokens[provider][0])
+            secret = ask?("#{provider.capitalize} App Secret?", @default_tokens[provider][1])
+            @providers[provider] = {:token => token, :secret => secret, :opts => @default_tokens[provider][2] }
           end
         end
 

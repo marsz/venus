@@ -13,7 +13,7 @@ module Venus
       end
 
       def gem
-        add_gem('chosen-rails', '~> 0.9.11.2')
+        add_gem('chosen-rails', '~> 0.9.15')
         bundle_install
       end
 

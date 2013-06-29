@@ -1,5 +1,10 @@
+# --- venus:omniauth START ---
   providers: <%= (@providers.map {|p| p[0].to_s}).to_s %>
 <%- @providers.each do |name, info| -%>
-  <%=name%>_token: "<%=info[:token] %>"
-  <%=name%>_secret: "<%=info[:secret] %>"
+  <%= name %>_token: "<%= info[:token] %>"
+  <%= name %>_secret: "<%= info[:secret] %>"
+  <%= name %>_auth_options:<% info[:opts].each do |key, value| %>
+    :<%= key %>: "<%= value %>"
+  <% end %>
 <%- end -%>
+# --- venus:omniauth END ---

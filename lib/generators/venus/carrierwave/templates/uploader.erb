@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class <%=@sample_uploader.to_s.camelize%>Uploader < CarrierWave::Uploader::Base
 <%- if @imagemagick %>
-  include CarrierWave::RMagick<% end %>
+  include CarrierWave::MiniMagick<% end %>
 <%- if @carrierwave_meta %>
   include CarrierWave::Meta<% end %>
 

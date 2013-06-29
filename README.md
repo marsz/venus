@@ -10,7 +10,7 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.7.1'
+  gem 'venus', '~> 0.8.6'
   ...
 end
 ```
@@ -29,6 +29,55 @@ end
 
 Usage
 =====
+
+* rails_panel generator for debugging request in Chrome.
+
+  ```
+  rails generate venus:rails_panel
+  ```
+  
+* better_errors generator for rendering errors clearly.
+
+  ```
+  rails generate venus:better_errors
+  ```
+  
+* Hipchat generator for notification while deploy.
+
+  ```
+  rails generate venus:hipchat
+  ```
+  
+* getsentry.com installation for cloud exceptions storage.
+
+  ```
+  rails generate venus:sentry
+  ```
+  
+* `newrelic_rpm` gem.
+
+  ```
+  rails generate venus:newrelic
+  ```
+  
+* `puma` server
+
+  ```
+  rails generate venus:puma
+  ```
+
+* `unicorn` for zero downtime deployment
+
+  ```
+  rails generate venus:unicorn
+  ```
+
+* `asset_sync` for upload assets files to AWS S3 after precompile
+
+  ```
+  rails generate venus:asset_sync
+  ```
+
 
 * `sidekiq` for background job
 
@@ -135,7 +184,6 @@ Usage
 TODO
 ====
 
-* Unicorn setup for capistrano.
 * MongoDB configuration.
 * RailsAdmin or ActiveAdmin.
 * Amazon Elastic Cache & cells.

@@ -30,7 +30,7 @@ module Venus
         else
           add_gem("carrierwave", "0.7.1")
         end
-        add_gem('rmagick') if @imagemagick
+        add_gem('mini_magick', "~> 3.6.0") if @imagemagick
         add_gem("carrierwave-meta", '~> 0.0.4') if @carrierwave_meta
         add_gem('fog') if @fog
         bundle_install

@@ -10,6 +10,17 @@ module Venus
         return (ans.present? ? (['n','N'].include?(ans) ? false : ans) : default_ans)
       end
 
+      def settingslogic_dependent
+        say 'checking dependent gems "settinglogic"...'
+        generate 'venus:settingslogic' unless has_gem?('settingslogic')
+        @settinglogic_class = ask?("Your settinglogic class name?", 'Setting')
+        @settinglogic_yml = ask?("Your settinglogic yaml file in config/ ?", 'setting.yml')
+      end
+
+      def key_in_settingslogic?(key)
+        file_has_content?("config/#{@settinglogic_yml}", "  #{key}:")
+      end
+
       def read_destanation_file(filepath)
         File.open(File.join(destination_root, filepath)).read
       end
@@ -33,16 +44,32 @@ module Venus
         content
       end
 
-      def add_gem(gemname, options = {})
+      def gem_to_s(gemname, options = {})
         if options.is_a?(Hash)
-          options = (options.size > 0 ? options.to_s[1..-2] : "")
+          options = (options.size > 0 ? options.to_s[1..-2].gsub("=>", " => ") : "")
         elsif options.is_a?(String)
           options = "'#{options}'"
         end
         options = ", #{options}" if options.size > 0
-        append_file("Gemfile", "\ngem '#{gemname}'#{options}\n") unless has_gem?(gemname)
+        return "gem '#{gemname}'#{options}"
       end
 
+      def add_gem(gemname, options = {})
+        append_file("Gemfile", "\n#{gem_to_s(gemname, options)}") unless has_gem?(gemname)
+      end
+
+      def append_gem_into_group(groups, gemname, options = {})
+        return if has_gem?(gemname)
+        gemstr = "  "+gem_to_s(gemname, options)
+        groups = [groups] unless groups.is_a?(Array)
+        group_str = "group :#{groups.map(&:to_sym).join(", :")} do"
+        if file_has_content?('Gemfile', group_str)
+          insert_line_into_file("Gemfile", gemstr, :after => group_str)
+        else
+          append_file("Gemfile", "\n#{group_str}\nend\n")
+          append_gem_into_group(groups, gemname, options)
+        end
+      end
 
       def insert_template(to_file, template_file, options = {})
         insert_content = load_template(template_file)
@@ -50,6 +77,11 @@ module Venus
           options.delete(:force)
           inject_into_file(to_file,insert_content,options)
         end
+      end
+
+      def remove_line_from_file(to_file, line_pattern)
+        line_pattern = /[\n]*.*?#{line_pattern}.*?[\n]*/ if line_pattern.is_a?(String)
+        gsub_file(to_file, line_pattern, "\n")
       end
 
       def insert_line_into_file(to_file, line, options = {})
@@ -150,6 +182,22 @@ module Venus
             insert_line_into_file(to_file, "  #{key}: #{inserted_value}", :after => "test:")
           end
           return value
+        end
+      end
+
+      def insert_settingslogics(key, value, opts = {})
+        ["config/#{@settinglogic_yml}", "config/#{@settinglogic_yml}.example"].each_with_index do |to_file, i|
+          is_example = (i == 0 ? false : true)
+          value = '' if opts[:secret] && is_example
+          inserted_value = (value.index("\n") ? value : "\"#{value}\"")
+          line = "  #{key}: #{inserted_value}"
+          if file_has_content?(to_file, "defaults: &defaults")
+            insert_line_into_file(to_file, line, :after => "defaults: &defaults")
+          else
+            insert_line_into_file(to_file, line, :after => "development:")
+            insert_line_into_file(to_file, line, :after => "test:")
+          end
+          gsub_file(to_file, "#{line}\n\n", "#{line}\n")
         end
       end
     end
