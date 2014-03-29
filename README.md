@@ -48,6 +48,12 @@ Usage
   rails generate venus:rspec
   ```
 
+* `simple_form` and its related gems (including `nested_form`)
+
+  ```
+  rails generate venus:simple_form
+  ```
+
 * rails_panel generator for debugging request in Chrome.
 
   ```
@@ -155,12 +161,6 @@ Usage
 
   ```
   rails generate venus:deploy
-  ```
-
-* `simple_form` and its related gems (including `nested_form`)
-
-  ```
-  rails generate venus:simple_form
   ```
 
 * `kaminari` for pagination

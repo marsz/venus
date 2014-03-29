@@ -142,6 +142,14 @@ module Venus
         end
       end
 
+      def bundle_update(gems)
+        gems ||= []
+        gems = [gems] unless gems.is_a?(Array)
+        Bundler.with_clean_env do
+          run "bundle update #{gems.join(" ")}" if gems.size > 0
+        end
+      end
+
       def bundle_exec(exec)
         Bundler.with_clean_env do
           run "bundle exec #{exec}"
