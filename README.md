@@ -72,18 +72,12 @@ Usage
   rails generate venus:devise
   ```
 
-* rails_panel generator for debugging request in Chrome.
+* ask and install gems for development, including spring, guard, better_errors...etc.
 
   ```
-  rails generate venus:rails_panel
+  rails generate venus:dev
   ```
-  
-* better_errors generator for rendering errors clearly.
-
-  ```
-  rails generate venus:better_errors
-  ```
-  
+    
 * Hipchat generator for notification while deploy.
 
   ```
