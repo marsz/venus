@@ -66,6 +66,12 @@ Usage
   rails generate venus:settingslogic
   ```
 
+* `devise` installation or model generation (with scoped views).
+
+  ```
+  rails generate venus:devise
+  ```
+
 * rails_panel generator for debugging request in Chrome.
 
   ```
@@ -173,12 +179,6 @@ Usage
 
   ```
   rails generate venus:deploy
-  ```
-
-* `devise` for user login, default generate model `User`
-
-  ```
-  rails generate venus:devise
   ```
 
 TODO

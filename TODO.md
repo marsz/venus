@@ -1,0 +1,4 @@
+- devise generator
+  - asking email setup
+  - asking omniauth
+  - asking requests spec example
