@@ -30,6 +30,12 @@ end
 Usage
 =====
 
+* For project initial, including general gems installation asking, `.gitignore` attaching, removing useless files....etc.
+
+  ```
+  rails generate venus:init
+  ```
+
 * rails_panel generator for debugging request in Chrome.
 
   ```
@@ -143,12 +149,6 @@ Usage
 
   ```
   rails generate venus:simple_form
-  ```
-
-* Essentail gems (kminari...etc) and setup (removing public/index.html ...etc).
-
-  ```
-  rails generate venus:init
   ```
 
 * `MySql` database connection

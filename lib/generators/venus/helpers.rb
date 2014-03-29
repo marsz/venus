@@ -29,8 +29,18 @@ module Venus
         read_destanation_file(to_file).index(line)
       end
 
+      def gem_version(gemname)
+        if has_gem?(gemname)
+          read_destanation_file('Gemfile.lock').scan(/ #{gemname} .+?([0-9\.a-z]+)/)[0][0] rescue nil
+        end
+      end
+
       def has_gem?(gemname)
         file_has_content?('Gemfile.lock', / #{gemname} \(/m)
+      end
+
+      def rails3?
+        gem_version('rails').to_i < 4
       end
 
       def has_file?(file)
