@@ -42,6 +42,12 @@ Usage
   rails generate venus:mysql
   ```
 
+* `RSpec` testing framework
+
+  ```
+  rails generate venus:rspec
+  ```
+
 * rails_panel generator for debugging request in Chrome.
 
   ```
@@ -173,12 +179,6 @@ Usage
 
   ```
   rails generate venus:devise
-  ```
-
-* `RSpec` testing framework
-
-  ```
-  rails generate venus:rspec
   ```
 
 TODO
