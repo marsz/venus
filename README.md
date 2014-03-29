@@ -84,24 +84,6 @@ Usage
   rails generate venus:hipchat
   ```
   
-* getsentry.com installation for cloud exceptions storage.
-
-  ```
-  rails generate venus:sentry
-  ```
-  
-* `newrelic_rpm` gem.
-
-  ```
-  rails generate venus:newrelic
-  ```
-  
-* `puma` server
-
-  ```
-  rails generate venus:puma
-  ```
-
 * `unicorn` for zero downtime deployment
 
   ```
