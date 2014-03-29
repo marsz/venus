@@ -53,6 +53,12 @@ Usage
   ```
   rails generate venus:simple_form
   ```
+  
+* `kaminari` for pagination
+
+  ```
+  rails generate venus:kaminari
+  ```
 
 * rails_panel generator for debugging request in Chrome.
 
@@ -161,12 +167,6 @@ Usage
 
   ```
   rails generate venus:deploy
-  ```
-
-* `kaminari` for pagination
-
-  ```
-  rails generate venus:paginate
   ```
 
 * `settingslogic` for all YAML configurations.
