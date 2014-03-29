@@ -4,8 +4,9 @@ module Venus
       desc "Install gem settinglogic"
 
       def asks
-        @filename = ask?("Your yaml file name in config/ ?", 'setting.yml')
+        @filename = ask?("Your yaml file name in config/ ?", 'application.yml')
         @setting_class = ask?("Your setting class name ?", 'Setting')
+        @bundle_update = ask?("bundle update settingslogic", false)
       end
 
       def name
@@ -15,6 +16,7 @@ module Venus
       def gemfile
         add_gem('settingslogic')
         bundle_install
+        bundle_update('settingslogic') if @bundle_update
       end
 
       def config

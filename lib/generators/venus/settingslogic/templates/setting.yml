@@ -1,9 +1,5 @@
 defaults: &defaults
-  app_name: ""
   host: "localhost"
-  admin_emails: 
-    - ""
-  google_analytics_key: ""
 
 development:
   <<: *defaults

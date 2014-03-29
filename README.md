@@ -53,11 +53,17 @@ Usage
   ```
   rails generate venus:simple_form
   ```
-  
+
 * `kaminari` for pagination
 
   ```
   rails generate venus:kaminari
+  ```
+
+* `settingslogic` for all YAML configurations.
+
+  ```
+  rails generate venus:settingslogic
   ```
 
 * rails_panel generator for debugging request in Chrome.
@@ -167,12 +173,6 @@ Usage
 
   ```
   rails generate venus:deploy
-  ```
-
-* `settingslogic` for all YAML configurations.
-
-  ```
-  rails generate venus:settingslogic
   ```
 
 * `devise` for user login, default generate model `User`
