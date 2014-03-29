@@ -30,7 +30,7 @@ module Venus
       def remove_gems
         if @remove_gems.size > 0
           @remove_gems.each do |gem_name|
-            gsub_file("Gemfile", /\n.*?gem.+?#{gem_name}.+?\n/, "\n")
+            remove_gem(gem_name)
           end
           bundle_install
         end

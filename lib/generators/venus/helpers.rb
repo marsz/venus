@@ -68,6 +68,10 @@ module Venus
         append_file("Gemfile", "\n#{gem_to_s(gemname, options)}") unless has_gem?(gemname)
       end
 
+      def remove_gem(gemname)
+        gsub_file("Gemfile", /\n.*?gem.+?#{gemname}.+?\n/, "\n")
+      end
+
       def append_gem_into_group(groups, gemname, options = {})
         return if has_gem?(gemname)
         gemstr = "  "+gem_to_s(gemname, options)

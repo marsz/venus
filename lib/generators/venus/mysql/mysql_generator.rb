@@ -8,6 +8,7 @@ module Venus
         @pass = ask?("database login password?", '')
         @db = ask?("database name? (will append rails env as postfix)", app_name)
         @recreate = ask?("drop db before create?", true)
+        @remove_sqlite_3 = ask?("remove sqlite3?", true) if has_gem?("sqlite3")
       end
 
       def name
@@ -16,6 +17,7 @@ module Venus
 
       def gemfile
         add_gem('mysql2')
+        remove_gem('sqlite3') if @remove_sqlite_3
         bundle_install
       end
 
@@ -27,6 +29,7 @@ module Venus
         template 'database.yml.erb', 'config/database.yml', :force => true
         @pass = ''
         template 'database.yml.erb', 'config/database.yml.example', :force => true
+        `git rm config/database.yml --cache`
       end
 
       def create

@@ -36,6 +36,12 @@ Usage
   rails generate venus:init
   ```
 
+* `MySQL` database setup.
+
+  ```
+  rails generate venus:mysql
+  ```
+
 * rails_panel generator for debugging request in Chrome.
 
   ```
@@ -149,12 +155,6 @@ Usage
 
   ```
   rails generate venus:simple_form
-  ```
-
-* `MySql` database connection
-
-  ```
-  rails generate venus:mysql
   ```
 
 * `kaminari` for pagination
