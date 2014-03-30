@@ -89,6 +89,12 @@ Usage
   ```
   rails generate venus:redis
   ```
+  
+* `sidekiq` for background job
+
+  ```
+  rails generate venus:sidekiq
+  ```
 
 * Hipchat generator for notification while deploy.
 
@@ -106,13 +112,6 @@ Usage
 
   ```
   rails generate venus:asset_sync
-  ```
-
-
-* `sidekiq` for background job
-
-  ```
-  rails generate venus:sidekiq
   ```
 
 * `paper_trail` for model versioning

@@ -1,5 +1,0 @@
-  # see more devise authentication: https://github.com/mperham/sidekiq/wiki/Monitoring
-  sidekiq_constraints = lambda{ |req| <%= "req.env['warden'].authenticate!({ :scope => :#{@devise_scope} })" if @devise_scope.present? %> }
-  constraints sidekiq_constraints do
-    mount Sidekiq::Web => '/sidekiq'
-  end
