@@ -84,6 +84,12 @@ Usage
   rails generate venus:aws
   ```
 
+* `Redis` client and related gems (redis-objects) for optional.
+
+  ```
+  rails generate venus:redis
+  ```
+
 * Hipchat generator for notification while deploy.
 
   ```
@@ -137,12 +143,6 @@ Usage
   
   ```
   rails generate venus:chosen
-  ```
-
-* `Redis` client and related gems (redis-objects) for optional.
-
-  ```
-  rails generate venus:redis
   ```
 
 * `Omniauth` for multiple omniauth (Facebook, Twitter, Github) in model `User`.

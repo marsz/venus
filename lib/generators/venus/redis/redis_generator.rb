@@ -8,32 +8,26 @@ module Venus
       end
 
       def asks
-        say 'checking dependent gems "settinglogic"...'
-        generate 'venus:settingslogic' unless has_gem?('settingslogic')
-
-        @settinglogic_class = ask?("Your settinglogic class name?", 'Setting')
-        @settinglogic_yml = ask?("Your settinglogic yaml file in config/ ?", 'setting.yml')
-        @redis_object = ask?("Install gem 'redis-object'", true)
+        settingslogic_dependent
+        @passenger = ask?("use passenger (add code for after fork if Yes)", false)
+        @redis_object = ask?("install gem 'redis-object'", false)
       end
 
       def gemfile
-        add_gem('redis', '~> 3.0.2')
+        add_gem('redis')
         add_gem('redis-objects', :require => 'redis/objects') if @redis_object
         bundle_install
+        ask_bundle_update
       end
 
       def configs
         template 'redis.erb', 'config/initializers/redis.rb'
-        to_file = "config/#{@settinglogic_yml}"
-        [to_file, to_file+".example"].each do |file|
-          insert_into_setting_yml(file, "redis", nil)
-          insert_line_into_file(file, "    host: localhost\n    port: 6379\n    db: 0", :after => "  redis: \n")
-        end
-        puts "see more redis usage in: http://rdoc.info/github/redis/redis-rb/Redis"
+        settingslogic_insert(:redis => { :url => "redis://127.0.0.1:6379/0" })
+        say "see more redis usage in: http://rdoc.info/github/redis/redis-rb/Redis"
       end
 
       def redis_objects
-        puts "see more redis-objects usage in: https://github.com/nateware/redis-objects" if @redis_object
+        say "see more redis-objects usage in: https://github.com/nateware/redis-objects" if @redis_object
       end
 
     end

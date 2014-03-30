@@ -10,6 +10,10 @@ module Venus
         return (ans.present? ? (['n','N'].include?(ans) ? false : ans) : default_ans)
       end
 
+      def ask_bundle_update
+        bundle_update(@for_update_gems) if ask?("bundle update added gems", false)
+      end
+
       def settingslogic_dependent
         say 'checking dependent gems "settinglogic"...'
         generate 'venus:settingslogic' unless has_gem?('settingslogic')
@@ -29,7 +33,8 @@ module Venus
         ActiveSupport::HashWithIndifferentAccess.new(YAML.load(File.open("#{destination_root}/config/#{settingslogic_yml}")))
       end
 
-      def settingslogic_insert(to_file, values, secret_keys = [])
+      def settingslogic_insert(values, secret_keys = [])
+        to_file = "config/#{settingslogic_yml}"
         values = settingslogic_hash["development"].deep_merge(values)
         write_hash_into_settingslogic(to_file, values)
         secret_values = values
@@ -106,6 +111,8 @@ module Venus
 
       def add_gem(gemname, options = {})
         append_file("Gemfile", "\n#{gem_to_s(gemname, options)}") unless has_gem?(gemname)
+        @for_update_gems ||= []
+        @for_update_gems << gemname
       end
 
       def remove_gem(gemname)
@@ -182,8 +189,8 @@ module Venus
         end
       end
 
-      def bundle_update(gems)
-        gems ||= []
+      def bundle_update(gems = nil)
+        gems ||= @for_update_gems
         gems = [gems] unless gems.is_a?(Array)
         Bundler.with_clean_env do
           run "bundle update #{gems.join(" ")}" if gems.size > 0

@@ -23,8 +23,7 @@ module Venus
 
       def configs
         template 'aws.rb.erb', 'config/initializers/aws.rb'
-        to_file = "config/#{settingslogic_yml}"
-        settingslogic_insert(to_file, { :aws => { :access_key_id => @aws_access_key, :secret_access_key => @secret_access_key } }, ['aws.secret_access_key'] )
+        settingslogic_insert({ :aws => { :access_key_id => @aws_access_key, :secret_access_key => @secret_access_key } }, ['aws.secret_access_key'] )
       end
 
       def config_application
