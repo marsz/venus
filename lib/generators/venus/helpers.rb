@@ -14,11 +14,51 @@ module Venus
         say 'checking dependent gems "settinglogic"...'
         generate 'venus:settingslogic' unless has_gem?('settingslogic')
         @settinglogic_class = ask?("Your settinglogic class name?", 'Setting')
-        @settinglogic_yml = ask?("Your settinglogic yaml file in config/ ?", 'setting.yml')
+        @settinglogic_yml = ask?("Your settinglogic yaml file in config/ ?", 'application.yml')
       end
 
-      def key_in_settingslogic?(key)
-        file_has_content?("config/#{@settinglogic_yml}", "  #{key}:")
+      def settingslogic_yml
+        @settinglogic_yml
+      end
+
+      def settingslogic_class
+        @settinglogic_class
+      end
+
+      def settingslogic_hash
+        ActiveSupport::HashWithIndifferentAccess.new(YAML.load(File.open("#{destination_root}/config/#{settingslogic_yml}")))
+      end
+
+      def settingslogic_insert(to_file, values, secret_keys = [])
+        values = settingslogic_hash["development"].deep_merge(values)
+        write_hash_into_settingslogic(to_file, values)
+        secret_values = values
+        secret_keys.each do |keys|
+          eval("secret_values['#{keys.split(".").join("']['")}'] = ''")
+        end
+        write_hash_into_settingslogic("#{to_file}.example", secret_values)
+      end
+
+      def write_hash_into_settingslogic(to_file, hash)
+        hash = { "defaults" => hash.to_hash.deep_stringify_keys }
+        empty_file(to_file)
+        append_file(to_file, hash.to_yaml)
+        replace_in_file(to_file, "---\ndefaults:\n", "defaults: &defaults\n")
+        append_file(to_file, "\ndevelopment:\n  <<: *defaults\n")
+        append_file(to_file, "\ntest:\n  <<: *defaults\n")
+        append_file(to_file, "\nproduction:\n  <<: *defaults\n")
+      end
+
+      def empty_file(to_file)
+        gsub_file(to_file, read_destanation_file(to_file), "")
+      end
+
+      def key_in_settingslogic?(key_pattern)
+        value = settingslogic_hash["development"]
+        key_pattern.split(".").each do |key|
+          value = value[key] rescue nil
+        end
+        return !!value
       end
 
       def read_destanation_file(filepath)
@@ -220,6 +260,20 @@ module Venus
             insert_line_into_file(to_file, line, :after => "test:")
           end
           gsub_file(to_file, "#{line}\n\n", "#{line}\n")
+        end
+      end
+
+      # change_config_value(
+      #   "config/application.rb", 
+      #   "config.action_mailer.delivery_method",
+      #   "= :aws_ses", 
+      #   :after => "class Application < Rails::Application"
+      # )
+      def change_config_value(to_file, attribute, value, opt = {})
+        if file_has_content?(to_file, attribute)
+          gsub_file(to_file, /#{attribute}[^\n]+\n/, "#{attribute} #{value}\n")
+        else
+          insert_line_into_file(to_file, "#{attribute} #{value}\n", opt)
         end
       end
     end

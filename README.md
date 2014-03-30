@@ -78,6 +78,12 @@ Usage
   rails generate venus:dev
   ```
     
+* `Amazon Web Service` api keys for official aws-sdk (including SES).
+
+  ```
+  rails generate venus:aws
+  ```
+
 * Hipchat generator for notification while deploy.
 
   ```
@@ -131,12 +137,6 @@ Usage
   
   ```
   rails generate venus:chosen
-  ```
-
-* `Amazon Web Service` api keys for official aws-sdk (including SES).
-
-  ```
-  rails generate venus:aws
   ```
 
 * `Redis` client and related gems (redis-objects) for optional.

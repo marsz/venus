@@ -1,5 +1,0 @@
-<%- if @setup_email %>
-    setting = YAML.load(File.open("#{Rails.root}/config/<%= @settinglogic_yml%>"))[Rails.env]
-    config.action_mailer.default_url_options = { :host => setting["host"] }
-    config.action_mailer.delivery_method = :amazon_ses
-<%- end %>
