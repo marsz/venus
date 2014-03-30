@@ -18,14 +18,13 @@ module Venus
           @js_callback_target = ask?('nested_form callbacks js required in ?', 'application.js')
           @gems << "nested_form"
         end
-        @bundle_update = ask?("bundle update simple_form", true)
       end
 
       def simple_form
         add_gem('simple_form')
         add_gem('nested_form') if @nested_form
         bundle_install
-        bundle_update(@gems) if @bundle_update
+        ask_bundle_update
       end
 
       def nested_form

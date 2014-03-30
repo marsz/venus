@@ -6,7 +6,6 @@ module Venus
       def asks
         @factory_girl = has_gem?('factory_girl_rails')
         @factory_girl = @factory_girl || ask?("instal factory_girl_rails", true)
-        @update_gems = ask?("bundle update rspec related gems to newest", true)
         @disable_assets_generator = ask?("disable js/css generate in controller generator", true)
         @disable_helper_generator = ask?("disable helper generate in controller generator", true)
       end
@@ -20,8 +19,11 @@ module Venus
       end
 
       def set_gemfile
-        concat_template("Gemfile", "gemfile.rb.erb")
+        append_gem_into_group([:development, :test], "factory_girl_rails") if @factory_girl
+        append_gem_into_group([:development, :test], "rspec-rails")
+        append_gem_into_group([:development, :test], "rspec")
         bundle_install
+        ask_bundle_update
         generate "rspec:install"
       end
 
@@ -44,10 +46,6 @@ module Venus
           "spec_helper.rb",
           :after => "RSpec.configure do |config|"
         )
-      end
-
-      def update_gems
-        run("bundle update rspec rspec-rails #{"factory_girl_rails" if @factory_girl}") if @update_gems
       end
 
       def rspec_options

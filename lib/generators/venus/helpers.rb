@@ -109,10 +109,14 @@ module Venus
         return "gem '#{gemname}'#{options}"
       end
 
-      def add_gem(gemname, options = {})
-        append_file("Gemfile", "\n#{gem_to_s(gemname, options)}") unless has_gem?(gemname)
+      def append_gem_for_update(gemname)
         @for_update_gems ||= []
         @for_update_gems << gemname
+      end
+
+      def add_gem(gemname, options = {})
+        append_file("Gemfile", "\n#{gem_to_s(gemname, options)}") unless has_gem?(gemname)
+        append_gem_for_update(gemname)
       end
 
       def remove_gem(gemname)
@@ -126,6 +130,7 @@ module Venus
         group_str = "group :#{groups.map(&:to_sym).join(", :")} do"
         if file_has_content?('Gemfile', group_str)
           insert_line_into_file("Gemfile", gemstr, :after => group_str)
+          append_gem_for_update(gemname)
         else
           append_file("Gemfile", "\n#{group_str}\nend\n")
           append_gem_into_group(groups, gemname, options)

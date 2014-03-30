@@ -21,21 +21,17 @@ module Venus
         @annotate = ask?("install annotate ( http://rubygems.org/gems/annotate ) ", true)
         @rails_panel = ask?("install rails_panel ( http://rubygems.org/gems/meta_request )", true)
         @dev_rake = ask?("initialize dev.rake for generate fake data ") unless has_file?("lib/tasks/dev.rake")
-        @bundle_update = ask?("bundle update all gems", false)
       end
 
       def spring
         if @spring
           append_gem_into_group("development", "spring")
-          @gems << "spring"
           if has_gem?("rspec")
             append_gem_into_group("development", "spring-commands-rspec")
-            @gems << "spring-commands-rspec"
           end
           if has_gem?("factory_girl_rails")
             @spring_factory_girl = true
             # append_gem_into_group("development", "listen")
-            # @gems << "listen"
           end
           if has_file?("config/spring.rb")
             insert_template("config/spring.rb", "spring.rb.erb")
@@ -49,7 +45,6 @@ module Venus
       def guard
         if @guard
           append_gem_into_group("development", "guard")
-          @gems << "guard"
           @cmds << "guard init" unless has_gem?("guard")
         end
       end
@@ -57,7 +52,6 @@ module Venus
       def guard_rspec
         if @guard_rspec
           append_gem_into_group("development", "guard-rspec")
-          @gems << "guard-rspec"
           @cmds << "guard init rspec" if has_gem?("guard") && !has_gem?("guard-rspec")
           if @spring || has_gem?("spring")
             @procs << lambda {
@@ -69,45 +63,36 @@ module Venus
 
       def better_errors
         if @better_errors
-          append_gem_into_group("development", "better_errors")
           append_gem_into_group("development", "binding_of_caller")
-          @gems << "better_errors"
-          @gems << "binding_of_caller"
+          append_gem_into_group("development", "better_errors")
         end
       end
 
       def pry
         if @pry
-          append_gem_into_group("development", "pry")
-          append_gem_into_group("development", "pry-rails")
           append_gem_into_group("development", "pry-remote")
-          @gems << "pry"
-          @gems << "pry-rails"
-          @gems << "pry-remote"
+          append_gem_into_group("development", "pry-rails")
+          append_gem_into_group("development", "pry")
         end
       end
 
       def xray
         if @xray
           append_gem_into_group("development", "xray-rails")
-          @gems << "xray-rails"
         end
       end
 
       def ap
         if @ap
           append_gem_into_group("development", "awesome_print")
-          @gems << "awesome_print"
         end
       end
 
       def annotate
         if @annotate
           append_gem_into_group("development", "annotate")
-          @gems << "annotate"
           if @guard
             append_gem_into_group("development", "guard-annotate")
-            @gems << "guard-annotate"
             @cmds << "guard init annotate" if has_gem?("guard")  && !has_gem?("guard-annotate")
           end
         end
@@ -116,7 +101,6 @@ module Venus
       def rails_panel
         if @rails_panel
           append_gem_into_group("development", "meta_request")
-          @gems << "meta_request"
           @procs << lambda {
             say "===================="
             say "rails_panel:"
@@ -135,7 +119,7 @@ module Venus
       def executes
         replace_in_file("Gemfile", "\n\n", "\n") rescue nil
         bundle_install
-        bundle_update(@gems) if @bundle_update
+        ask_bundle_update
         @cmds.each do |cmd|
           bundle_exec(cmd)
         end

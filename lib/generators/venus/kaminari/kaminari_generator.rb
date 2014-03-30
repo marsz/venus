@@ -14,14 +14,13 @@ module Venus
           @theme = ask?("theme of kaminari views? [default / bootstrap / github / google]", 'default')
         end
         @i18n = ask?("download locals yml to config/locals/", true)
-        @bundle_update = ask?("bundle update kaminari", false)
       end
 
       def gems
         add_gem('kaminari')
         add_gem('slim') if @slim && !has_gem?('slim')
         bundle_install
-        bundle_update('kaminari') if @bundle_update
+        ask_bundle_update
       end
 
       def config

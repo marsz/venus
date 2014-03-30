@@ -8,7 +8,6 @@ module Venus
       end
 
       def asks
-        @bundle_update = ask?("bundle update devise", false)
         @model_name = ask?("model class?", 'User')
         @views = ask?("Generate views?", false)
         if @views
@@ -17,10 +16,10 @@ module Venus
       end
 
       def gemfile
-        if !has_gem?('devise') || @bundle_update
+        if !has_gem?('devise')
           add_gem('devise')
           bundle_install
-          bundle_update('devise') if @bundle_update
+          ask_bundle_update
         end
       end
 
