@@ -15,8 +15,8 @@ module Venus
         return (ans.present? ? (['n','N'].include?(ans) ? false : ans) : default_ans)
       end
 
-      def ask_bundle_update
-        bundle_update(@for_update_gems) if ask?("bundle update added gems", false)
+      def ask_bundle_update(force = false)
+        bundle_update(@for_update_gems) if force || ask?("bundle update added gems", false)
       end
 
       def settingslogic_dependent
@@ -41,18 +41,19 @@ module Venus
       def settingslogic_insert(values, secret_keys = [])
         to_file = "config/#{settingslogic_yml}"
         values = settingslogic_hash["development"].deep_merge(values)
-        write_hash_into_settingslogic(to_file, values)
+        write_hash_into_settingslogic(to_file, values.to_hash)
         secret_values = values
         secret_keys.each do |keys|
           eval("secret_values['#{keys.split(".").join("']['")}'] = ''")
         end
-        write_hash_into_settingslogic("#{to_file}.example", secret_values)
+        write_hash_into_settingslogic("#{to_file}.example", secret_values.to_hash)
       end
 
       def write_hash_into_settingslogic(to_file, hash)
-        hash = { "defaults" => hash.to_hash.deep_stringify_keys }
+        hash = hash.deep_stringify_keys if hash.respond_to?(:deep_stringify_keys)
+        hash = { "defaults" => hash }
         empty_file(to_file)
-        append_file(to_file, hash.to_yaml)
+        append_file(to_file, hash.to_yaml.gsub("!ruby/hash:ActiveSupport::HashWithIndifferentAccess", ""))
         replace_in_file(to_file, "---\ndefaults:\n", "defaults: &defaults\n")
         append_file(to_file, "\ndevelopment:\n  <<: *defaults\n")
         append_file(to_file, "\ntest:\n  <<: *defaults\n")

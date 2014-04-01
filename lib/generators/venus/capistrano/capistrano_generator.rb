@@ -3,6 +3,10 @@ module Venus
     class CapistranoGenerator < Base
       desc "Setup gem 'capistrano' for deployment"
 
+      def sidekiq
+        ::Venus::Sidekiq.new.detect_capistrano
+      end
+      
       def name
         "capistrano"
       end
@@ -25,7 +29,11 @@ module Venus
         append_gem_into_group(:development, "capistrano-#{@ruby_installer}") if @ruby_installer.present?
         append_gem_into_group(:development, 'capistrano-rails')
         bundle_install
-        ask_bundle_update
+        if has_gem?("capistrano") && gem_version("capistrano").to_i < 3
+          ask_bundle_update(true)
+        else
+          ask_bundle_update
+        end
         @exists_files = ["Capfile", "config/deploy.rb", "config/deploy/production.rb", "config/deploy/staging.rb"]
         if ask?("backup exists file", true)
           @exists_files.each{ |file| cp_file(file, "#{file}.bak") }
@@ -64,6 +72,10 @@ module Venus
 
       def whenever
         ::Venus::Whenever.new.detect_capistrano
+      end
+
+      def sidekiq
+        ::Venus::Sidekiq.new.detect_capistrano
       end
 
       def says

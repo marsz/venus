@@ -33,8 +33,9 @@ module Venus
         settingslogic_insert(:sidekiq => { :redis => @redis_uri, :namespace => @namespace } )
       end
 
-      def insert_initializer
+      def insert_configs
         template 'sidekiq.erb', 'config/initializers/sidekiq.rb'
+        template 'sidekiq.yml', 'config/sidekiq.yml'
       end
 
       def devise_async
@@ -55,6 +56,9 @@ module Venus
         end
       end
       
+      def capistrano
+        ::Venus::Sidekiq.new.detect_capistrano
+      end
     end
   end
 end

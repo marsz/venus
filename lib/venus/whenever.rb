@@ -21,6 +21,7 @@ module Venus
 
     def capistrano_3
       insert_line_into_file("Capfile", "require 'whenever/capistrano'")
+      insert_line_into_file("config/deploy.rb", "\n# whenever options")
       insert_line_into_file("config/deploy.rb", "set :whenever_roles, ->{ :db }")
       insert_line_into_file("config/deploy.rb", "# more whenever config in https://github.com/javan/whenever/blob/master/lib/whenever/capistrano/v3/tasks/whenever.rake")
     end
