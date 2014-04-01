@@ -4,6 +4,11 @@ module Venus
 
       private
 
+      def ask_with_opts(message, options, default_value = nil)
+        postfix = " [" + options.map{ |k,v| "#{k}: #{v}" }.join(" / ") + "] [#{default_value}]"
+        return options.stringify_keys[ask("#{message}#{postfix}")]
+      end
+
       def ask?(message, default_ans = true)
         postfix = " [" + (!!default_ans == default_ans ? (default_ans ? 'Y/n' : 'y/N') : default_ans.to_s) + "]"
         ans = ask("#{message}#{postfix}")
@@ -90,6 +95,10 @@ module Venus
 
       def has_file?(file)
         File.exists?(File.join(destination_root, file))
+      end
+
+      def cp_file(from_file, to_file)
+        copy_file("#{destination_root}/#{from_file}", "#{destination_root}/#{to_file}") if has_file?(from_file)
       end
 
       def load_template(template_file)

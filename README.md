@@ -89,11 +89,23 @@ Usage
   ```
   rails generate venus:redis
   ```
-  
+
 * `sidekiq` for background job
 
   ```
   rails generate venus:sidekiq
+  ```
+
+* `Capistrano` for deloyment.
+
+  ```
+  rails generate venus:capistrano
+  ```
+
+* install & setup gem `whenever`
+
+  ```
+  rails generate venus:whenever
   ```
 
 * Hipchat generator for notification while deploy.
@@ -148,12 +160,6 @@ Usage
 
   ```
   rails generate venus:omniauth
-  ```
-
-* `Capistrano` for deloyment.
-
-  ```
-  rails generate venus:deploy
   ```
 
 TODO

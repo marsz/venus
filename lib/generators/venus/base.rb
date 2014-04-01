@@ -1,5 +1,3 @@
-require 'rails/generators'
-require "generators/venus/helpers"
 module Venus
   module Generators
     class Base < ::Rails::Generators::Base
