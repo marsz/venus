@@ -29,9 +29,12 @@ module Venus
 
       def settingslogic_dependent
         say 'checking dependent gems "settinglogic"...'
-        generate 'venus:settingslogic' unless has_gem?('settingslogic')
-        @settinglogic_class = ask?("Your settinglogic class name?", 'Setting')
-        @settinglogic_yml = ask?("Your settinglogic yaml file in config/ ?", 'application.yml')
+        if has_gem?('settingslogic')
+          @settinglogic_class = ask?("Your settinglogic class name?", 'Setting')
+          @settinglogic_yml = ask?("Your settinglogic yaml file in config/ ?", 'application.yml')
+        else
+          @settinglogic_yml, @settinglogic_class = ::Venus::Settingslogic.new.generate
+        end
       end
 
       def settingslogic_yml

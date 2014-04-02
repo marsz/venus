@@ -3,30 +3,15 @@ module Venus
     class SettingslogicGenerator < Base
       desc "Install gem settinglogic"
 
-      def asks
-        @filename = ask?("Your yaml file name in config/ ?", 'application.yml')
-        @setting_class = ask?("Your setting class name ?", 'Setting')
-      end
-
       def name
         "Settinglogic"
       end
 
-      def gemfile
-        add_gem('settingslogic')
-        bundle_install
+      def go
+        ::Venus::Settingslogic.new.generate
       end
 
-      def config
-        template "setting.yml", "config/#{@filename}"
-        template "setting.yml", "config/#{@filename}.example"
-        add_gitignore "/config/#{@filename}"
-      end
 
-      def class_file
-        @setting_name = @setting_class.underscore
-        template "setting.erb", "app/lib/#{@setting_name}.rb"
-      end
 
     end
   end
