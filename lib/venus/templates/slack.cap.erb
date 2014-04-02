@@ -1,0 +1,11 @@
+namespace :load do
+  task :defaults do
+    set :slack_team,         ->{ '<%= @team %>' }
+    set :slack_token,        ->{ '<%= @token %>' }
+    set :slack_icon_url,     ->{ 'https://slack-assets2.s3-us-west-2.amazonaws.com/5504/img/emoji/1f680.png' }
+    set :slack_channel,      ->{ '<%= @room %>' }
+    set :slack_username,     ->{ '<%= app_name %>' }
+    # set :slack_run_starting, ->{ true }
+    # set :slack_run_finished, ->{ true }
+  end
+end

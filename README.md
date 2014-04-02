@@ -132,10 +132,10 @@ Usage
   rails generate venus:chosen
   ```
 
-* Hipchat generator for notification while deploy.
+* Slack generator for notification while deploy.
 
   ```
-  rails generate venus:hipchat
+  rails generate venus:slack
   ```
   
 * `asset_sync` for upload assets files to AWS S3 after precompile

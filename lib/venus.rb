@@ -8,6 +8,7 @@ require "venus/sidekiq"
 require "venus/unicorn"
 require "venus/settingslogic"
 require "venus/aws"
+require "venus/slack"
 module Venus
   # Your code goes here...
 end

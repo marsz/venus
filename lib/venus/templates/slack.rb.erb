@@ -1,0 +1,8 @@
+require 'capistrano/slack'
+
+set :slack_token,       "<%= @token %>"
+set :slack_room,        "<%= @room %>"
+set :slack_subdomain,   "<%= @team %>"
+set :slack_application, "<%= app_name %>"
+set :slack_emoji,       ":rocket:"
+set :slack_username,    "<%= app_name %>"

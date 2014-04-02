@@ -19,6 +19,7 @@ module Venus
         if ask?('has staging server?', false)
           @stages[:staging] = ask_stage_infomation('staging')
         end
+        @slack = ask?("install slack for notifying deploy message?", false)
         @deploy_rb = "config/deploy.rb"
       end
 
@@ -82,6 +83,10 @@ module Venus
 
       def sidekiq
         ::Venus::Sidekiq.new.detect_capistrano
+      end
+
+      def slack
+        ::Venus::Slack.new.generate if @slack
       end
 
       def says
