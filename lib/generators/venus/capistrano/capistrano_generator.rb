@@ -70,6 +70,12 @@ module Venus
         uncomment_lines(@deploy_rb, "execute :touch") if @middleware == :passenger
       end
 
+      def unicorn
+        if @middleware == :unicorn
+          generate "venus:unicorn"
+        end
+      end
+
       def whenever
         ::Venus::Whenever.new.detect_capistrano
       end

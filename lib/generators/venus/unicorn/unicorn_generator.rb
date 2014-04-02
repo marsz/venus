@@ -8,28 +8,23 @@ module Venus
       end
 
       def asks
-        say 'checking dependent gems "capistrnano"...'
-        generate 'venus:deploy' unless has_gem?('capistrano')
-        @app_name = app_name
-        @rails_env = "production"
+        generate 'venus:capistrano' if !has_gem?('capistrano') && ask?("install capistrano 3 at first", true)
       end
 
       def gemfile
-        append_gem_into_group("development", "capistrano-unicorn", :require => false)
-        add_gem("unicorn", "~> 4.6.3")
+        add_gem("unicorn")
         bundle_install
+        ask_bundle_update
       end
 
       def configs
         template("unicorn.rb.erb", "config/unicorn/production.rb")
-        if has_file?("config/environments/staging.rb")
-          @rails_env = "staging"
-          template("unicorn.rb.erb", "config/unicorn/staging.rb")
-        end
-
+        template("unicorn.rb.erb", "config/unicorn/staging.rb") if has_file?("config/environments/staging.rb")
         template("nginx.conf.erb", "config/unicorn/nginx.conf.example")
+      end
 
-        concat_template("config/deploy.rb", "deploy.rb.erb")
+      def capistrano
+        ::Venus::Unicorn.new.detect_capistrano
       end
 
     end

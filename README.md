@@ -108,18 +108,18 @@ Usage
   rails generate venus:whenever
   ```
 
-* Hipchat generator for notification while deploy.
-
-  ```
-  rails generate venus:hipchat
-  ```
-  
 * `unicorn` for zero downtime deployment
 
   ```
   rails generate venus:unicorn
   ```
 
+* Hipchat generator for notification while deploy.
+
+  ```
+  rails generate venus:hipchat
+  ```
+  
 * `asset_sync` for upload assets files to AWS S3 after precompile
 
   ```

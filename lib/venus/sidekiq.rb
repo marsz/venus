@@ -1,7 +1,5 @@
 module Venus
-  class Sidekiq < ::Rails::Generators::Base
-
-    include Venus::Generators::Helpers
+  class Sidekiq < ::Venus::Base
 
     def detect_capistrano
       return if has_gem?("capistrano-sidekiq")
@@ -22,14 +20,7 @@ module Venus
       insert_line_into_file("Capfile", "require 'capistrano/sidekiq'")
       insert_line_into_file("Capfile", "# require 'capistrano/sidekiq/monit' #to require monit tasks (V0.2.0+)")
 
-      insert_line_into_file("config/deploy.rb", "\n# sidekiq options")
-      insert_line_into_file("config/deploy.rb", "set :sidekiq_default_hooks, -> { true }")
-      insert_line_into_file("config/deploy.rb", "set :sidekiq_pid,           -> { File.join(shared_path, 'tmp', 'pids', 'sidekiq.pid') }")
-      insert_line_into_file("config/deploy.rb", "set :sidekiq_env,           -> { fetch(:rack_env, fetch(:rails_env, fetch(:stage))) }")
-      insert_line_into_file("config/deploy.rb", "set :sidekiq_log,           -> { File.join(shared_path, 'log', 'sidekiq.log') }")
-      insert_line_into_file("config/deploy.rb", "set :sidekiq_timeout,       -> { 10 }")
-      insert_line_into_file("config/deploy.rb", "set :sidekiq_role,          -> { :app }")
-      insert_line_into_file("config/deploy.rb", "set :sidekiq_processes,     -> { 1 }")
+      template("sidekiq.cap", "lib/capistrano/tasks/sidekiq.cap")
     end
 
   end

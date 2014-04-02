@@ -1,18 +1,23 @@
+# see more
+#   https://github.com/defunkt/unicorn/blob/master/examples/unicorn.conf.rb
+
 worker_processes 1
 preload_app true
 
-listen '/tmp/unicorn.<%= @app_name %>.sock'
+listen '/tmp/unicorn.<%= app_name %>.sock'
 
+# log rotate config example
+#   https://github.com/defunkt/unicorn/blob/master/examples/logrotate.conf
 stderr_path 'log/unicorn.error.log'
 stdout_path 'log/unicorn.log'
 
 pid "tmp/pids/unicorn.pid"
 
-rails_env = ENV['RAILS_ENV'] || '<%= @rails_env %>'
-
-
 before_fork do |server, worker|
+  defined?(ActiveRecord::Base) && ActiveRecord::Base.connection.disconnect!
+
 end
 
 after_fork do |server, worker|
+  defined?(ActiveRecord::Base) && ActiveRecord::Base.establish_connection
 end

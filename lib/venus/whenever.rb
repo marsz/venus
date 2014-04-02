@@ -1,7 +1,5 @@
 module Venus
-  class Whenever < ::Rails::Generators::Base
-
-    include Venus::Generators::Helpers
+  class Whenever < ::Venus::Base
 
     def detect_capistrano
       if has_gem?("whenever") && (has_gem?("capistrano") || has_gem?("capistrano-rails"))
@@ -21,9 +19,7 @@ module Venus
 
     def capistrano_3
       insert_line_into_file("Capfile", "require 'whenever/capistrano'")
-      insert_line_into_file("config/deploy.rb", "\n# whenever options")
-      insert_line_into_file("config/deploy.rb", "set :whenever_roles, ->{ :db }")
-      insert_line_into_file("config/deploy.rb", "# more whenever config in https://github.com/javan/whenever/blob/master/lib/whenever/capistrano/v3/tasks/whenever.rake")
+      template("whenever.cap", "lib/capistrano/tasks/whenever.cap")
     end
 
     def capistrano_2

@@ -19,6 +19,14 @@ module Venus
         bundle_update(@for_update_gems) if force || ask?("bundle update added gems", false)
       end
 
+      def capistrano3_dependent
+        return unless has_gem?("capistrano")
+        say 'checking dependent gems "capistrano v3"...'
+        if gem_version("capistrano").to_i < 3
+          bundle_update("capistrano")
+        end
+      end
+
       def settingslogic_dependent
         say 'checking dependent gems "settinglogic"...'
         generate 'venus:settingslogic' unless has_gem?('settingslogic')
@@ -297,6 +305,10 @@ module Venus
         else
           insert_line_into_file(to_file, "#{attribute} #{value}\n", opt)
         end
+      end
+
+      def read_block_content(to_file, from, to)
+        read_destanation_file(to_file).scan(/#{from}[^\n]*\n(.+?)\n#{to}/ms)[0][0] rescue ""
       end
     end
   end
