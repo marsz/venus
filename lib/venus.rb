@@ -7,6 +7,7 @@ require "venus/whenever"
 require "venus/sidekiq"
 require "venus/unicorn"
 require "venus/settingslogic"
+require "venus/aws"
 module Venus
   # Your code goes here...
 end

@@ -1,5 +1,0 @@
-# aws ses: https://github.com/aws/aws-sdk-ruby/
-AWS.config(<%= settingslogic_class %>.aws)
-<%- if @setup_email %>
-ActionMailer::Base.default_url_options = { :host => <%= settingslogic_class %>.host }
-<%- end %>

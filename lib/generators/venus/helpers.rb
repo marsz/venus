@@ -27,14 +27,27 @@ module Venus
         end
       end
 
+      def aws_dependent
+        say 'checking dependent gems "aws-sdk"...'
+        if has_gem?('aws-sdk') && key_in_settingslogic?("aws.access_key_id") && key_in_settingslogic?("aws.secret_access_key")
+          ask_settingslogic_info
+        else
+          @settinglogic_yml, @settinglogic_class = ::Venus::Aws.new.generate
+        end
+      end
+
       def settingslogic_dependent
         say 'checking dependent gems "settinglogic"...'
         if has_gem?('settingslogic')
-          @settinglogic_class = ask?("Your settinglogic class name?", 'Setting')
-          @settinglogic_yml = ask?("Your settinglogic yaml file in config/ ?", 'application.yml')
+          ask_settingslogic_info
         else
           @settinglogic_yml, @settinglogic_class = ::Venus::Settingslogic.new.generate
         end
+      end
+
+      def ask_settingslogic_info
+        @settinglogic_class = ask?("Your settinglogic class name?", 'Setting')
+        @settinglogic_yml = ask?("Your settinglogic yaml file in config/ ?", 'application.yml')
       end
 
       def settingslogic_yml
