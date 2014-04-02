@@ -13,8 +13,10 @@ module Venus
       end
 
       def gem
-        add_gem('chosen-rails', '~> 0.9.15')
+        need_bundle_update = has_gem?("chosen-rails")
+        add_gem('chosen-rails')
         bundle_install
+        bundle_update('chosen-rails') if need_bundle_update
       end
 
       def assets
@@ -24,7 +26,7 @@ module Venus
       end
 
       def more
-        puts "see more: https://github.com/tsechingho/chosen-rails"
+        puts "  see more: https://github.com/tsechingho/chosen-rails"
       end
 
     end

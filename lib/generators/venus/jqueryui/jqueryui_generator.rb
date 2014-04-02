@@ -12,15 +12,17 @@ module Venus
         @target_css = ask?('target content append for css file?', 'application.css')
         @datepicker = ask?('setup for datepicker?', true)
         if @datepicker
-          puts "datepicker lang list: https://github.com/joliss/jquery-ui-rails/blob/master/app/assets/javascripts"
-          @datepicker_lang = ask?('datepicker language?', '')
+          say "datepicker lang list: https://github.com/joliss/jquery-ui-rails/blob/master/app/assets/javascripts"
+          @datepicker_lang = ask?('datepicker language?', 'en')
           @datetimepicler = ask?('setup timepicker ?', true)
         end
       end
 
       def gem
-        add_gem('jquery-ui-rails', '~> 4.0.3')
+        need_bundle_update = has_gem?("jquery-ui-rails")
+        add_gem('jquery-ui-rails')
         bundle_install
+        bundle_update('jquery-ui-rails') if need_bundle_update
       end
 
       def datepicker
@@ -28,7 +30,7 @@ module Venus
           css_assets_require(@target_css, "jquery.ui.datepicker")
           insert_js_template(@target_js, "datepicker.js")
           js_assets_require(@target_js, "jquery.ui.datepicker")
-          js_assets_require(@target_js, "jquery.ui.datepicker-#{@datepicker_lang}") if @datepicker_lang.present?
+          js_assets_require(@target_js, "jquery.ui.datepicker-#{@datepicker_lang}") if @datepicker_lang.present? && @datepicker_lang != 'en'
         end
       end
 
@@ -45,7 +47,8 @@ module Venus
       end
 
       def more
-        puts "see more: https://github.com/joliss/jquery-ui-rails"
+        say "  see more jqueryui-rails: https://github.com/joliss/jquery-ui-rails"
+        say "  see more timepicker: https://github.com/trentrichardson/jQuery-Timepicker-Addon"
       end
 
     end

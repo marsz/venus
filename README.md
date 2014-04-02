@@ -10,7 +10,7 @@ Installation
 ```ruby
 group :development do
   ...
-  gem 'venus', '~> 0.8.6'
+  gem 'venus'
   ...
 end
 ```
@@ -120,6 +120,18 @@ Usage
   rails generate venus:carrierwave
   ```
 
+* `jQuery UI` (including `datepicker` and more jQuery-UI plugins)
+  
+  ```
+  rails generate venus:jqueryui
+  ```
+
+* `chosen` for jQuery (see demo: http://harvesthq.github.com/chosen/)
+  
+  ```
+  rails generate venus:chosen
+  ```
+
 * Hipchat generator for notification while deploy.
 
   ```
@@ -144,18 +156,6 @@ Usage
   rails generate venus:bootstrap
   ```
 
-* `jQuery UI` (including `datepicker` and more jQuery-UI plugins)
-  
-  ```
-  rails generate venus:jqueryui
-  ```
-
-* `Chosen` for jQuery (see demo: http://harvesthq.github.com/chosen/)
-  
-  ```
-  rails generate venus:chosen
-  ```
-
 * `Omniauth` for multiple omniauth (Facebook, Twitter, Github) in model `User`.
 
   ```
@@ -165,9 +165,7 @@ Usage
 TODO
 ====
 
-* MongoDB configuration.
-* RailsAdmin or ActiveAdmin.
-* Amazon Elastic Cache & cells.
+see <a href="https://github.com/marsz/venus/blob/master/TODO.md"> TODO page </a>
 
 Contribution
 ============

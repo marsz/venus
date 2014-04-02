@@ -8,3 +8,4 @@
   - sidekiq web monitoring authenticate with devise in routes.rb
 - carrierwave
   - assets host with ssl
+- select2 generator
