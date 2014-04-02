@@ -4,7 +4,6 @@
   - asking requests spec example
   - asking background mailer if has sidekiq
 - sidekiq
-  - capistrano integration with `capistrano-sidekiq` (http://rubygems.org/gems/capistrano-sidekiq)
   - sidekiq web monitoring authenticate with devise in routes.rb
 - carrierwave
   - assets host with ssl
