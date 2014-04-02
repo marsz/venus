@@ -114,6 +114,12 @@ Usage
   rails generate venus:unicorn
   ```
 
+* `Carrierwave` installation and carrierwave-meta, mini_agick, fog (for AWS S3) optional and give a sample uploader.
+  
+  ```
+  rails generate venus:carrierwave
+  ```
+
 * Hipchat generator for notification while deploy.
 
   ```
@@ -136,12 +142,6 @@ Usage
   
   ```
   rails generate venus:bootstrap
-  ```
-
-* `Carrierwave` installation and carrierwave-meta, rmagick, fog (for AWS S3) optional and give a sample uploader.
-  
-  ```
-  rails generate venus:carrierwave
   ```
 
 * `jQuery UI` (including `datepicker` and more jQuery-UI plugins)

@@ -29,7 +29,7 @@ module Venus
 
       def aws_dependent
         say 'checking dependent gems "aws-sdk"...'
-        if has_gem?('aws-sdk') && key_in_settingslogic?("aws.access_key_id") && key_in_settingslogic?("aws.secret_access_key")
+        if has_gem?('aws-sdk')
           ask_settingslogic_info
         else
           @settinglogic_yml, @settinglogic_class = ::Venus::Aws.new.generate

@@ -1,51 +1,3 @@
-# -*- encoding : utf-8 -*-
-class <%=@sample_uploader.to_s.camelize%>Uploader < CarrierWave::Uploader::Base
-<%- if @imagemagick %>
-  include CarrierWave::MiniMagick<% end %>
-<%- if @carrierwave_meta %>
-  include CarrierWave::Meta<% end %>
-
-<%- if @fog %>
-  storage :fog
-  # storage :file
-<%- else %>
-  # storage :fog
-  storage :file
-<% end %>
-  
-<%- if @carrierwave_meta %>
-  process :store_meta<% end %>
-
-<%- if @imagemagick %>
-  # Create different versions of your uploaded files:
-  version :thumb do
-     process :resize_to_fill => [50, 50]
-     process :store_meta
-  end
-  
-  version :medinum do 
-     process :resize_to_fit => [300, 300]
-     process :store_meta
-  end
-  
-  
-  version :large do
-     process :resize_to_limit => [600,600]
-     process :store_meta
-  end<% end %>
-
-  # Add a white list of extensions which are allowed to be uploaded.
-  # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
-
-  # Override the filename of the uploaded files:
-  # Avoid using model.id or version_name here, see uploader/store.rb for details.
-
-  def default_url
-     "http://placehold.it/330&text=pic"
-  end
 
   def filename
     "#{secure_token}.#{file.extension}" if original_filename.present?
@@ -72,5 +24,3 @@ class <%=@sample_uploader.to_s.camelize%>Uploader < CarrierWave::Uploader::Base
       nil
     end
   end
-
-end
