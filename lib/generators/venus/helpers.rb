@@ -6,7 +6,9 @@ module Venus
 
       def ask_with_opts(message, options, default_value = nil)
         postfix = " [" + options.map{ |k,v| "#{k}: #{v}" }.join(" / ") + "] [#{default_value}]"
-        return options.stringify_keys[ask("#{message}#{postfix}")]
+        ans = ask("#{message}#{postfix}")
+        ans = default_value unless ans.present?
+        return options.stringify_keys[ans.to_s]
       end
 
       def ask?(message, default_ans = true)

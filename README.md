@@ -138,6 +138,12 @@ Usage
   rails generate venus:slack
   ```
   
+* `Twitter Bootstrap` theme and `Unicorn Admin` optional (only for 2.3).
+  
+  ```
+  rails generate venus:bootstrap
+  ```
+
 * `asset_sync` for upload assets files to AWS S3 after precompile
 
   ```
@@ -148,12 +154,6 @@ Usage
 
   ```
   rails generate venus:versioning
-  ```
-
-* `Twitter Bootstrap` theme and `Unicorn Admin` optional.
-  
-  ```
-  rails generate venus:bootstrap
   ```
 
 * `Omniauth` for multiple omniauth (Facebook, Twitter, Github) in model `User`.
