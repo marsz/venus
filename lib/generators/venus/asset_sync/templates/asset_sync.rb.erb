@@ -1,29 +1,37 @@
 AssetSync.configure do |config|
-  config.fog_provider = 'AWS'
-  config.aws_access_key_id = <%= @settinglogic_class %>.aws_access_key_id
-  config.aws_secret_access_key = <%= @settinglogic_class %>.aws_secret_access_key
-  config.fog_directory = <%= @settinglogic_class %>.aws_assets_bucket
+  config.fog_provider = '<%= @provider %>'
+  config.fog_directory = <%= settingslogic_class %>.asset_sync.bucket
+  # config.fog_region = <%= settingslogic_class %>.asset_sync.region
+  # config.aws_access_key_id = <%= settingslogic_class %>.asset_sync.aws_access_key_id
+  # config.aws_secret_access_key = <%= settingslogic_class %>.asset_sync.aws_secret_access_key
+  # config.rackspace_username = <%= settingslogic_class %>.asset_sync.rackspace_username
+  # config.rackspace_api_key = <%= settingslogic_class %>.asset_sync.rackspace_api_key
+  # config.google_storage_access_key_id = <%= settingslogic_class %>.asset_sync.google_storage_access_key_id
+  # config.google_storage_secret_access_key = <%= settingslogic_class %>.asset_sync.google_storage_secret_access_key
   
-  # Increase upload performance by configuring your region
-  config.fog_region = <%= @settinglogic_class %>.aws_assets_region
-  #
   # Don't delete files from the store
-  # config.existing_remote_files: "keep" # Existing pre-compiled assets on S3 will be kept
+  #   config.existing_remote_files: "keep" # Existing pre-compiled assets on S3 will be kept
   # To delete existing remote files.
-  # config.existing_remote_files: "delete"
+  #   config.existing_remote_files: "delete"
   # To ignore existing remote files and overwrite.
-  # config.existing_remote_files: "ignore"
+  #   config.existing_remote_files: "ignore"
   #
   # Automatically replace files with their equivalent gzip compressed version
-  # config.gzip_compression = true
+  #   config.gzip_compression = true
   #
   # Use the Rails generated 'manifest.yml' file to produce the list of files to 
   # upload instead of searching the assets directory.
-  # config.manifest = true
+  #   config.manifest = true
   #
   # Fail silently.  Useful for environments such as Heroku
-  # config.fail_silently = true
+  #   config.fail_silently = true
   #
   # For always upload files
-  # config.always_upload = ["application.css", "application.js"]
+  #   config.always_upload = ["application.css", "application.js"]
+  # 
+  # Ignored files. Useful if there are some files that are created dynamically on the server and you don't want to upload on deploy.
+  #   config.ignored_files = []
+  #
+  # 
+  #   config.enabled = true
 end

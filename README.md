@@ -144,7 +144,7 @@ Usage
   rails generate venus:bootstrap
   ```
 
-* `asset_sync` for upload assets files to AWS S3 after precompile
+* `asset_sync` for upload assets files to AWS S3 / Rackspace / Google Storage
 
   ```
   rails generate venus:asset_sync
