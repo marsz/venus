@@ -153,7 +153,7 @@ Usage
 * `paper_trail` for model versioning
 
   ```
-  rails generate venus:versioning
+  rails generate venus:model_versioning
   ```
 
 * `Omniauth` for multiple omniauth (Facebook, Twitter, Github) in model `User`.
