@@ -5,7 +5,6 @@
   - asking background mailer if has sidekiq
 - sidekiq
   - sidekiq web monitoring authenticate with devise in routes.rb
-- select2 generator
 - cells
 - mongo db
 - bootstrap 3 & smart admin

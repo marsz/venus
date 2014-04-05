@@ -10,6 +10,7 @@ require "venus/settingslogic"
 require "venus/aws"
 require "venus/slack"
 require "venus/dalli"
+require "venus/select2"
 module Venus
   # Your code goes here...
 end

@@ -10,6 +10,7 @@ module Venus
       configuration
       cache_store
       session_store
+      more
     end
 
     private

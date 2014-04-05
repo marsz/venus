@@ -138,6 +138,12 @@ Usage
   rails generate venus:chosen
   ```
 
+* `select2` for jQuery (see demo: http://ivaynberg.github.io/select2/)
+  
+  ```
+  rails generate venus:select2
+  ```
+
 * Slack generator for notification while deploy.
 
   ```
