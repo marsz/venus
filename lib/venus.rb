@@ -9,6 +9,7 @@ require "venus/unicorn"
 require "venus/settingslogic"
 require "venus/aws"
 require "venus/slack"
+require "venus/dalli"
 module Venus
   # Your code goes here...
 end

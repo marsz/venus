@@ -84,6 +84,12 @@ Usage
   rails generate venus:aws
   ```
 
+* `Memcached` client with gem 'dalli'.
+
+  ```
+  rails generate venus:dalli
+  ```
+
 * `Redis` client and related gems (redis-objects) for optional.
 
   ```

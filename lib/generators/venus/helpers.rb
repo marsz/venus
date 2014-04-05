@@ -328,6 +328,12 @@ module Venus
       def read_block_content(to_file, from, to)
         read_destanation_file(to_file).scan(/#{from}[^\n]*\n(.+?)\n#{to}/ms)[0][0] rescue ""
       end
+
+      def config_env_files
+        files = Dir.glob("#{destination_root}/config/environments/*.rb").map{ |file| file.gsub(destination_root+"/", "") }
+        files = files.reject{ |file| file =~ /test\.rb/ }
+        return files
+      end
     end
   end
 end

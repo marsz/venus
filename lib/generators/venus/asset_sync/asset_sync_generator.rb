@@ -70,9 +70,7 @@ module Venus
         end
 
         # evn configs
-        Dir.glob("#{destination_root}/config/environments/*.rb").each do |file|
-          to_file = file.gsub(destination_root+"/", "")
-          next if to_file =~ /test\.rb/
+        config_env_files.each do |to_file|
           change_config_value(to_file, "config.action_controller.asset_host", "= ->(source, request){ #{settingslogic_class}.assets_host }", :before => "\nend")
           change_config_value(to_file, "config.assets.prefix", "= #{settingslogic_class}.assets_prefix", :before => "\nend")
           uncomment_lines(to_file, "config.action_controller.asset_host")
