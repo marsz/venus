@@ -42,6 +42,12 @@ Usage
   rails generate venus:mysql
   ```
 
+* `PostgreSql` database setup.
+
+  ```
+  rails generate venus:pg
+  ```
+
 * `RSpec` testing framework
 
   ```

@@ -11,6 +11,7 @@ require "venus/aws"
 require "venus/slack"
 require "venus/dalli"
 require "venus/select2"
+require "venus/pg"
 module Venus
   # Your code goes here...
 end

@@ -1,0 +1,18 @@
+development: &default
+  adapter: '<%= @adapter %>'
+  encoding: 'unicode'
+  database: '<%= @db %>_development'
+  host: '127.0.0.1'
+  username: '<%= @user %>'
+  password: '<%= @pass %>'
+<% if @gis %>  postgis_extension: true
+  schema_search_path: 'public, postgis'<% end %>
+
+test: &TEST
+  <<: *default
+  database: '<%= @db %>_test'
+
+production:
+  <<: *default
+  database: '<%= @db %>_production'
+
