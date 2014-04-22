@@ -21,7 +21,7 @@ module Venus
         @ap = ask?("install awesome_print ( http://rubygems.org/gems/awesome_print ) ", true)
         @annotate = ask?("install annotate ( http://rubygems.org/gems/annotate ) ", true)
         @rails_panel = ask?("install rails_panel ( http://rubygems.org/gems/meta_request )", true)
-        @dev_rake = ask?("initialize dev.rake for generate fake data ") unless has_file?("lib/tasks/dev.rake")
+        @dev_rake = ask?("initialize dev.rake for generate fake data ", true) unless has_file?("lib/tasks/dev.rake")
       end
 
       def spring
@@ -54,11 +54,6 @@ module Venus
         if @guard_rspec
           append_gem_into_group("development", "guard-rspec")
           @cmds << "guard init rspec" if has_gem?("guard") && !has_gem?("guard-rspec")
-          if @spring || has_gem?("spring")
-            @procs << lambda {
-              replace_in_file("Guardfile", "guard :rspec", "guard :rspec, :cmd => 'bin/rspec'")
-            }
-          end
         end
       end
 
@@ -111,8 +106,8 @@ module Venus
         end
       end
 
-      def fake_rake
-        if @fake_rake
+      def dev_rake
+        if @dev_rake
           template("dev.rake", "lib/tasks/dev.rake")
         end
       end
