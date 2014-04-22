@@ -49,9 +49,9 @@ module Venus
         if @web_monitoring
           unless file_has_content?("config/routes.rb", 'sidekiq/web')
             require_line = "require 'sidekiq/web'\n"
-            insert_line_into_file("config/routes.rb", require_line, :before => /[A-Za-z0-9]+::Application\.routes\.draw/)
+            insert_line_into_file("config/routes.rb", require_line, :before => /\.routes\.draw/)
           end
-          route "  mount Sidekiq::Web => '/sidekiq'"
+          route "mount Sidekiq::Web => '/sidekiq'"
           say "to see more web setup: https://github.com/mperham/sidekiq/wiki/Monitoring"
         end
       end
