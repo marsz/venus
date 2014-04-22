@@ -27,9 +27,6 @@ module Venus
       def spring
         if @spring
           append_gem_into_group("development", "spring")
-          if has_gem?("rspec")
-            append_gem_into_group("development", "spring-commands-rspec")
-          end
           if has_gem?("factory_girl_rails")
             @spring_factory_girl = true
             # append_gem_into_group("development", "listen")
