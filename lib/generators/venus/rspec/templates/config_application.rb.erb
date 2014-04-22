@@ -1,17 +1,11 @@
 
-    # disable some file generators
-<% unless @disable_assets_generator %>
+    # disable some file generators<% if @disable_assets_generator %>
     config.generators.stylesheets = false
-    config.generators.javascripts = false
-<% end %>
-<% unless @disable_helper_generator %>
+    config.generators.javascripts = false<% end %><% if @disable_helper_generator %>
     config.generators.helper = false
-    config.generators.helper_specs = false
-<% end %>
-<% if @factory_girl %>
+    config.generators.helper_specs = false<% end %><% if @factory_girl %>
     # factory girl rails
     config.generators do |g|
       g.test_framework :rspec, :fixture => true, :views => false, :fixture_replacement => :factory_girl
       g.fixture_replacement :factory_girl, :dir => "spec/factories" 
-    end    
-<% end %>
+    end<% end %>
