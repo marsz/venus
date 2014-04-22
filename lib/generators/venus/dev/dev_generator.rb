@@ -12,6 +12,7 @@ module Venus
         @cmds = []
         @procs = []
         @spring = ask?("install spring ( http://rubygems.org/gems/spring )", true)
+        @spring ||= has_gem?('spring')
         @guard = ask?("install guard for any guard-supported gems ( http://rubygems.org/gems/guard )", true)
         @guard_rspec = ask?("install guard for rspec ( http://rubygems.org/gems/guard-rspec ) ") if has_gem?("rspec")
         @better_errors = ask?("install better_errors ( http://rubygems.org/gems/better_errors )", true)
