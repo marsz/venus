@@ -14,6 +14,5 @@
 - ransack support
 - firendly_id support
 - aasm / state_machine support
-- awesome screen
 - rack-mini-profiler for development
 - country_select support for simple_form
