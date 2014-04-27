@@ -8,3 +8,12 @@
 - cells
 - mongo db
 - bootstrap 3 & smart admin
+- zurb-foundation support
+- font-awesome-rails support
+- rails-erd for development
+- ransack support
+- firendly_id support
+- aasm / state_machine support
+- awesome screen
+- rack-mini-profiler for development
+- country_select support for simple_form
