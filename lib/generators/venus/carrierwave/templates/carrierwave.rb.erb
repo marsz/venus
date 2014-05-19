@@ -6,7 +6,7 @@ CarrierWave.configure do |config|
     :region                 => <%= settingslogic_class %>.carrierwave.region
   }
   config.fog_directory  = <%= settingslogic_class%>.carrierwave.bucket
-  config.asset_host     = ->{ |file| "//#{<%= settingslogic_class%>.carrierwave.host}" }
+  config.asset_host     = lambda{ |file| "//#{<%= settingslogic_class%>.carrierwave.host}" }
   config.fog_public     = true
   config.storage        = :fog
 end
