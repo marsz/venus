@@ -30,7 +30,7 @@ module Venus
       end
 
       def settingslogic
-        settingslogic_insert(:sidekiq => { :redis => @redis_uri, :namespace => @namespace } )
+        settingslogic_insert(:sidekiq => { :url => @redis_uri, :namespace => @namespace } )
       end
 
       def insert_configs
