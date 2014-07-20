@@ -13,7 +13,7 @@ module Venus
           aws_dependent
           @data = {}
           @data[:region] = ask?("S3 region", "us-east-1")
-          @data[:bucket] = ask?("S3 bucket", "")
+          @data[:bucket] = ask?("S3 bucket", "your_aws_bucket")
           @data[:host] = ask?("assets_host", "#{@data[:bucket]}.s3-website-#{@data[:region]}.amazonaws.com")
           settingslogic_insert({ :carrierwave => @data })
         end
