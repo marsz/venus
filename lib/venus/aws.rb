@@ -1,7 +1,7 @@
 module Venus
   class Aws < ::Venus::Base
 
-    def generate
+    def generate!
       settingslogic_dependent
       if !key_in_settingslogic?("aws.access_key_id") || !key_in_settingslogic?("aws.secret_access_key")
         @aws_access_key = ask?("Your AWS access key id?", '') unless 

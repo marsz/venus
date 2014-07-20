@@ -8,7 +8,7 @@ module Venus
       end
 
       def go
-        Venus::Dalli.new.generate
+        Venus::Dalli.new.generate!
       end
 
     end

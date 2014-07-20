@@ -1,7 +1,7 @@
 module Venus
   class Pg < ::Venus::Base
 
-    def generate
+    def generate!
       asks
       gems
       gitignore

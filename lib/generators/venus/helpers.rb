@@ -34,7 +34,7 @@ module Venus
         if has_gem?('aws-sdk')
           ask_settingslogic_info
         else
-          @settinglogic_yml, @settinglogic_class = ::Venus::Aws.new.generate
+          @settinglogic_yml, @settinglogic_class = ::Venus::Aws.new.generate!
         end
       end
 
@@ -43,7 +43,7 @@ module Venus
         if has_gem?('settingslogic')
           ask_settingslogic_info
         else
-          @settinglogic_yml, @settinglogic_class = ::Venus::Settingslogic.new.generate
+          @settinglogic_yml, @settinglogic_class = ::Venus::Settingslogic.new.generate!
         end
       end
 

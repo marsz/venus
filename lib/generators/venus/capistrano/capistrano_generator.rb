@@ -86,7 +86,7 @@ module Venus
       end
 
       def slack
-        ::Venus::Slack.new.generate if @slack
+        ::Venus::Slack.new.generate! if @slack
       end
 
       def says

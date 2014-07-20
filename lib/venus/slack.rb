@@ -1,7 +1,7 @@
 module Venus
   class Slack < ::Venus::Base
 
-    def generate
+    def generate!
       if (has_gem?("capistrano") || has_gem?("capistrano-rails"))
         cap_version = gem_version("capistrano").to_i
         if cap_version == 3

@@ -1,7 +1,7 @@
 module Venus
   class Settingslogic < ::Venus::Base
 
-    def generate
+    def generate!
       @filename = ask?("Your yaml file name in config/ ?", 'application.yml')
       @setting_class = ask?("Your setting class name ?", 'Setting')
       add_gem('settingslogic')

@@ -1,7 +1,7 @@
 module Venus
   class Select2 < ::Venus::Base
 
-    def generate
+    def generate!
       asks
       add_gem('select2-rails')
       bundle_install

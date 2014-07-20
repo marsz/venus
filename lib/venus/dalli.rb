@@ -1,7 +1,7 @@
 module Venus
   class Dalli < ::Venus::Base
 
-    def generate
+    def generate!
       asks
       add_gem('dalli')
       add_gem('connection_pool') if @connection_pool

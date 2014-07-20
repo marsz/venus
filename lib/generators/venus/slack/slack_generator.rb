@@ -8,7 +8,7 @@ module Venus
       end
 
       def go
-        ::Venus::Slack.new.generate
+        ::Venus::Slack.new.generate!
       end
 
     end

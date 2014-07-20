@@ -6,8 +6,8 @@ module Venus
         "select2"
       end
 
-      def generate
-        Venus::Select2.new.generate
+      def go
+        ::Venus::Select2.new.generate!
       end
 
     end

@@ -8,7 +8,7 @@ module Venus
       end
 
       def go
-        ::Venus::Settingslogic.new.generate
+        ::Venus::Settingslogic.new.generate!
       end
 
 
