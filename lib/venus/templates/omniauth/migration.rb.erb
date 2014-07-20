@@ -1,0 +1,7 @@
+class AddIndexToIdentities < ActiveRecord::Migration
+  def change
+    add_index :identities, [:provider, :uid, :user_id]
+    add_index :identities, [:provider, :uid]
+    add_index :identities, [:user_id]
+  end
+end

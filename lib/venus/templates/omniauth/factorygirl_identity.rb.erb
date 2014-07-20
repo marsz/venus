@@ -1,0 +1,9 @@
+# Read about factories at https://github.com/thoughtbot/factory_girl
+
+FactoryGirl.define do
+  factory :identity do
+    <%= @devise_scope %>{ FactoryGirl.create :<%= @devise_scope %> }
+    provider '<%= @providers.keys.first %>'
+    sequence(:uid){ |n| "123#{n}" }
+  end
+end

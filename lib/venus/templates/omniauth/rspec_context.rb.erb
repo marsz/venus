@@ -1,0 +1,108 @@
+require 'spec_helper'
+
+describe <%= @devise_model %>OauthContext do
+
+  context '#auth!' do
+    let(:current_<%= @devise_scope %>){ FactoryGirl.create :<%= @devise_scope %> }
+    let(:authhash)    { OmniAuth.config.mock_auth[:<%= @providers.keys.first %>] }
+    let(:identity)    { FactoryGirl.create :identity, :provider => authhash["provider"], :uid => authhash["uid"] }
+
+    context '<%= @devise_scope %> not exists, identity not exists' do
+      it 'success' do
+        <%= @devise_scope %> = <%= @devise_model %>OauthContext.new(nil).auth!(authhash)
+        expect(<%= @devise_scope %>).to eq(<%= @devise_model %>.last)
+        expect(<%= @devise_scope %>.identities.last).to eq(Identity.last)
+      end
+
+      context '<%= @devise_scope %> signed in' do
+
+        it 'success' do
+          <%= @devise_scope %> = <%= @devise_model %>OauthContext.new(current_<%= @devise_scope %>).auth!(authhash)
+          expect(<%= @devise_scope %>).to eq(current_<%= @devise_scope %>)
+          expect(<%= @devise_scope %>.identities.last).to eq(current_<%= @devise_scope %>.identities.last)
+        end
+      end
+    end
+
+    context '<%= @devise_scope %> not exists, identity exists' do
+      before{ identity }
+
+      it 'success' do
+        <%= @devise_scope %> = <%= @devise_model %>OauthContext.new(nil).auth!(authhash)
+        expect(<%= @devise_scope %>).to eq(identity.<%= @devise_scope %>)
+        expect(<%= @devise_scope %>.identities.last).to eq(identity)
+      end
+
+      context '<%= @devise_scope %> signed in' do
+
+        it 'current <%= @devise_scope %> == exists <%= @devise_scope %> of identity' do
+          <%= @devise_scope %> = <%= @devise_model %>OauthContext.new(identity.<%= @devise_scope %>).auth!(authhash)
+          expect(<%= @devise_scope %>).to eq(identity.<%= @devise_scope %>)
+          expect(<%= @devise_scope %>.identities.last).to eq(identity)
+        end
+
+        it 'current_<%= @devise_scope %> != exists <%= @devise_scope %> of identity' do
+          <%= @devise_scope %> = <%= @devise_model %>OauthContext.new(current_<%= @devise_scope %>).auth!(authhash)
+          expect(<%= @devise_scope %>).to be_false
+          expect(Identity.last).to eq(identity)
+          expect(<%= @devise_model %>.last).to eq(current_<%= @devise_scope %>)
+        end
+      end
+    end
+
+    context '<%= @devise_scope %> exists, identity not exists' do
+      let!(:exists_<%= @devise_scope %>){ FactoryGirl.create :<%= @devise_scope %>, :email => authhash["info"]["email"] }
+
+      it 'success' do
+        <%= @devise_scope %> = <%= @devise_model %>OauthContext.new(nil).auth!(authhash)
+        expect(<%= @devise_scope %>).to eq(exists_<%= @devise_scope %>)
+        expect(<%= @devise_scope %>.identities.last).to eq(Identity.last)
+      end
+
+      
+      context '<%= @devise_scope %> signed in' do
+
+        it 'current <%= @devise_scope %> == exists <%= @devise_scope %>' do
+          <%= @devise_scope %> = <%= @devise_model %>OauthContext.new(exists_<%= @devise_scope %>).auth!(authhash)
+          expect(<%= @devise_scope %>).to eq(exists_<%= @devise_scope %>)
+          expect(<%= @devise_scope %>.identities.last).to eq(Identity.last)
+        end
+
+        it 'current_<%= @devise_scope %> != exists <%= @devise_scope %> of identity' do
+          <%= @devise_scope %> = <%= @devise_model %>OauthContext.new(current_<%= @devise_scope %>).auth!(authhash)
+          expect(<%= @devise_scope %>).to be_false
+          expect(<%= @devise_model %>.last).to eq(current_<%= @devise_scope %>)
+          expect(Identity.last).to eq(current_<%= @devise_scope %>.identities.last)
+        end
+      end
+
+    end
+
+    context '<%= @devise_scope %> exists, identity exists' do
+      let!(:exists_<%= @devise_scope %>) { identity.<%= @devise_scope %> }
+
+      it 'success' do
+        <%= @devise_scope %> = <%= @devise_model %>OauthContext.new(nil).auth!(authhash)
+        expect(<%= @devise_scope %>).to eq(exists_<%= @devise_scope %>)
+        expect(<%= @devise_scope %>.identities.last).to eq(identity)
+      end
+
+      context '<%= @devise_scope %> signed in' do
+
+        it 'current <%= @devise_scope %> == exists <%= @devise_scope %>' do
+          <%= @devise_scope %> = <%= @devise_model %>OauthContext.new(exists_<%= @devise_scope %>).auth!(authhash)
+          expect(<%= @devise_scope %>).to eq(exists_<%= @devise_scope %>)
+          expect(<%= @devise_scope %>.identities.last).to eq(Identity.last)
+        end
+
+        it 'current_<%= @devise_scope %> != exists <%= @devise_scope %> of identity' do
+          <%= @devise_scope %> = <%= @devise_model %>OauthContext.new(current_<%= @devise_scope %>).auth!(authhash)
+          expect(<%= @devise_scope %>).to be_false
+          expect(<%= @devise_model %>.last).to eq(current_<%= @devise_scope %>)
+          expect(Identity.last).to eq(identity)
+        end
+      end
+    end
+
+  end
+end

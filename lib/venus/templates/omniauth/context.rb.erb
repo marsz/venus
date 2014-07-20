@@ -1,0 +1,50 @@
+class <%= @devise_model %>OauthContext
+  attr_accessor :current_<%= @devise_scope %>
+
+  def initialize(current_<%= @devise_scope %>)
+    self.current_<%= @devise_scope %> = current_<%= @devise_scope %>
+  end
+
+  def auth!(authhash)
+    if identity = find_identity(authhash)
+      identity.update_attribute(:auth_data, authhash)
+      return false if current_<%= @devise_scope %> && current_<%= @devise_scope %> != identity.<%= @devise_scope %>
+      return identity.<%= @devise_scope %>
+    else
+      <%= @devise_scope %> = find_<%= @devise_scope %>(authhash)
+      return false if <%= @devise_scope %> && current_<%= @devise_scope %> && current_<%= @devise_scope %> != <%= @devise_scope %>
+      <%= @devise_scope %> = <%= @devise_scope %> || current_<%= @devise_scope %> || create_<%= @devise_scope %>!(authhash)
+      return create_identity(<%= @devise_scope %>, authhash).<%= @devise_scope %>
+    end
+  end
+
+  private
+
+  def find_identity(authhash)
+    Identity.find_by(:provider => authhash["provider"], :uid => authhash["uid"])
+  end
+
+  def create_identity(<%= @devise_scope %>, authhash)
+    <%= @devise_scope %>.identities.create(:provider => authhash["provider"], :uid => authhash["uid"], :auth_data => authhash)
+  end
+
+  # for finding exists <%= @devise_scope %>
+  def find_<%= @devise_scope %>(authhash)
+    <%= @devise_model %>.find_by(:email => authhash["info"]["email"])
+  end
+
+  # for creating <%= @devise_scope %>
+  def create_<%= @devise_scope %>!(authhash)
+    <%= @devise_scope %> = <%= @devise_model %>.new :email => authhash["info"]["email"]
+    disable_password_required!(<%= @devise_scope %>)
+    <%= @devise_scope %>.save!
+    <%= @devise_scope %>
+  end
+
+  # overrider devise method
+  def disable_password_required!(<%= @devise_scope %>)
+    def <%= @devise_scope %>.password_required?
+      false
+    end
+  end
+end

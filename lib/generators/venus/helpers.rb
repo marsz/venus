@@ -47,6 +47,11 @@ module Venus
         end
       end
 
+      def devise_dependent_with_model(model_name)
+        say 'checking dependent gems "devise"...'
+        Venus::Devise.new.generate!(model_name) if !has_gem?('devise') || !has_file?("app/models/#{model_name.underscore}.rb")
+      end
+
       def ask_settingslogic_info
         @settinglogic_class = ask?("Your settinglogic class name?", 'Setting')
         @settinglogic_yml = ask?("Your settinglogic yaml file in config/ ?", 'application.yml')

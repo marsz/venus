@@ -1,0 +1,8 @@
+OmniAuth.config.test_mode = true
+<%- @providers.keys.each_with_index do |provider, i| %>
+OmniAuth.config.add_mock(:<%= provider %>, {
+  "provider" => "<%= provider %>",
+  "uid" => "123412341234<%= i %>",
+  "info" => { "email" => "<%= provider %>_user_<%= i %>@xxxx.com", "name" => "<%= provider %> user"}
+})
+<%- end %>

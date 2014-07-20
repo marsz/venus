@@ -1,0 +1,8 @@
+
+  validates_uniqueness_of :<%= @devise_scope %>_id, :scope => [:provider, :uid]
+  validates_presence_of :<%= @devise_scope %>_id, :provider, :uid
+
+  belongs_to :<%= @devise_scope %>
+
+  serialize :auth_data, Hash
+  

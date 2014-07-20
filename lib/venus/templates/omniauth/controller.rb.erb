@@ -1,0 +1,15 @@
+class <%= @devise_model%>SessionsController < ApplicationController
+
+  def create
+    if <%= @devise_scope %> = <%= @devise_model%>OauthContext.new(current_<%= @devise_scope %>).auth!(request.env['omniauth.auth'])
+      sign_in_and_redirect(<%= @devise_scope %>, :notice => 'Sign in success')
+    else
+      redirect_to root_path, :error => 'Already signed in'
+    end
+  end
+
+  def failure
+    redirect_to root_path, :error => "Sign in fail : #{params[:message]}"
+  end
+
+end

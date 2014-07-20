@@ -1,6 +1,5 @@
 - devise generator
   - asking email setup
-  - asking omniauth
   - asking requests spec example
   - asking background mailer if has sidekiq
 - sidekiq
@@ -16,3 +15,4 @@
 - aasm / state_machine support
 - rack-mini-profiler for development
 - country_select support for simple_form
+- rails 4 secret key setup

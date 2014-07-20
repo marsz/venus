@@ -1,0 +1,7 @@
+
+  get '/<%= @devise_table %>/auth/:provider/callback', :to => "<%= @devise_scope %>_sessions#create"
+  get '/<%= @devise_table %>/auth/failure' => "<%= @devise_scope %>_sessions#failure"
+
+  Setting.omniauth.keys.each do |provider|
+    get "/<%= @devise_table %>/auth/#{provider}", :as => "<%= @devise_scope %>_auth_#{provider}"
+  end
