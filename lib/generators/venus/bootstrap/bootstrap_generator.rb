@@ -51,13 +51,14 @@ module Venus
           insert_template(to_file, "simple_form_config.erb", :before => "\nend\n") if has_file?(to_file)
           # assets
           template("unicorn.js", "app/assets/javascripts/unicorn.js")
-          template("unicorn.main.css", "app/assets/stylesheets/unicorn.main.css")
+          template("unicorn.main.css.scss", "app/assets/stylesheets/unicorn.main.css.scss")
           template("unicorn.grey.css", "app/assets/stylesheets/unicorn.grey.css")
           css_assets_require(@target_css, "unicorn.main", :after => "bootstrap-responsive")
           css_assets_require(@target_css, "unicorn.grey", :after => "unicorn.main")
           js_assets_require(@target_js, "unicorn", :after => "bootstrap")
           copy_file("img/breadcrumb.png", "app/assets/images/img/breadcrumb.png")
           copy_file("img/menu-active.png", "app/assets/images/img/menu-active.png")
+          copy_file("img/line.png", "app/assets/images/img/line.png")
           # layout
           unicorn_file = "app/views/layouts/bootstrap_unicorn.html.erb"
           copy_file("unicorn.layout", unicorn_file)
