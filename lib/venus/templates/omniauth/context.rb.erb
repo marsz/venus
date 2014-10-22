@@ -7,14 +7,13 @@ class <%= @devise_model %>OauthContext
 
   def auth!(authhash)
     if identity = find_identity(authhash)
+      return false unless current_<%= @devise_scope %>_valid?(identity.<%= @devise_scope %>)
       identity.update_attribute(:auth_data, authhash)
-      return false if current_<%= @devise_scope %> && current_<%= @devise_scope %> != identity.<%= @devise_scope %>
-      return identity.<%= @devise_scope %>
+      identity.<%= @devise_scope %>
     else
-      <%= @devise_scope %> = find_<%= @devise_scope %>(authhash)
-      return false if <%= @devise_scope %> && current_<%= @devise_scope %> && current_<%= @devise_scope %> != <%= @devise_scope %>
-      <%= @devise_scope %> = <%= @devise_scope %> || current_<%= @devise_scope %> || create_<%= @devise_scope %>!(authhash)
-      return create_identity(<%= @devise_scope %>, authhash).<%= @devise_scope %>
+      <%= @devise_scope %> = find_<%= @devise_scope %>(authhash) || current_<%= @devise_scope %> || create_<%= @devise_scope %>!(authhash)
+      return false unless current_<%= @devise_scope %>_valid?(<%= @devise_scope %>)
+      create_identity(<%= @devise_scope %>, authhash).<%= @devise_scope %>
     end
   end
 
@@ -26,6 +25,10 @@ class <%= @devise_model %>OauthContext
 
   def create_identity(<%= @devise_scope %>, authhash)
     <%= @devise_scope %>.identities.create(:provider => authhash["provider"], :uid => authhash["uid"], :auth_data => authhash)
+  end
+
+  def current_<%= @devise_scope %>_valid?(<%= @devise_scope %>)
+    !current_<%= @devise_scope %> || current_<%= @devise_scope %> == <%= @devise_scope %>
   end
 
   # for finding exists <%= @devise_scope %>
