@@ -3,7 +3,8 @@ CarrierWave.configure do |config|
     :provider               => 'AWS',
     :aws_access_key_id      => <%= settingslogic_class %>.aws.access_key_id,
     :aws_secret_access_key  => <%= settingslogic_class %>.aws.secret_access_key,
-    :region                 => <%= settingslogic_class %>.carrierwave.region
+    :region                 => <%= settingslogic_class %>.carrierwave.region,
+    :path_style             => true
   }
   config.fog_directory  = <%= settingslogic_class%>.carrierwave.bucket
   config.asset_host     = lambda{ |file| "//#{<%= settingslogic_class%>.carrierwave.host}" }
