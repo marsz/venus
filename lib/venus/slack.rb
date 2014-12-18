@@ -20,7 +20,7 @@ module Venus
     def ask_for_slack
       @team = ask?("slack team ? (If URL is 'team.slack.com', value is 'team')", '')
       say "go to https://{YOUR TEAM NAME}.slack.com/services/new/incoming-webhook create web hook to get token"
-      @token = ask?("in coming web hook token", '')
+      @webhook = ask?("InComing Web Hook url", '')
       @room = ask?("slack room", "#general")
     end
 
@@ -29,7 +29,7 @@ module Venus
       add_gem("slackistrano")
       bundle_install
       insert_line_into_file("Capfile", "require 'slackistrano'")
-      template("slack.cap.erb", "lib/capistrano/tasks/slack.cap")
+      template("slack.cap.erb", "lib/capistrano/tasks/slack.rake")
       say "to test:"
       say "  cap production slack:deploy:starting"
       say "  cap production slack:deploy:finished"

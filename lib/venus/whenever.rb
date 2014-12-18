@@ -19,7 +19,7 @@ module Venus
 
     def capistrano_3
       insert_line_into_file("Capfile", "require 'whenever/capistrano'")
-      template("whenever.cap", "lib/capistrano/tasks/whenever.cap")
+      template("whenever.cap", "lib/capistrano/tasks/whenever.rake")
     end
 
     def capistrano_2

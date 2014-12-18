@@ -20,7 +20,7 @@ module Venus
       insert_line_into_file("Capfile", "require 'capistrano/sidekiq'")
       insert_line_into_file("Capfile", "# require 'capistrano/sidekiq/monit' #to require monit tasks (V0.2.0+)")
 
-      template("sidekiq.cap", "lib/capistrano/tasks/sidekiq.cap")
+      template("sidekiq.cap", "lib/capistrano/tasks/sidekiq.rake")
     end
 
   end
