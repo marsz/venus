@@ -21,9 +21,16 @@ module Venus
       deploy_rb = "config/deploy.rb"
       template("unicorn.cap", "lib/capistrano/tasks/unicorn.rake")
 
-      insert_line_into_file(deploy_rb, "  after :publishing, :restart", :before => "task :restart do")
-      insert_line_into_file(deploy_rb, "    invoke 'unicorn:restart'", :after => "task :restart do")
-
+      content = "
+after 'deploy:publishing', 'deploy:restart'
+namespace :deploy do
+  task :restart do
+    invoke 'unicorn:legacy_restart'
+    # invoke 'unicorn:restart'
+  end
+end
+"
+      insert_line_into_file(deploy_rb, content)
     end
 
   end

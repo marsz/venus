@@ -1,9 +1,8 @@
 # see more
-#   https://github.com/defunkt/unicorn/blob/master/examples/unicorn.conf.rb
-
-worker_processes 1
-preload_app true
-
+#   https://github.com/tablexi/capistrano3-unicorn/blob/master/examples/unicorn.rb
+app_path = "<%= @app_path %>/<%= app_name %>"
+working_directory "#{app_path}/current"
+pid "#{app_path}/current/tmp/pids/unicorn.pid"
 listen '/tmp/unicorn.<%= app_name %>.sock'
 
 # log rotate config example
@@ -11,13 +10,33 @@ listen '/tmp/unicorn.<%= app_name %>.sock'
 stderr_path 'log/unicorn.error.log'
 stdout_path 'log/unicorn.log'
 
-pid "tmp/pids/unicorn.pid"
+worker_processes 1
+
+before_exec do |server|
+  ENV['BUNDLE_GEMFILE'] = "#{app_path}/current/Gemfile"
+end
+
+preload_app true
 
 before_fork do |server, worker|
-  defined?(ActiveRecord::Base) && ActiveRecord::Base.connection.disconnect!
-
+  if defined?(ActiveRecord::Base)
+    ActiveRecord::Base.connection.disconnect!
+  end
+  
+  # Before forking, kill the master process that belongs to the .oldbin PID.
+  # This enables 0 downtime deploys.
+  old_pid = "#{server.config[:pid]}.oldbin"
+  if File.exists?(old_pid) && server.pid != old_pid
+    begin
+      Process.kill("QUIT", File.read(old_pid).to_i)
+    rescue Errno::ENOENT, Errno::ESRCH
+      # someone else did our job for us
+    end
+  end
 end
 
 after_fork do |server, worker|
-  defined?(ActiveRecord::Base) && ActiveRecord::Base.establish_connection
+  if defined?(ActiveRecord::Base)
+    ActiveRecord::Base.establish_connection
+  end
 end

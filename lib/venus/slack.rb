@@ -26,7 +26,7 @@ module Venus
 
     def capistrano_3
       ask_for_slack
-      add_gem("slackistrano")
+      append_gem_into_group(:development, "slackistrano", :require => false)
       bundle_install
       insert_line_into_file("Capfile", "require 'slackistrano'")
       template("slack.cap.erb", "lib/capistrano/tasks/slack.rake")

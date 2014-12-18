@@ -9,6 +9,7 @@ module Venus
 
       def asks
         generate 'venus:capistrano' if !has_gem?('capistrano') && ask?("install capistrano 3 at first", true)
+        @app_path = ask?("prefix of app path", "/home/apps")
       end
 
       def gemfile

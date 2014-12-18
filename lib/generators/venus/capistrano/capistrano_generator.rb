@@ -18,6 +18,7 @@ module Venus
         @stages = { :production => ask_stage_infomation }
         if ask?('has staging server?', false)
           @stages[:staging] = ask_stage_infomation('staging')
+          copy_config_staging_rb
         end
         @slack = ask?("install slack for notifying deploy message?", false)
         @deploy_rb = "config/deploy.rb"
@@ -29,6 +30,7 @@ module Venus
         comment_lines("Gemfile", "rvm-capistrano")
         append_gem_into_group(:development, "capistrano-#{@ruby_installer}") if @ruby_installer.present?
         append_gem_into_group(:development, 'capistrano-rails')
+        add_gem("figaro") # secret key
         bundle_install
         if has_gem?("capistrano") && gem_version("capistrano").to_i < 3
           ask_bundle_update(true)
@@ -55,6 +57,7 @@ module Venus
         change_config_value(@deploy_rb, "set :repo_url", @git_uri)
         uncomment_lines(@deploy_rb, "set :scm")
         uncomment_lines(@deploy_rb, "set :linked_files")
+        replace_in_file(@deploy_rb, "'config/database.yml'", "'config/database.yml', 'config/application.yml'")
         uncomment_lines(@deploy_rb, "set :linked_dirs")
         @stages.each do |stage, server|
           to_file = "config/deploy/#{stage}.rb"
@@ -64,6 +67,28 @@ module Venus
           ssh_uri = server[:user] + "@" + server[:host]
           [:app, :web, :db].each{ |role| change_config_value(to_file, "role :#{role}", [ssh_uri]) }
           comment_lines(to_file, "server 'example.com'")
+        end
+      end
+
+      def gitignore
+        add_gitignore("/.capistrano/*")
+      end
+
+      def secret_key_fix
+        settingslogic_dependent
+        settingslogic_insert("SECRET_KEY_BASE" => "12341234")
+        if has_file?("config/initializers/devise.rb")
+          uncomment_lines("config/initializers/devise.rb", "config.secret_key")
+        end
+        content = "
+production:
+  secret_key_base: <%= ENV[\"SECRET_KEY_BASE\"] %>"
+        insert_line_into_file("config/secrets.yml", content)
+        if @stages[:staging]
+          content = "
+#{@stages[:staging][:env]}:
+  secret_key_base: <%= ENV[\"SECRET_KEY_BASE\"] %>"
+          insert_line_into_file("config/secrets.yml", content)
         end
       end
 
@@ -94,7 +119,7 @@ module Venus
         say "  1. Your exists files (#{@exists_files.join(", ")}) has backuped with .bak"
         say "  2. edit config/deploy.rb & config/deploy/production.rb to customize your deploy configuration"
         say "setup server:"
-        say "  run: bundle exec cap production deploy:setup"
+        say "  run: bundle exec cap production deploy"
       end
 
       private
@@ -110,11 +135,17 @@ module Venus
 
       def ask_stage_infomation(prefix = 'production')
         stage = {}
-        stage[:env] = ask?("your #{prefix} server Rails Env?", 'production')
+        stage[:env] = ask?("your #{prefix} server Rails Env?", prefix)
         stage[:user] = ask?("your #{prefix} server ssh user?", 'apps')
         stage[:host] = ask?("your #{prefix} server host?", app_name+'.com')
         stage[:branch] = ask?("your git branch?", 'master')
         stage
+      end
+
+      def copy_config_staging_rb
+        unless has_file?("config/environments/staging.rb")
+          cp_file("config/environments/production.rb", "config/environments/staging.rb")
+        end
       end
     end
   end
