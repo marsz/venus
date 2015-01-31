@@ -8,11 +8,7 @@ module Venus
       end
 
       def asks
-        aws_dependent
-        if ask?("Setup SES for mailer?", true)
-          change_config_value("config/application.rb", "    config.action_mailer.delivery_method", "= :aws_ses", :after => "class Application < Rails::Application")
-          insert_line_into_file("config/initializers/aws.rb", "ActionMailer::Base.default_url_options = { :host => #{settingslogic_class}.host }")
-        end
+        ::Venus::Aws.new.generate!
       end
 
     end
