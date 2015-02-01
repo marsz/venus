@@ -16,6 +16,7 @@ module Venus
       private
 
       def asks
+        settingslogic_dependent
         @provider = ask_with_opts("fog provider", { 1 => 'AWS', 2 => 'Rackspace', 3 => 'Google'}, 1)
         @assets_host = "localhost:3000"
         if @provider == 'AWS'
@@ -37,8 +38,6 @@ module Venus
             :google_storage_access_key_id => ask?('Google Storage api key', ''),
             :google_storage_secret_access_key => ask?('Google Storage secret key', '')
           }
-        else
-          settingslogic_dependent
         end
         @assets_prefix = "/assets"
       end
